@@ -13,9 +13,9 @@
                 </p>
             </div>
             <div class="col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
-                <button class="btn btn-primary btn-lg">
+                <a href="/prediction" class="btn btn-primary btn-lg">
                     Make your prediction
-                </button>
+                </a>
             </div>
         </div>
     </div>
@@ -27,15 +27,15 @@
                 <p>
                 <table class="table table-striped">
                     <thead>
-                    <tr>fsd
+                    <tr>
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
                         <th scope="col">Correct guesses</th>
-                        <sdth scope="col">Points</sdth>
+                        <th scope="col">Points</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @for ($i = 0; $i < 10; $i++)
+                    @for ($i = 1; $i < 10; $i++)
                         <tr>
                             <th scope="row">{{ $i }}</th>
                             <td>Mark</td>
