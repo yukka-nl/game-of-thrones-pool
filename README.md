@@ -1,1 +1,1 @@
-# game-of-thrones-poule
+# Game of Thrones Pool
