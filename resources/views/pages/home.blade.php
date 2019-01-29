@@ -17,27 +17,27 @@
                     <a href="/prediction" class="btn btn-primary btn-lg">
                         <i class="fab fa-wpforms mr-1"></i> Make your prediction
                     </a>
-                    <div class="mt-3 mb-2">
+                    <div class="mt-3 mb-1">
                         Already made a prediction? Sign into see your groups!
                     </div>
 
                     <div>
-                        <a class="btn btn-outline-secondary mr-2">
+                        <a class="btn btn-outline-secondary mt-1 mr-2">
                             <span class="fab fa-facebook brand-color-facebook mr-1"></span> Facebook
                         </a>
 
 
-                        <a class="btn btn-outline-secondary mr-2">
+                        <a class="btn btn-outline-secondary mt-1 mr-2">
                             <i class="fab fa-reddit brand-color-reddit mr-1"></i> Reddit
                         </a>
 
 
-                        <a class="btn btn-outline-secondary mr-2">
+                        <a class="btn btn-outline-secondary mt-1 mr-2">
                             <span class="fab fa-twitter brand-color-twitter mr-1"></span> Twitter
                         </a>
 
 
-                        <a class="btn btn-outline-secondary">
+                        <a class="btn btn-outline-secondary mt-1">
                             <i class="fab fa-google brand-color-google mr-1"></i> Google
                         </a>
                     </div>
