@@ -5,6 +5,7 @@
         <div class="row">
             <div class="col-sm-12 col-md-6">
                 <h1 class="h2">Welcome</h1>
+
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id rutrum tortor. Sed volutpat justo
                     eu libero malesuada, scelerisque sodales turpis aliquam. Aenean vulputate diam a quam egestas

@@ -17,6 +17,16 @@
         </div>
     </div>
 
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 d-flex align-items-end">
+                <img src="{{ URL::asset('img/header-topleft.png') }}">
+            </div>
+            <div class="col-sm-6 d-flex justify-content-end">
+                <img src="{{ URL::asset('img/header-topright.png') }}">
+            </div>
+        </div>
+    </div>
     @yield('content')
 </div>
 </body>
