@@ -1812,6 +1812,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['characters'],
   data: function data() {
@@ -1833,7 +1850,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var self = this;
     this.characters.forEach(function (character) {
-      self.selections[character.name] = null;
+      self.selections[character.name] = 'alive';
     });
     console.log(Object.values(this.selections));
   },
@@ -1849,7 +1866,8 @@ __webpack_require__.r(__webpack_exports__);
         return _this.selections[x] !== null;
       }).length;
       this.progressPercentage = Math.round(filledInCount / Object.keys(this.selections).length * 100);
-    }
+    },
+    submitForm: function submitForm() {}
   },
   computed: {
     progressBarStyle: function progressBarStyle() {
@@ -54923,7 +54941,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main", [
+  return _c("main", { staticClass: "position-relative" }, [
     _c(
       "div",
       {
@@ -54947,6 +54965,20 @@ var render = function() {
         ])
       ]
     ),
+    _vm._v(" "),
+    _vm.progressPercentage === 100
+      ? _c(
+          "button",
+          {
+            staticClass: "btn btn-success btn-block w-100 btn-lg",
+            on: { click: _vm.submitForm }
+          },
+          [
+            _c("i", { staticClass: "fas fa-paper-plane mr-1" }),
+            _vm._v(" Submit prediction\n    ")
+          ]
+        )
+      : _vm._e(),
     _vm._v(" "),
     _c(
       "table",
@@ -55014,7 +55046,38 @@ var render = function() {
           0
         )
       ]
-    )
+    ),
+    _vm._v(" "),
+    _vm.progressPercentage === 100
+      ? _c(
+          "button",
+          {
+            staticClass: "btn btn-success btn-block w-100 btn-lg",
+            on: { click: _vm.submitForm }
+          },
+          [
+            _c("i", { staticClass: "fas fa-paper-plane mr-1" }),
+            _vm._v(" Submit prediction\n    ")
+          ]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.progressPercentage === 100
+      ? _c(
+          "div",
+          {
+            staticClass: "position-fixed p-3 card",
+            staticStyle: { bottom: "10px", right: "10px", "z-index": "10" }
+          },
+          [
+            _c("div", { staticClass: "h4 mb-2 text-center" }, [
+              _vm._v("\n            You're all done!\n        ")
+            ]),
+            _vm._v(" "),
+            _vm._m(1)
+          ]
+        )
+      : _vm._e()
   ])
 }
 var staticRenderFns = [
@@ -55031,6 +55094,22 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Prediction")])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "btn btn-success btn-lg",
+        attrs: { href: "/prediction/create" }
+      },
+      [
+        _c("i", { staticClass: "fas fa-paper-plane mr-1" }),
+        _vm._v(" Submit prediction\n        ")
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -66583,7 +66662,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleNotFoundError: Module not found: Error: Can't resolve '@fortawesome/fontawesome-free/css/all.css' in '/var/www/game-of-thrones-pool/resources/sass'\n    at factory.create (/var/www/game-of-thrones-pool/node_modules/webpack/lib/Compilation.js:823:10)\n    at factory (/var/www/game-of-thrones-pool/node_modules/webpack/lib/NormalModuleFactory.js:397:22)\n    at resolver (/var/www/game-of-thrones-pool/node_modules/webpack/lib/NormalModuleFactory.js:130:21)\n    at asyncLib.parallel (/var/www/game-of-thrones-pool/node_modules/webpack/lib/NormalModuleFactory.js:224:22)\n    at /var/www/game-of-thrones-pool/node_modules/neo-async/async.js:2825:7\n    at /var/www/game-of-thrones-pool/node_modules/neo-async/async.js:6886:13\n    at normalResolver.resolve (/var/www/game-of-thrones-pool/node_modules/webpack/lib/NormalModuleFactory.js:214:25)\n    at doResolve (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/Resolver.js:184:12)\n    at hook.callAsync (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/Resolver.js:238:5)\n    at _fn0 (eval at create (/var/www/game-of-thrones-pool/node_modules/tapable/lib/HookCodeFactory.js:32:10), <anonymous>:15:1)\n    at resolver.doResolve (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/UnsafeCachePlugin.js:37:5)\n    at hook.callAsync (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/Resolver.js:238:5)\n    at _fn0 (eval at create (/var/www/game-of-thrones-pool/node_modules/tapable/lib/HookCodeFactory.js:32:10), <anonymous>:15:1)\n    at hook.callAsync (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/Resolver.js:238:5)\n    at _fn0 (eval at create (/var/www/game-of-thrones-pool/node_modules/tapable/lib/HookCodeFactory.js:32:10), <anonymous>:12:1)\n    at resolver.doResolve (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/DescriptionFilePlugin.js:42:38)\n    at hook.callAsync (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/Resolver.js:238:5)\n    at _fn42 (eval at create (/var/www/game-of-thrones-pool/node_modules/tapable/lib/HookCodeFactory.js:32:10), <anonymous>:390:1)\n    at resolver.doResolve (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/ModuleKindPlugin.js:23:37)\n    at hook.callAsync (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/Resolver.js:238:5)\n    at _fn0 (eval at create (/var/www/game-of-thrones-pool/node_modules/tapable/lib/HookCodeFactory.js:32:10), <anonymous>:15:1)\n    at hook.callAsync (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/Resolver.js:238:5)\n    at _fn0 (eval at create (/var/www/game-of-thrones-pool/node_modules/tapable/lib/HookCodeFactory.js:32:10), <anonymous>:15:1)\n    at args (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/forEachBail.js:30:14)\n    at hook.callAsync (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/Resolver.js:238:5)\n    at _fn0 (eval at create (/var/www/game-of-thrones-pool/node_modules/tapable/lib/HookCodeFactory.js:32:10), <anonymous>:15:1)\n    at resolver.doResolve (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/UnsafeCachePlugin.js:37:5)\n    at hook.callAsync (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/Resolver.js:238:5)\n    at _fn0 (eval at create (/var/www/game-of-thrones-pool/node_modules/tapable/lib/HookCodeFactory.js:32:10), <anonymous>:15:1)\n    at hook.callAsync (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/Resolver.js:238:5)\n    at _fn0 (eval at create (/var/www/game-of-thrones-pool/node_modules/tapable/lib/HookCodeFactory.js:32:10), <anonymous>:12:1)\n    at resolver.doResolve (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/DescriptionFilePlugin.js:42:38)\n    at hook.callAsync (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/Resolver.js:238:5)\n    at _fn43 (eval at create (/var/www/game-of-thrones-pool/node_modules/tapable/lib/HookCodeFactory.js:32:10), <anonymous>:402:1)\n    at hook.callAsync (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/Resolver.js:238:5)\n    at _fn0 (eval at create (/var/www/game-of-thrones-pool/node_modules/tapable/lib/HookCodeFactory.js:32:10), <anonymous>:12:1)");
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 
@@ -66594,8 +66673,8 @@ throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/game-of-thrones-pool/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /var/www/game-of-thrones-pool/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /var/www/game-of-thrones-poule/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/game-of-thrones-poule/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

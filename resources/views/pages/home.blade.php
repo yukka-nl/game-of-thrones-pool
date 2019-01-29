@@ -14,7 +14,7 @@
             </div>
             <div class="col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
                 <div class="text-center">
-                    <a href="/prediction" class="btn btn-primary btn-lg">
+                    <a href="/prediction/create" class="btn btn-primary btn-lg">
                         <i class="fab fa-wpforms mr-1"></i> Make your prediction
                     </a>
                     <div class="mt-3 mb-1">
