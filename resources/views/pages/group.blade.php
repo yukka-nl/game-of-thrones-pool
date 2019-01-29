@@ -16,6 +16,9 @@
                     Created 24 hours ago
                 </p>
 
+                <p>
+                    Use this link to invite your friends: <a href="/groups/invite/{{$group->invite_code}}">Link!</a>
+                </p>
                 <div class="row d-flex justify-content-center">
                     @for ($i = 0; $i < 6; $i++)
                         <div class="col-6 col-sm-4 col-md-2 col-lg-2 col-xl-1 mt-3 text-center">

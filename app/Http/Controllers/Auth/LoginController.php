@@ -62,6 +62,11 @@ class LoginController extends Controller
         return redirect($this->redirectTo)->with('redirectToPrevious', true);
     }
 
+    public function logout()
+    {
+        auth()->logout();
+        return redirect($this->redirectTo)->with('redirectToPrevious', true);
+    }
 
     /**
      * Try and get existing user and return it or create new one.
