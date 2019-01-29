@@ -20,7 +20,7 @@
                     <ul>
                         @foreach($groups as $group)
                             <li>
-                                <a href="/groups/{{$group->slug}}">{{ $group->name }}</a> {{ $group->owner->id == Auth::id() ?  'Owner' : ''  }}
+                                <a href="/groups/{{$group->id}}">{{ $group->name }}</a> {{ $group->owner->id == Auth::id() ?  'Owner' : ''  }}
                             </li>
                         @endforeach
                     </ul>

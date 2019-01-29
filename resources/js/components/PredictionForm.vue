@@ -6,6 +6,11 @@
                 <h1 class="h4">Would you like to create a group?</h1>
                 You can invite your friends to your group to compete with them. If you don't want to create a group,
                 then you can always join as many as you'd like in the future!
+
+                <div class="mt-3">
+                    <div class="font-weight-bold mb-1">Name of your group</div>
+                    <input type="text" class="form-control" v-model="groupName">
+                </div>
             </div>
 
             <div class="row">
@@ -48,7 +53,7 @@
                 <td class="align-middle">
                     {{ character.name }}
                 </td>
-                <td class="position-relative col-6">
+                <td class="position-relative col-6 col-sm-12">
                     <div class="d-flex align-items-center justify-content-center position-absolute h-100 w-100">
                         <b-form-group>
                             <b-form-radio-group :id="character.name"
@@ -84,7 +89,7 @@
 
 <script>
     export default {
-        props: ['characters'],
+        props: ['characters', 'username'],
         data() {
             return {
                 selections: {},
@@ -94,6 +99,7 @@
                     {text: 'Becomes a wight', value: 3}
                 ],
                 progressPercentage: 0,
+                groupName: 'Group of ' + this.username,
             }
         },
         mounted() {
@@ -116,30 +122,32 @@
                 this.$refs.submitModal.show();
             },
             submitForm(createGroup) {
-                let self = this;
+                if(createGroup) this.createGroup();
+                // let self = this;
                 // let postData = {
                 //     'commentable_type': 'App\\' + this.capitalizeString(this.modelClass),
                 //     'commentable_id': this.modelId,
                 //     'body': this.commentBody
                 // };
-
-
-                axios.post('/prediction', this.selections)
-                    .then(function (response) {
-                        if(createGroup) {
-                            self.createGroup();
-                        } else {
-                            window.location.replace('/profile/me');
-                        }
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
+                // axios.post('/prediction', this.selections)
+                //     .then(function (response) {
+                //         if(createGroup) {
+                //             self.createGroup();
+                //         } else {
+                //             window.location.replace('/profile/me');
+                //         }
+                //     })
+                //     .catch(function (error) {
+                //         console.log(error);
+                //     });
             },
             createGroup() {
-                axios.post('/group')
+                let postData = {
+                    'name': this.groupName,
+                };
+                axios.post('/groups', postData)
                     .then(function (response) {
-                        window.location.replace(response.groupUrl);
+                        window.location.replace('/groups/' + response.data.id);
                     })
                     .catch(function (error) {
                         console.log(error);

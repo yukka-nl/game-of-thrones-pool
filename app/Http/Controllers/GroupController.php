@@ -18,9 +18,9 @@ class GroupController extends Controller
         return view('pages.groups', $data);
     }
 
-    public function show($slug)
+    public function show($groupId)
     {
-        $data['group'] = Group::where('slug', $slug)->first();
+        $data['group'] = Group::findOrFail($groupId);
         return view('pages.group', $data);
     }
 
@@ -33,10 +33,12 @@ class GroupController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|unique:groups|max:255',
-            'owner_id' => 'required|integer|exists:users,id',
         ]);
 
-        $group = Group::create($validatedData);
+        $group = Group::create([
+            'name' => $request->name,
+            'owner_id' => Auth::id()
+        ]);
 
         Auth::user()->groups()->attach($group->id);
 
@@ -52,11 +54,11 @@ class GroupController extends Controller
         $group = Group::where('invite_code', $inviteCode)->first();
 
         if ($group->hasUser(Auth::id())) {
-            return redirect('/groups/' . $group->slug);
+            return redirect('/groups/' . $group->id);
         }
 
         Auth::user()->groups()->attach($group->id);
 
-        return redirect('/groups/' . $group->slug)->with('message', 'Joined ' . $group->name . ' group!');
+        return redirect('/groups/' . $group->id)->with('message', 'Joined ' . $group->name . ' group!');
     }
 }
