@@ -3,10 +3,21 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Ramsey\Uuid\Uuid;
 
 class Group extends Model
 {
     protected $guarded = ['id'];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        self::creating(function ($model) {
+            $model->slug = str_slug($model->name);
+            $model->invite_code = Uuid::uuid4()->toString();
+        });
+    }
 
     public function owner()
     {

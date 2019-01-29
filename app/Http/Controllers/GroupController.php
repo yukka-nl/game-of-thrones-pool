@@ -18,9 +18,9 @@ class GroupController extends Controller
         return view('pages.groups', $data);
     }
 
-    public function show($name)
+    public function show($slug)
     {
-        $data['group'] = Group::where('name', $name)->first();
+        $data['group'] = Group::where('slug', $slug)->first();
         return view('pages.group', $data);
     }
 
@@ -42,11 +42,19 @@ class GroupController extends Controller
 
     public function join($inviteCode)
     {
-        $group = Group::where('uuid', $inviteCode)->first();
+        if (!Auth::check()) {
+            return redirect('/register');
+        }
+
+        $group = Group::where('invite_code', $inviteCode)->first();
+        $groupUser = GroupUser::where('user_id', Auth::id())->where('group_id', $group->id)->first();
+        if ($groupUser) {
+            return redirect('/groups/' . $group->slug);
+        }
         GroupUser::create([
             'user_id' => Auth::id(),
             'group_id' => $group->id,
         ]);
-        return redirect('/groups/' . $group->name);
+        return redirect('/groups/' . $group->slug)->with('message', 'Joined ' . $group->name . ' group!');
     }
 }
