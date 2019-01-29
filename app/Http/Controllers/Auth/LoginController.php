@@ -57,6 +57,8 @@ class LoginController extends Controller
         $userData = Socialite::driver($platform)->user();
 
         $this->getExistingUser($userData, $platform);
+
+        return redirect($this->redirectTo)->with('redirectToPrevious', true);
     }
 
 
@@ -87,17 +89,18 @@ class LoginController extends Controller
      */
     public function registerNewUser($userData, $platform)
     {
+
+//        dd($userData);
         // create user
         $user = User::create([
             'name' => $userData->name,
-            'username' => str_slug($userData->name) . rand(1, 9999999),
             'email' => $userData->email,
             'avatar' => $userData->avatar,
             'password' => bcrypt(str_random(30)),
             'social_id' => $userData->id,
             'platform' => $platform,
             'token' => $userData->token,
-            'refresh_token' => $userData->refreshToken
+            'refresh_token' => $userData->refreshToken ?? ''
         ]);
 
         return $user;
