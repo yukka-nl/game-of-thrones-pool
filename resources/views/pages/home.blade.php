@@ -4,19 +4,23 @@
     <div class="container card mb-3 card p-4">
         <div class="row">
             <div class="col-sm-12 col-md-6">
-                <h1 class="h2">Welcome</h1>
-
+                <h1 class="h2">Winter has arrived. Dead pool time.</h1>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras id rutrum tortor. Sed volutpat justo
-                    eu libero malesuada, scelerisque sodales turpis aliquam. Aenean vulputate diam a quam egestas
-                    elementum. Morbi at elementum lectus. Quisque diam tortor, tincidunt quis sodales et, cursus vel
-                    nisl.
+                    Season 8 of Game of Thrones will start soon. Not all your beloved characters
+                    will survive the threat of the white walkers. Create a pool with your friends to predict the faith
+                    of all remaining characters. Beat your friends by earning the most points or compete in the global
+                    leaderboards.
                 </p>
             </div>
             <div class="col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
-                <a href="/prediction" class="btn btn-primary btn-lg">
-                    Make your prediction
-                </a>
+                <div class="text-center">
+                    <a href="/prediction" class="btn btn-primary btn-lg">
+                        Make your prediction
+                    </a>
+                    <div class="mt-3">
+                        Already made a prediction? <a href="#">Sign in</a> to see your groups!
+                    </div>
+                </div>
             </div>
         </div>
     </div>
