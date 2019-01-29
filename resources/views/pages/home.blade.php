@@ -17,11 +17,11 @@
                     <a href="/prediction/create" class="btn btn-primary btn-lg">
                         <i class="fab fa-wpforms mr-1"></i> Make your prediction
                     </a>
-                    <div class="mt-3 mb-1">
-                        Already made a prediction? Sign into see your groups!
-                    </div>
 
                     @guest
+                        <div class="mt-3 mb-1">
+                            Already made a prediction? Sign into see your groups!
+                        </div>
                         <div>
                             <a href="/login/facebook" class="btn btn-outline-secondary mt-1 mr-2">
                                 <span class="fab fa-facebook brand-color-facebook mr-1"></span> Facebook
