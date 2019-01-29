@@ -15,3 +15,7 @@ body {
 @import '~bootstrap/scss/bootstrap';
 
 @import '~bootstrap-vue/dist/bootstrap-vue.css';
+
+.container {
+  z-index: 5;
+}

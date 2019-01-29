@@ -13,7 +13,7 @@
 <div id="app" class="container">
     <div class="row">
         <div class="col-12 text-center mt-5 mb-5">
-            <img src="{{ URL::asset('img/header.png') }}" style="height: 40px;">
+            <img src="https://fontmeme.com/temporary/03b74df8c27e3d51a03a2c11821fabb5.png" style="height: 40px;">
         </div>
     </div>
 
@@ -28,6 +28,8 @@
         </div>
     </div>
     @yield('content')
+
+    <snow></snow>
 </div>
 </body>
 
