@@ -11,3 +11,7 @@ Route::get('/debug', function() {
    }
    dd($slugs);
 });
+
+// Social Logins
+Route::get('login/{platform}', 'Auth\LoginController@redirectToProvider');
+Route::get('login/{platform}/callback', 'Auth\LoginController@handleProviderCallback');
