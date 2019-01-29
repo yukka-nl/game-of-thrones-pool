@@ -8,6 +8,8 @@ body {
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
 // Variables
 @import 'variables';
 
@@ -18,4 +20,12 @@ body {
 
 .container, nav {
   z-index: 5;
+}
+
+.features {
+  i {
+    font-size: 36px;
+    display: block;
+    margin-bottom: 25px;
+  }
 }

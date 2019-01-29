@@ -13,13 +13,13 @@
 <div id="app" class="container">
     <div class="row">
         <div class="col-12 text-center mt-5 mb-5">
-            <img src="https://fontmeme.com/temporary/03b74df8c27e3d51a03a2c11821fabb5.png" style="height: 40px;">
+            <img src="{{ URL::asset('img/header.png') }}" style="height: 40px;">
         </div>
     </div>
 
     <div class="container">
         <div class="row">
-            <div class="col-sm-6 d-flex align-items-end">
+            <div class="col-sm-6 align-items-end d-none d-md-flex">
                 <img src="{{ URL::asset('img/header-topleft.png') }}">
             </div>
             <div class="col-sm-6 d-flex justify-content-end">
