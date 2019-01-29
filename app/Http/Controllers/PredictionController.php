@@ -18,10 +18,14 @@ class PredictionController extends Controller
 
     public function store(Request $request)
     {
-        Prediction::create($request->input());
-        return view('/');
+        foreach ($request->all() as $characterId => $status) {
+            Prediction::create([
+                'status_id' => $status,
+                'character_id' => $characterId,
+                'user_id' => Auth::id()
+            ]);
+        }
     }
-
 
     public function create()
     {

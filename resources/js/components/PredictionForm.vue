@@ -55,7 +55,7 @@
                                                 buttons
                                                 button-variant="outline-secondary"
                                                 :options="options"
-                                                @input="changed($event, character.name)"
+                                                @input="changed($event, character.id)"
                                                 :name="character.name"/>
 
                         </b-form-group>
@@ -89,9 +89,9 @@
             return {
                 selections: {},
                 options: [
-                    {text: 'Alive', value: 'alive'},
-                    {text: 'Dead', value: 'dead'},
-                    {text: 'Becomes a wight', value: 'wight'}
+                    {text: 'Alive', value: 1},
+                    {text: 'Dead', value: 2},
+                    {text: 'Becomes a wight', value: 3}
                 ],
                 progressPercentage: 0,
             }
@@ -99,13 +99,13 @@
         mounted() {
             let self = this;
             this.characters.forEach(character => {
-                self.selections[character.name] = 'alive';
+                self.selections[character.id] = 1;
             });
             console.log(Object.values(this.selections));
         },
         methods: {
-            changed(value, name) {
-                this.selections[name] = value;
+            changed(value, characterId) {
+                this.selections[characterId] = value;
                 this.calculateCompletionPercentage();
             },
             calculateCompletionPercentage() {
