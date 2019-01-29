@@ -11,7 +11,7 @@
     <div class="container card  mt-3 mb-3 card p-4">
         <div class="row">
             <div class="col-sm-12">
-                <h1 class="h2 text-center mb-2">Yukka Group</h1>
+                <h1 class="h2 text-center mb-2">{{ $group->name }} Pool</h1>
                 <p class="text-center text-muted mb-3">
                     Created 24 hours ago
                 </p>

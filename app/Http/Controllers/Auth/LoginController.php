@@ -56,8 +56,9 @@ class LoginController extends Controller
     {
         $userData = Socialite::driver($platform)->user();
 
-        $this->getExistingUser($userData, $platform);
+        $user = $this->getExistingUser($userData, $platform);
 
+        auth()->login($user);
         return redirect($this->redirectTo)->with('redirectToPrevious', true);
     }
 
