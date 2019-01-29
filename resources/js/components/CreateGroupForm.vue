@@ -41,7 +41,7 @@
             submitForm () {
                 var self = this;
                 this.formErrors = [];
-                axios.post('/group', this.formData)
+                axios.post('/groups/', this.formData)
                     .then(function (response) {
                         console.log('Group created!');
                     })

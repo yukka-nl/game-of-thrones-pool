@@ -1801,7 +1801,7 @@ __webpack_require__.r(__webpack_exports__);
     submitForm: function submitForm() {
       var self = this;
       this.formErrors = [];
-      axios.post('/group', this.formData).then(function (response) {
+      axios.post('/groups/', this.formData).then(function (response) {
         console.log('Group created!');
       }).catch(function (error) {
         if (error.response.status === 422) {

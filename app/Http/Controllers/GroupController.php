@@ -6,15 +6,22 @@ namespace App\Http\Controllers;
 use App\Group;
 use App\GroupUser;
 
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GroupController extends Controller
 {
+    public function index()
+    {
+        $data['groups'] = Auth::user()->groups;
+        return view('pages.groups', $data);
+    }
 
     public function show($name)
     {
         $data['group'] = Group::where('name', $name)->first();
-        return view('pages.group');
+        return view('pages.group', $data);
     }
 
     public function create()
@@ -30,7 +37,7 @@ class GroupController extends Controller
         ]);
 
         $group = Group::create($validatedData);
-        return redirect('/group/' . $group->name);
+        return response($group);
     }
 
     public function join($inviteCode)
@@ -40,6 +47,6 @@ class GroupController extends Controller
             'user_id' => Auth::id(),
             'group_id' => $group->id,
         ]);
-        return redirect('/group/' . $group->name);
+        return redirect('/groups/' . $group->name);
     }
 }
