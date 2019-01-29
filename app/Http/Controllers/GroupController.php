@@ -6,8 +6,7 @@ namespace App\Http\Controllers;
 use App\Group;
 use App\GroupUser;
 
-use App\User;
-use Illuminate\Http\Request;
+use App\Http\Requests\GroupStoreRequest;
 use Illuminate\Support\Facades\Auth;
 
 class GroupController extends Controller
@@ -29,36 +28,30 @@ class GroupController extends Controller
         return view('pages.group-form');
     }
 
-    public function store(Request $request)
+    public function store(GroupStoreRequest $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|unique:groups|max:255',
-        ]);
-
         $group = Group::create([
             'name' => $request->name,
             'owner_id' => Auth::id()
         ]);
 
         Auth::user()->groups()->attach($group->id);
-
-        return response($group);
+        return response($group, 200);
     }
 
     public function join($inviteCode)
     {
+        // TODO: Don't redirect, but show social login buttons on the group page
         if (!Auth::check()) {
             return redirect('/register');
         }
 
         $group = Group::where('invite_code', $inviteCode)->first();
-
         if ($group->hasUser(Auth::id())) {
-            return redirect('/groups/' . $group->id);
+            return redirect($group->link);
         }
 
         Auth::user()->groups()->attach($group->id);
-
-        return redirect('/groups/' . $group->id)->with('message', 'Joined ' . $group->name . ' group!');
+        return redirect($group->link)->with('message', 'Joined ' . $group->name . ' group!');
     }
 }

@@ -14,12 +14,11 @@
             <div class="col-sm-12">
                 <h1 class="h2 text-center mb-2">Create Group</h1>
 
-                @auth()
-                <create-group-form :owner-id="{{ Auth::id() }}"></create-group-form>
-                @endAuth()
+                @auth
+                    <create-group-form :owner-id="{{ Auth::id() }}"></create-group-form>
+                @endauth
             </div>
 
         </div>
     </div>
-
 @endsection
