@@ -1829,6 +1829,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['characters'],
   data: function data() {
@@ -1867,7 +1885,33 @@ __webpack_require__.r(__webpack_exports__);
       }).length;
       this.progressPercentage = Math.round(filledInCount / Object.keys(this.selections).length * 100);
     },
-    submitForm: function submitForm() {}
+    openModal: function openModal() {
+      this.$refs.submitModal.show();
+    },
+    submitForm: function submitForm(createGroup) {
+      var self = this; // let postData = {
+      //     'commentable_type': 'App\\' + this.capitalizeString(this.modelClass),
+      //     'commentable_id': this.modelId,
+      //     'body': this.commentBody
+      // };
+
+      axios.post('/prediction', this.selections).then(function (response) {
+        if (createGroup) {
+          self.createGroup();
+        } else {
+          window.location.replace('/profile/me');
+        }
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    createGroup: function createGroup() {
+      axios.post('/group').then(function (response) {
+        window.location.replace(response.groupUrl);
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
   },
   computed: {
     progressBarStyle: function progressBarStyle() {
@@ -54941,144 +54985,210 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("main", { staticClass: "position-relative" }, [
-    _c(
-      "div",
-      {
-        staticClass: "position-sticky p-3 card",
-        staticStyle: { top: "5px", "z-index": "10" }
-      },
-      [
-        _vm._v("\n        Completion\n        "),
-        _c("div", { staticClass: "progress" }, [
-          _c(
-            "div",
-            { staticClass: "progress-bar", style: _vm.progressBarStyle },
-            [
-              _vm._v(
-                "\n                " +
-                  _vm._s(_vm.progressPercentage) +
-                  "%\n            "
-              )
-            ]
-          )
-        ])
-      ]
-    ),
-    _vm._v(" "),
-    _vm.progressPercentage === 100
-      ? _c(
-          "button",
-          {
-            staticClass: "btn btn-success btn-block w-100 btn-lg",
-            on: { click: _vm.submitForm }
-          },
-          [
-            _c("i", { staticClass: "fas fa-paper-plane mr-1" }),
-            _vm._v(" Submit prediction\n    ")
-          ]
-        )
-      : _vm._e(),
-    _vm._v(" "),
-    _c(
-      "table",
-      {
-        staticClass: "table mt-3 table-responsive",
-        staticStyle: { display: "table" }
-      },
-      [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(_vm.characters, function(character) {
-            return _c("tr", [
-              _c("td", [
-                _c("img", {
-                  staticClass: "rounded-circle",
-                  staticStyle: { height: "100px" },
-                  attrs: { src: "/img/characters/" + character.image }
-                })
-              ]),
-              _vm._v(" "),
-              _c("td", { staticClass: "align-middle" }, [
+  return _c(
+    "main",
+    [
+      _c(
+        "b-modal",
+        {
+          ref: "submitModal",
+          attrs: { "hide-footer": "", title: "Submit prediction" }
+        },
+        [
+          _c("div", { staticClass: "d-block text-center" }, [
+            _c("h1", { staticClass: "h4" }, [
+              _vm._v("Would you like to create a group?")
+            ]),
+            _vm._v(
+              "\n            You can invite your friends to your group to compete with them. If you don't want to create a group,\n            then you can always join as many as you'd like in the future!\n        "
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c(
+              "div",
+              { staticClass: "col-sm-12 col-md-6" },
+              [
+                _c(
+                  "b-btn",
+                  {
+                    staticClass: "mt-3",
+                    attrs: { variant: "outline-secondary", block: "" },
+                    on: {
+                      click: function($event) {
+                        _vm.submitForm(false)
+                      }
+                    }
+                  },
+                  [_vm._v("Submit without group")]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "col-sm-12 col-md-6" },
+              [
+                _c(
+                  "b-btn",
+                  {
+                    staticClass: "mt-3",
+                    attrs: { variant: "outline-primary", block: "" },
+                    on: {
+                      click: function($event) {
+                        _vm.submitForm(true)
+                      }
+                    }
+                  },
+                  [_vm._v("Create group")]
+                )
+              ],
+              1
+            )
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "position-sticky p-3 card",
+          staticStyle: { top: "5px", "z-index": "10" }
+        },
+        [
+          _vm._v("\n        Completion\n        "),
+          _c("div", { staticClass: "progress" }, [
+            _c(
+              "div",
+              { staticClass: "progress-bar", style: _vm.progressBarStyle },
+              [
                 _vm._v(
                   "\n                " +
-                    _vm._s(character.name) +
-                    "\n            "
+                    _vm._s(_vm.progressPercentage) +
+                    "%\n            "
                 )
+              ]
+            )
+          ])
+        ]
+      ),
+      _vm._v(" "),
+      _vm.progressPercentage === 100
+        ? _c(
+            "button",
+            {
+              staticClass: "btn btn-success btn-block w-100 btn-lg",
+              on: { click: _vm.openModal }
+            },
+            [
+              _c("i", { staticClass: "fas fa-paper-plane mr-1" }),
+              _vm._v(" Submit prediction\n    ")
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "table",
+        {
+          staticClass: "table mt-3 table-responsive",
+          staticStyle: { display: "table" }
+        },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.characters, function(character) {
+              return _c("tr", [
+                _c("td", [
+                  _c("img", {
+                    staticClass: "rounded-circle",
+                    staticStyle: { height: "100px" },
+                    attrs: { src: "/img/characters/" + character.image }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "align-middle" }, [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(character.name) +
+                      "\n            "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "position-relative col-6" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "d-flex align-items-center justify-content-center position-absolute h-100 w-100"
+                    },
+                    [
+                      _c(
+                        "b-form-group",
+                        [
+                          _c("b-form-radio-group", {
+                            attrs: {
+                              id: character.name,
+                              buttons: "",
+                              "button-variant": "outline-secondary",
+                              options: _vm.options,
+                              name: character.name
+                            },
+                            on: {
+                              input: function($event) {
+                                _vm.changed($event, character.name)
+                              }
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ])
+              ])
+            }),
+            0
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _vm.progressPercentage === 100
+        ? _c(
+            "button",
+            {
+              staticClass: "btn btn-success btn-block w-100 btn-lg",
+              on: { click: _vm.openModal }
+            },
+            [
+              _c("i", { staticClass: "fas fa-paper-plane mr-1" }),
+              _vm._v(" Submit prediction\n    ")
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.progressPercentage === 100
+        ? _c(
+            "div",
+            {
+              staticClass: "position-fixed p-3 card",
+              staticStyle: { bottom: "10px", right: "10px", "z-index": "10" }
+            },
+            [
+              _c("div", { staticClass: "h4 mb-2 text-center" }, [
+                _vm._v("\n            You're all done!\n        ")
               ]),
               _vm._v(" "),
-              _c("td", { staticClass: "position-relative col-6" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass:
-                      "d-flex align-items-center justify-content-center position-absolute h-100 w-100"
-                  },
-                  [
-                    _c(
-                      "b-form-group",
-                      [
-                        _c("b-form-radio-group", {
-                          attrs: {
-                            id: character.name,
-                            buttons: "",
-                            "button-variant": "outline-secondary",
-                            options: _vm.options,
-                            name: character.name
-                          },
-                          on: {
-                            input: function($event) {
-                              _vm.changed($event, character.name)
-                            }
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ])
-            ])
-          }),
-          0
-        )
-      ]
-    ),
-    _vm._v(" "),
-    _vm.progressPercentage === 100
-      ? _c(
-          "button",
-          {
-            staticClass: "btn btn-success btn-block w-100 btn-lg",
-            on: { click: _vm.submitForm }
-          },
-          [
-            _c("i", { staticClass: "fas fa-paper-plane mr-1" }),
-            _vm._v(" Submit prediction\n    ")
-          ]
-        )
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.progressPercentage === 100
-      ? _c(
-          "div",
-          {
-            staticClass: "position-fixed p-3 card",
-            staticStyle: { bottom: "10px", right: "10px", "z-index": "10" }
-          },
-          [
-            _c("div", { staticClass: "h4 mb-2 text-center" }, [
-              _vm._v("\n            You're all done!\n        ")
-            ]),
-            _vm._v(" "),
-            _vm._m(1)
-          ]
-        )
-      : _vm._e()
-  ])
+              _vm._m(1)
+            ]
+          )
+        : _vm._e()
+    ],
+    1
+  )
 }
 var staticRenderFns = [
   function() {
@@ -66673,8 +66783,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/game-of-thrones-poule/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /var/www/game-of-thrones-poule/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /var/www/game-of-thrones-pool/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/game-of-thrones-pool/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

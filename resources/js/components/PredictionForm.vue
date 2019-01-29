@@ -1,5 +1,23 @@
 <template>
-    <main class="position-relative">
+    <main>
+
+        <b-modal ref="submitModal" hide-footer title="Submit prediction">
+            <div class="d-block text-center">
+                <h1 class="h4">Would you like to create a group?</h1>
+                You can invite your friends to your group to compete with them. If you don't want to create a group,
+                then you can always join as many as you'd like in the future!
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <b-btn class="mt-3" variant="outline-secondary" block @click="submitForm(false)">Submit without group</b-btn>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <b-btn class="mt-3" variant="outline-primary" block @click="submitForm(true)">Create group</b-btn>
+                </div>
+            </div>
+        </b-modal>
+
         <div class="position-sticky p-3 card" style="top: 5px; z-index: 10">
             Completion
             <div class="progress">
@@ -9,7 +27,7 @@
             </div>
         </div>
 
-        <button @click="submitForm" class="btn btn-success btn-block w-100 btn-lg" v-if="progressPercentage === 100">
+        <button @click="openModal" class="btn btn-success btn-block w-100 btn-lg" v-if="progressPercentage === 100">
             <i class="fas fa-paper-plane mr-1"></i> Submit prediction
         </button>
 
@@ -47,7 +65,7 @@
             </tbody>
         </table>
 
-        <button @click="submitForm" class="btn btn-success btn-block w-100 btn-lg" v-if="progressPercentage === 100">
+        <button @click="openModal" class="btn btn-success btn-block w-100 btn-lg" v-if="progressPercentage === 100">
             <i class="fas fa-paper-plane mr-1"></i> Submit prediction
         </button>
 
@@ -94,8 +112,38 @@
                 let filledInCount = Object.keys(this.selections).filter(x => this.selections[x] !== null).length;
                 this.progressPercentage = Math.round((filledInCount / Object.keys(this.selections).length) * 100);
             },
-            submitForm() {
+            openModal() {
+                this.$refs.submitModal.show();
+            },
+            submitForm(createGroup) {
+                let self = this;
+                // let postData = {
+                //     'commentable_type': 'App\\' + this.capitalizeString(this.modelClass),
+                //     'commentable_id': this.modelId,
+                //     'body': this.commentBody
+                // };
 
+
+                axios.post('/prediction', this.selections)
+                    .then(function (response) {
+                        if(createGroup) {
+                            self.createGroup();
+                        } else {
+                            window.location.replace('/profile/me');
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+            createGroup() {
+                axios.post('/group')
+                    .then(function (response) {
+                        window.location.replace(response.groupUrl);
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
             }
         },
         computed: {
