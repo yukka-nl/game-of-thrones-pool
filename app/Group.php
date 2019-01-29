@@ -8,6 +8,7 @@ use Ramsey\Uuid\Uuid;
 class Group extends Model
 {
     protected $guarded = ['id'];
+    protected $appends = ['link'];
 
     public static function boot()
     {
@@ -40,4 +41,10 @@ class Group extends Model
     public function hasUser($id) {
         return $this->users->contains('id', $id);
     }
+
+    public function getLinkAttribute()
+    {
+        return '/groups/' . $this->id;
+    }
+
 }

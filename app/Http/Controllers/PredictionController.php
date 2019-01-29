@@ -27,6 +27,8 @@ class PredictionController extends Controller
                     'user_id' => Auth::id()
                 ]);
             }
+        } else {
+            return response("You already made a prediction", 500);
         }
     }
 

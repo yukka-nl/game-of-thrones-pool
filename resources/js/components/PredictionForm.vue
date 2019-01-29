@@ -134,7 +134,7 @@
                 axios.post('/prediction', this.selections)
                     .then(function (response) {
                         if(goToGroup) {
-                            window.location.replace('/groups/' + self.createdGroup.id);
+                            window.location.replace(self.createdGroup.link);
                         } else {
                             window.location.replace('/profile/');
                         }
