@@ -17,9 +17,19 @@ class GroupController extends Controller
         return view('pages.group');
     }
 
+    public function create()
+    {
+        return view('pages.group-form');
+    }
+
     public function store(Request $request)
     {
-        $group = Group::create($request->input);
+        $validatedData = $request->validate([
+            'name' => 'required|unique:groups|max:255',
+            'owner_id' => 'required|integer|exists:users,id',
+        ]);
+
+        $group = Group::create($validatedData);
         return redirect('/group/' . $group->name);
     }
 

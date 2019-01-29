@@ -1754,6 +1754,77 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CreateGroupForm.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CreateGroupForm.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['ownerId'],
+  data: function data() {
+    return {
+      formErrors: [],
+      formData: {
+        name: null,
+        owner_id: this.ownerId
+      }
+    };
+  },
+  mounted: function mounted() {},
+  methods: {
+    submitForm: function submitForm() {
+      var self = this;
+      this.formErrors = [];
+      axios.post('/group', this.formData).then(function (response) {
+        console.log('Group created!');
+      }).catch(function (error) {
+        if (error.response.status === 422) {
+          var p = error.response.data.errors;
+
+          for (var key in p) {
+            if (p.hasOwnProperty(key)) {
+              self.formErrors.push({
+                label: key,
+                message: p[key]
+              });
+            }
+          }
+        } else {
+          console.error(error);
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PredictionForm.vue?vue&type=script&lang=js&":
 /*!*************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PredictionForm.vue?vue&type=script&lang=js& ***!
@@ -54908,6 +54979,89 @@ var __assign=function(){return(__assign=Object.assign||function(e){for(var a,s=1
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CreateGroupForm.vue?vue&type=template&id=b28ee9a8&scoped=true&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/CreateGroupForm.vue?vue&type=template&id=b28ee9a8&scoped=true& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("form", [
+    _c("div", { staticClass: "form-group mt-4" }, [
+      _c("label", [_vm._v("Enter the name of the group: ")]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.formData.name,
+            expression: "formData.name"
+          }
+        ],
+        attrs: { type: "text" },
+        domProps: { value: _vm.formData.name },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.formData, "name", $event.target.value)
+          }
+        }
+      }),
+      _vm._v(" "),
+      _vm.formErrors.length > 0
+        ? _c("div", { staticClass: "alert alert-danger mt-4" }, [
+            _c("h5", [_vm._v("Oops! It looks like there are some errors.")]),
+            _vm._v(" "),
+            _c(
+              "ul",
+              _vm._l(_vm.formErrors, function(error) {
+                return _c(
+                  "div",
+                  _vm._l(error.message, function(message) {
+                    return _c("li", [_vm._v(_vm._s(message))])
+                  }),
+                  0
+                )
+              }),
+              0
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary btn-block mt-4",
+          attrs: { type: "button", disabled: !_vm.formData.name },
+          on: {
+            click: function($event) {
+              _vm.submitForm()
+            }
+          }
+        },
+        [_vm._v("\n            Create group!\n        ")]
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PredictionForm.vue?vue&type=template&id=5a9fe39e&":
 /*!*****************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PredictionForm.vue?vue&type=template&id=5a9fe39e& ***!
@@ -66374,6 +66528,7 @@ Vue.use(bootstrap_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
 Vue.use(vue_snowf__WEBPACK_IMPORTED_MODULE_1___default.a);
 Vue.component('prediction-form', __webpack_require__(/*! ./components/PredictionForm.vue */ "./resources/js/components/PredictionForm.vue").default);
 Vue.component('snow', __webpack_require__(/*! ./components/Snow.vue */ "./resources/js/components/Snow.vue").default);
+Vue.component('create-group-form', __webpack_require__(/*! ./components/CreateGroupForm.vue */ "./resources/js/components/CreateGroupForm.vue").default);
 var app = new Vue({
   el: '#app'
 });
@@ -66435,6 +66590,75 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/CreateGroupForm.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/CreateGroupForm.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CreateGroupForm_vue_vue_type_template_id_b28ee9a8_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CreateGroupForm.vue?vue&type=template&id=b28ee9a8&scoped=true& */ "./resources/js/components/CreateGroupForm.vue?vue&type=template&id=b28ee9a8&scoped=true&");
+/* harmony import */ var _CreateGroupForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CreateGroupForm.vue?vue&type=script&lang=js& */ "./resources/js/components/CreateGroupForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CreateGroupForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CreateGroupForm_vue_vue_type_template_id_b28ee9a8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CreateGroupForm_vue_vue_type_template_id_b28ee9a8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "b28ee9a8",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/CreateGroupForm.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/CreateGroupForm.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/CreateGroupForm.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateGroupForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./CreateGroupForm.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CreateGroupForm.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateGroupForm_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/CreateGroupForm.vue?vue&type=template&id=b28ee9a8&scoped=true&":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/CreateGroupForm.vue?vue&type=template&id=b28ee9a8&scoped=true& ***!
+  \************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateGroupForm_vue_vue_type_template_id_b28ee9a8_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./CreateGroupForm.vue?vue&type=template&id=b28ee9a8&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/CreateGroupForm.vue?vue&type=template&id=b28ee9a8&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateGroupForm_vue_vue_type_template_id_b28ee9a8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CreateGroupForm_vue_vue_type_template_id_b28ee9a8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 
@@ -66583,7 +66807,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleNotFoundError: Module not found: Error: Can't resolve '@fortawesome/fontawesome-free/css/all.css' in '/var/www/game-of-thrones-pool/resources/sass'\n    at factory.create (/var/www/game-of-thrones-pool/node_modules/webpack/lib/Compilation.js:823:10)\n    at factory (/var/www/game-of-thrones-pool/node_modules/webpack/lib/NormalModuleFactory.js:397:22)\n    at resolver (/var/www/game-of-thrones-pool/node_modules/webpack/lib/NormalModuleFactory.js:130:21)\n    at asyncLib.parallel (/var/www/game-of-thrones-pool/node_modules/webpack/lib/NormalModuleFactory.js:224:22)\n    at /var/www/game-of-thrones-pool/node_modules/neo-async/async.js:2825:7\n    at /var/www/game-of-thrones-pool/node_modules/neo-async/async.js:6886:13\n    at normalResolver.resolve (/var/www/game-of-thrones-pool/node_modules/webpack/lib/NormalModuleFactory.js:214:25)\n    at doResolve (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/Resolver.js:184:12)\n    at hook.callAsync (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/Resolver.js:238:5)\n    at _fn0 (eval at create (/var/www/game-of-thrones-pool/node_modules/tapable/lib/HookCodeFactory.js:32:10), <anonymous>:15:1)\n    at resolver.doResolve (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/UnsafeCachePlugin.js:37:5)\n    at hook.callAsync (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/Resolver.js:238:5)\n    at _fn0 (eval at create (/var/www/game-of-thrones-pool/node_modules/tapable/lib/HookCodeFactory.js:32:10), <anonymous>:15:1)\n    at hook.callAsync (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/Resolver.js:238:5)\n    at _fn0 (eval at create (/var/www/game-of-thrones-pool/node_modules/tapable/lib/HookCodeFactory.js:32:10), <anonymous>:12:1)\n    at resolver.doResolve (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/DescriptionFilePlugin.js:42:38)\n    at hook.callAsync (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/Resolver.js:238:5)\n    at _fn42 (eval at create (/var/www/game-of-thrones-pool/node_modules/tapable/lib/HookCodeFactory.js:32:10), <anonymous>:390:1)\n    at resolver.doResolve (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/ModuleKindPlugin.js:23:37)\n    at hook.callAsync (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/Resolver.js:238:5)\n    at _fn0 (eval at create (/var/www/game-of-thrones-pool/node_modules/tapable/lib/HookCodeFactory.js:32:10), <anonymous>:15:1)\n    at hook.callAsync (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/Resolver.js:238:5)\n    at _fn0 (eval at create (/var/www/game-of-thrones-pool/node_modules/tapable/lib/HookCodeFactory.js:32:10), <anonymous>:15:1)\n    at args (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/forEachBail.js:30:14)\n    at hook.callAsync (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/Resolver.js:238:5)\n    at _fn0 (eval at create (/var/www/game-of-thrones-pool/node_modules/tapable/lib/HookCodeFactory.js:32:10), <anonymous>:15:1)\n    at resolver.doResolve (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/UnsafeCachePlugin.js:37:5)\n    at hook.callAsync (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/Resolver.js:238:5)\n    at _fn0 (eval at create (/var/www/game-of-thrones-pool/node_modules/tapable/lib/HookCodeFactory.js:32:10), <anonymous>:15:1)\n    at hook.callAsync (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/Resolver.js:238:5)\n    at _fn0 (eval at create (/var/www/game-of-thrones-pool/node_modules/tapable/lib/HookCodeFactory.js:32:10), <anonymous>:12:1)\n    at resolver.doResolve (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/DescriptionFilePlugin.js:42:38)\n    at hook.callAsync (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/Resolver.js:238:5)\n    at _fn43 (eval at create (/var/www/game-of-thrones-pool/node_modules/tapable/lib/HookCodeFactory.js:32:10), <anonymous>:402:1)\n    at hook.callAsync (/var/www/game-of-thrones-pool/node_modules/enhanced-resolve/lib/Resolver.js:238:5)\n    at _fn0 (eval at create (/var/www/game-of-thrones-pool/node_modules/tapable/lib/HookCodeFactory.js:32:10), <anonymous>:12:1)");
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 

@@ -8,6 +8,7 @@ Vue.use(Snowf);
 
 Vue.component('prediction-form', require('./components/PredictionForm.vue').default);
 Vue.component('snow', require('./components/Snow.vue').default);
+Vue.component('create-group-form', require('./components/CreateGroupForm.vue').default);
 
 const app = new Vue({
     el: '#app'

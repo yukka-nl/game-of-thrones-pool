@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Group extends Model
 {
+    protected $guarded = ['id'];
+
     public function owner()
     {
         return $this->belongsTo(User::class);
