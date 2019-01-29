@@ -27,4 +27,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function groups()
+    {
+        return $this->belongsToMany(GroupUser::class);
+    }
+
+    public function prediction()
+    {
+        return $this->hasOne(Prediction::class);
+    }
 }

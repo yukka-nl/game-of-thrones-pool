@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCharactersTable extends Migration
+class CreateGroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateCharactersTable extends Migration
      */
     public function up()
     {
-        Schema::create('characters', function (Blueprint $table) {
+        Schema::create('groups', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('image');
-            $table->enum('status', ['alive', 'dead', 'wight'])->nullable();
+            $table->uuid('invite_code')->default(\Ramsey\Uuid\Uuid::uuid4()->toString());
+
+            $table->integer('owner_id')->unsigned()->index()->default(1)->nullable();
+            $table->foreign('owner_id')->references('id')->on('users')->onDelete('set null');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateCharactersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('characters');
+        Schema::dropIfExists('groups');
     }
 }
