@@ -8,7 +8,7 @@
                 :opacity="0.8"
                 :swing="1"
                 :image="null"
-                :zIndex="1"
+                :zIndex="-1"
                 :resize="true"
                 color="#="
         />
