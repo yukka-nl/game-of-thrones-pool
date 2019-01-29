@@ -28,8 +28,8 @@
         </div>
     </div>
     @yield('content')
-
     <snow></snow>
+
 </div>
 </body>
 

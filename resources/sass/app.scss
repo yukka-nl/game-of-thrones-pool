@@ -16,6 +16,6 @@ body {
 
 @import '~bootstrap-vue/dist/bootstrap-vue.css';
 
-.container {
+.container, nav {
   z-index: 5;
 }
