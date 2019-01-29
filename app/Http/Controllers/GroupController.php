@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Group;
 use App\GroupUser;
+
 use Illuminate\Http\Request;
 
 class GroupController extends Controller
 {
+
     public function show($name)
     {
         $data['group'] = Group::where('name', $name)->first();
