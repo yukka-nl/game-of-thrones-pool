@@ -27,8 +27,9 @@
             </div>
         </div>
     </div>
-    @yield('content')
     <snow></snow>
+
+    @yield('content')
 
 </div>
 </body>
