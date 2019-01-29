@@ -17,7 +17,8 @@ class CreateCharactersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('image');
-            $table->enum('status', ['alive', 'dead', 'wight'])->nullable();
+            $table->integer('status_id')->unsigned()->nullable();
+            $table->foreign('status_id')->references('id')->on('statuses')->onDelete('cascade');
             $table->timestamps();
         });
     }

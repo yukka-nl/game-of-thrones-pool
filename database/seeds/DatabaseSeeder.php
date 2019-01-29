@@ -12,5 +12,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
          $this->call(CharactersTableSeeder::class);
+         $this->call(StatusTableSeeder::class);
     }
 }
