@@ -26,7 +26,7 @@ class Group extends Model
 
     public function users()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsToMany(User::class);
     }
 
     public function predictions() {
@@ -35,5 +35,9 @@ class Group extends Model
             $predictions->push($user->prediction);
         }
         return $predictions;
+    }
+
+    public function hasUser($id) {
+        return $this->users->contains('id', $id);
     }
 }

@@ -50,7 +50,7 @@ class LoginController extends Controller
      * Obtain the user information from GitHub.
      *
      * @param $platform
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function handleProviderCallback($platform)
     {
