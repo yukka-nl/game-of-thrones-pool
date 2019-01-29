@@ -14,30 +14,32 @@
             </div>
             <div class="col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
                 <div class="text-center">
-                    <a href="/prediction" class="btn btn-primary btn-lg">
+                    <a href="/prediction/create" class="btn btn-primary btn-lg">
                         <i class="fab fa-wpforms mr-1"></i> Make your prediction
                     </a>
                     <div class="mt-3 mb-1">
                         Already made a prediction? Sign into see your groups!
                     </div>
 
-                    <div>
-                        <a class="btn btn-outline-secondary mt-1 mr-2">
-                            <span class="fab fa-facebook brand-color-facebook mr-1"></span> Facebook
-                        </a>
+                    @guest
+                        <div>
+                            <a href="/login/facebook" class="btn btn-outline-secondary mt-1 mr-2">
+                                <span class="fab fa-facebook brand-color-facebook mr-1"></span> Facebook
+                            </a>
 
-                        <a class="btn btn-outline-secondary mt-1 mr-2">
-                            <i class="fab fa-reddit brand-color-reddit mr-1"></i> Reddit
-                        </a>
+                            <a href="/login/reddit" class="btn btn-outline-secondary mt-1 mr-2">
+                                <i class="fab fa-reddit brand-color-reddit mr-1"></i> Reddit
+                            </a>
 
-                        <a class="btn btn-outline-secondary mt-1 mr-2">
-                            <span class="fab fa-twitter brand-color-twitter mr-1"></span> Twitter
-                        </a>
+                            <a href="/login/twitter" class="btn btn-outline-secondary mt-1 mr-2">
+                                <span class="fab fa-twitter brand-color-twitter mr-1"></span> Twitter
+                            </a>
 
-                        <a class="btn btn-outline-secondary mt-1">
-                            <i class="fab fa-google brand-color-google mr-1"></i> Google
-                        </a>
-                    </div>
+                            <a href="/login/google" class="btn btn-outline-secondary mt-1">
+                                <i class="fab fa-google brand-color-google mr-1"></i> Google
+                            </a>
+                        </div>
+                    @endguest
                 </div>
             </div>
         </div>

@@ -4,6 +4,7 @@ Route::get('/', 'HomeController');
 
 Route::get('/prediction', 'PredictionController@show');
 Route::post('/prediction', 'PredictionController@store');
+Route::get('/prediction/create', 'PredictionController@create');
 
 Route::get('/groups/create', 'GroupController@create');
 Route::post('/groups', 'GroupController@store');

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>Pool of Dragons</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/app.css') }}">

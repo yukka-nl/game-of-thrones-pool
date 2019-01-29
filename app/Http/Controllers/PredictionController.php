@@ -9,17 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class PredictionController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function __invoke(Request $request)
-    {
-        $data['characters'] = Character::all();
-        return view('pages.prediction', $data);
-    }
 
     public function show()
     {
@@ -31,5 +20,12 @@ class PredictionController extends Controller
     {
         Prediction::create($request->input());
         return view('/');
+    }
+
+
+    public function create()
+    {
+        $data['characters'] = Character::all();
+        return view('pages.prediction', $data);
     }
 }
