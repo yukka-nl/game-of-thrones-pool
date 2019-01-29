@@ -24,21 +24,21 @@
                         <br>
                     </div>
                     <div class="mt-3">
-                        <button class="btn btn-primary mt-1">
-                            Groups <a href="#" class="ml-1 badge badge-light">4</a>
-                        </button>
+                        <a href="#" class="btn btn-primary mt-1">
+                            Groups <span class="ml-1 badge badge-light">4</span>
+                        </a>
 
-                        <button class="btn btn-primary mt-1">
+                        <a href="#" class="btn btn-primary mt-1">
                             Your prediction
-                        </button>
+                        </a>
 
-                        <button class="btn btn-primary mt-1">
+                        <a href="#" class="btn btn-primary mt-1">
                             Settings
-                        </button>
+                        </a>
 
-                        <button class="btn btn-primary mt-1">
+                        <a href="/logout" class="btn btn-primary mt-1">
                             Sign out
-                        </button>
+                        </a>
                     </div>
                 </div>
             @endauth
