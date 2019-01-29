@@ -4,7 +4,7 @@
     <div class="container card mb-3 card p-4">
         <div class="row">
             <div class="col-sm-12 col-md-6">
-                <h1 class="h2">Winter has arrived. Dead pool time.</h1>
+                <h1 class="h2">Winter has arrived. Death pool time.</h1>
                 <p>
                     Season 8 of Game of Thrones will start soon. Not all your beloved characters
                     will survive the threat of the white walkers. Create a pool with your friends to predict the faith
