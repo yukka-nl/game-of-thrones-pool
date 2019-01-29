@@ -24,8 +24,8 @@
                         <br>
                     </div>
                     <div class="mt-3">
-                        <a href="#" class="btn btn-primary mt-1">
-                            Groups <span class="ml-1 badge badge-light">4</span>
+                        <a href="/groups" class="btn btn-primary mt-1">
+                            Groups <span class="ml-1 badge badge-light">{{Auth::user()->groups->count()}}</span>
                         </a>
 
                         <a href="#" class="btn btn-primary mt-1">

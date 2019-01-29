@@ -37,6 +37,9 @@ class GroupController extends Controller
         ]);
 
         $group = Group::create($validatedData);
+
+        Auth::user()->groups()->attach($group->id);
+
         return response($group);
     }
 
@@ -47,14 +50,13 @@ class GroupController extends Controller
         }
 
         $group = Group::where('invite_code', $inviteCode)->first();
-        $groupUser = GroupUser::where('user_id', Auth::id())->where('group_id', $group->id)->first();
-        if ($groupUser) {
+
+        if ($group->hasUser(Auth::id())) {
             return redirect('/groups/' . $group->slug);
         }
-        GroupUser::create([
-            'user_id' => Auth::id(),
-            'group_id' => $group->id,
-        ]);
+
+        Auth::user()->groups()->attach($group->id);
+
         return redirect('/groups/' . $group->slug)->with('message', 'Joined ' . $group->name . ' group!');
     }
 }
