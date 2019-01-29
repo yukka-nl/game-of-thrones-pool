@@ -15,15 +15,79 @@
             <div class="col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
                 <div class="text-center">
                     <a href="/prediction" class="btn btn-primary btn-lg">
-                        Make your prediction
+                        <i class="fab fa-wpforms mr-1"></i> Make your prediction
                     </a>
-                    <div class="mt-3">
-                        Already made a prediction? <a href="#">Sign in</a> to see your groups!
+                    <div class="mt-3 mb-2">
+                        Already made a prediction? Sign into see your groups!
                     </div>
+
+                    <div>
+                        <a class="btn btn-outline-secondary mr-2">
+                            <span class="fab fa-facebook brand-color-facebook mr-1"></span> Facebook
+                        </a>
+
+
+                        <a class="btn btn-outline-secondary mr-2">
+                            <i class="fab fa-reddit brand-color-reddit mr-1"></i> Reddit
+                        </a>
+
+
+                        <a class="btn btn-outline-secondary mr-2">
+                            <span class="fab fa-twitter brand-color-twitter mr-1"></span> Twitter
+                        </a>
+
+
+                        <a class="btn btn-outline-secondary">
+                            <i class="fab fa-google brand-color-google mr-1"></i> Google
+                        </a>
+                    </div>
+
+
                 </div>
+                </social-sharing>
+
+
             </div>
         </div>
     </div>
+    </div>
+
+    <div class="container card mb-3 card p-4 text-center">
+
+
+        <div class="row features">
+            <div class="col-sm">
+                <i class="fas fa-skull-crossbones"></i>
+                <h2 class="h4">
+                    Make predictions
+                </h2>
+                <p class="text-muted">
+                    Which characters will die, stay alive or turn into a wight?
+                </p>
+            </div>
+            <div class="col-sm">
+                <i class="fa fa-users" aria-hidden="true"></i>
+                <h2 class="h4">
+                    Join groups with friends
+                </h2>
+                <p class="text-muted">
+                    Join as many groups as you like, or invite your friends to your groups.
+                </p>
+            </div>
+            <div class="col-sm">
+                <i class="fas fa-trophy"></i>
+                <h2 class="h4">
+                    Compete in the leaderboards
+                </h2>
+                <p class="text-muted">
+                    Beat others in the global or group leaderboards!
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+
 
     <div class="container card  mt-3 mb-3 card p-4">
         <div class="row">
