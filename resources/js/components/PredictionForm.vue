@@ -100,6 +100,7 @@
                 ],
                 progressPercentage: 0,
                 groupName: 'Group of ' + this.username,
+                createdGroup: null
             }
         },
         mounted() {
@@ -122,32 +123,35 @@
                 this.$refs.submitModal.show();
             },
             submitForm(createGroup) {
-                if(createGroup) this.createGroup();
-                // let self = this;
-                // let postData = {
-                //     'commentable_type': 'App\\' + this.capitalizeString(this.modelClass),
-                //     'commentable_id': this.modelId,
-                //     'body': this.commentBody
-                // };
-                // axios.post('/prediction', this.selections)
-                //     .then(function (response) {
-                //         if(createGroup) {
-                //             self.createGroup();
-                //         } else {
-                //             window.location.replace('/profile/me');
-                //         }
-                //     })
-                //     .catch(function (error) {
-                //         console.log(error);
-                //     });
+                if(createGroup) {
+                    this.createGroup();
+                } else {
+                    this.createPredictions(false);
+                }
+            },
+            createPredictions(goToGroup) {
+                let self = this;
+                axios.post('/prediction', this.selections)
+                    .then(function (response) {
+                        if(goToGroup) {
+                            window.location.replace('/groups/' + self.createdGroup.id);
+                        } else {
+                            window.location.replace('/profile/');
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
             },
             createGroup() {
+                let self = this;
                 let postData = {
                     'name': this.groupName,
                 };
                 axios.post('/groups', postData)
                     .then(function (response) {
-                        window.location.replace('/groups/' + response.data.id);
+                        self.createdGroup = response.data;
+                        self.createPredictions(true);
                     })
                     .catch(function (error) {
                         console.log(error);

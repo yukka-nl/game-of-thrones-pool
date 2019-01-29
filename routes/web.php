@@ -19,3 +19,7 @@ Route::get('logout', 'Auth\LoginController@logout');
 
 Route::get('register', 'Auth\RegisterController@registerPage');
 
+
+Route::get('debug', function() {
+   return Auth::user()->predictions->count();
+});

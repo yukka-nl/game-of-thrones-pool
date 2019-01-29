@@ -14,10 +14,15 @@
             </div>
             <div class="col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
                 <div class="text-center">
-                    <a href="/prediction/create" class="btn btn-primary btn-lg">
-                        <i class="fab fa-wpforms mr-1"></i> Make your prediction
-                    </a>
-
+                    @if(Auth::check() && Auth::user()->hasPredictions() && Auth::check())
+                        <a href="/prediction" class="btn btn-primary btn-lg">
+                            <i class="fab fa-wpforms mr-1"></i> View your prediction
+                        </a>
+                    @else
+                        <a href="/prediction/create" class="btn btn-primary btn-lg">
+                            <i class="fab fa-wpforms mr-1"></i> Make your prediction
+                        </a>
+                    @endif
                     @guest
                         <div class="mt-3 mb-1">
                             Already made a prediction? Sign into see your groups!

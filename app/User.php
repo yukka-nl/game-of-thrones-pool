@@ -33,8 +33,13 @@ class User extends Authenticatable
         return $this->belongsToMany(Group::class);
     }
 
-    public function prediction()
+    public function predictions()
     {
-        return $this->hasOne(Prediction::class);
+        return $this->hasMany(Prediction::class);
+    }
+
+    public function hasPredictions()
+    {
+        return $this->predictions->count() > 0;
     }
 }
