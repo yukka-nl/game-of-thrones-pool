@@ -12,12 +12,20 @@
         <div class="row">
             <div class="col-sm-12">
                 <h1 class="h2 text-center mb-2">Groups</h1>
+                <div class="mt-3">
+                    <a href="/groups/create" class="btn btn-primary">Create a new Group!</a>
+                </div>
 
-                @foreach($groups as $group)
-                - {{ $group->name }}
-                @endforeach
+                <div class="mt-3">
+                    <ul>
+                        @foreach($groups as $group)
+                            <li>
+                                <a href="/groups/{{$group->slug}}">{{ $group->name }}</a> {{ $group->owner->id == Auth::id() ?  'Owner' : ''  }}
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
-
         </div>
     </div>
 
