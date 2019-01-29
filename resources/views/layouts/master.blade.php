@@ -13,7 +13,9 @@
 <div id="app" class="container p-0">
     <div class="row">
         <div class="col-12 text-center mt-5 mb-5">
-            <img src="{{ URL::asset('img/header.png') }}" style="height: 40px;">
+            <a href="/">
+                <img src="{{ URL::asset('img/header.png') }}" style="height: 40px;">
+            </a>
         </div>
     </div>
 
