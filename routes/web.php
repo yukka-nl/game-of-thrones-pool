@@ -1,6 +1,6 @@
 <?php
 
-Route::get('/', 'HomeController');
+Route::get('/', 'HomeController')->name('home');
 Route::get('/prediction', 'PredictionController@show');
 Route::get('/groups/invite/{inviteCode}', 'GroupController@join');
 Route::get('/groups/{slug}', 'GroupController@show');
