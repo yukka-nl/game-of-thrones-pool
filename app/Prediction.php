@@ -12,4 +12,9 @@ class Prediction extends Model
     {
         return $this->belongsTo(Status::class);
     }
+
+    public function character()
+    {
+        return $this->belongsTo(Character::class);
+    }
 }

@@ -54,7 +54,7 @@ class GroupController extends Controller
     {
         // TODO: Don't redirect, but show social login buttons on the group page
         if (!Auth::check()) {
-            return redirect('/register');
+            return redirect('/register')->with('inviteCode', $inviteCode);
         }
 
         $group = Group::where('invite_code', $inviteCode)->first();
