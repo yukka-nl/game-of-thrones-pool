@@ -4,17 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Character;
 use App\Prediction;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PredictionController extends Controller
 {
 
-    public function show()
+    public function show($userId)
     {
-        // TODO: Go to personal prediction page
-//        $data['prediction'] = Auth::user()->predictions;
-//        return view('pages.prediction', $data);
+        $data['user'] = User::findOrFail($userId);
+        $data['groupedPredictions'] = $data['user']->predictions->groupBy('status_id');
+        return view('pages.user-prediction', $data);
     }
 
     public function store(Request $request)

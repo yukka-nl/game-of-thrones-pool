@@ -3,10 +3,13 @@ import BootstrapVue from 'bootstrap-vue'
 import Snowf from 'vue-snowf';
 import VueClipboard from 'vue-clipboard2'
 
+window.SocialSharing = require('vue-social-sharing');
+
 window.Vue = require('vue');
 Vue.use(BootstrapVue);
 Vue.use(Snowf);
-Vue.use(VueClipboard)
+Vue.use(VueClipboard);
+Vue.use(SocialSharing);
 
 Vue.component('prediction-form', require('./components/PredictionForm.vue').default);
 Vue.component('snow', require('./components/Snow.vue').default);
