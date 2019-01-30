@@ -45,7 +45,12 @@ class LoginController extends Controller
      */
     public function redirectToProvider($platform)
     {
-        $redirectUrl = Input::get('redirect') ? route(Input::get('redirect')) : '/';
+        if (Input::get('invite')) {
+            $redirectUrl = Input::get('redirect') ? route(Input::get('redirect'), ['inviteCode' => Input::get('invite')]) : '/';
+        } else {
+            $redirectUrl = Input::get('redirect') ? route(Input::get('redirect')) : '/';
+        }
+
         session()->put('redirectUrl', $redirectUrl);
         return Socialite::driver($platform)->redirect();
     }
@@ -71,14 +76,13 @@ class LoginController extends Controller
         auth()->login($user);
 
         if (session()->get('redirectUrl')) {
-            if($user->hasPredictions()) {
+            if ($user->hasPredictions()) {
                 return redirect('/');
             }
             $redirectUrl = session()->get('redirectUrl');
             session()->forget('redirectUrl');
-            return redirect($redirectUrl);
+            return redirect($redirectUrl)->with('redirectToPrevious', true);
         }
-
         return redirect($this->redirectTo)->with('redirectToPrevious', true);
     }
 

@@ -20,12 +20,24 @@
 
 <script>
     export default {
-        props: ['redirectUrl'],
+        props: {
+            redirectUrl: {
+                required: false
+            },
+            inviteCode: {
+                default: null,
+                required: false
+            }
+        },
         methods: {
             buildRedirectUrl(platform) {
-                let url =  '/login/' + platform;
-                if(this.redirectUrl) {
+                let url = '/login/' + platform;
+
+                if (this.redirectUrl) {
                     url += '?redirect=' + this.redirectUrl;
+                }
+                if (this.inviteCode) {
+                    url += '&invite=' + this.inviteCode;
                 }
                 return url;
             }

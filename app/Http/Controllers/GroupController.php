@@ -18,9 +18,9 @@ class GroupController extends Controller
         return view('pages.groups', $data);
     }
 
-    public function show($groupId)
+    public function show($slug)
     {
-        $data['group'] = Group::findOrFail($groupId);
+        $data['group'] = Group::where('slug', $slug)->get()->first();
 
         $users = $data['group']->users->sortByDesc('correct_guesses');
         $usersAsArray = array_values($users->toArray());
@@ -54,7 +54,7 @@ class GroupController extends Controller
     {
         // TODO: Don't redirect, but show social login buttons on the group page
         if (!Auth::check()) {
-            return redirect('/register');
+            return redirect('/register')->with('inviteCode', $inviteCode);
         }
 
         $group = Group::where('invite_code', $inviteCode)->first();

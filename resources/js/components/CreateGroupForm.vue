@@ -4,16 +4,18 @@
             <label>Enter the name of the group: </label>
             <input type="text" class="form-control" v-model="formData.name">
 
-            <div class="alert alert-danger mt-4" v-if="formErrors.length > 0">
+            <b-alert variant="danger"
+                     :show="formErrors.length > 0">
                 <h5>Oops! It looks like there are some errors.</h5>
                 <ul>
                     <div v-for="error in formErrors">
                         <li v-for="message in error.message">{{message}}</li>
                     </div>
                 </ul>
-            </div>
+            </b-alert>
 
-            <button @click="submitForm()" type="button" :disabled="!formData.name" class="btn btn-primary btn-block mt-4">
+            <button @click="submitForm()" type="button" :disabled="!formData.name"
+                    class="btn btn-primary btn-block mt-4">
                 Create group!
             </button>
         </div>
@@ -34,7 +36,7 @@
 
         },
         methods: {
-            submitForm () {
+            submitForm() {
                 var self = this;
                 this.formErrors = [];
                 axios.post('/groups/', this.formData)

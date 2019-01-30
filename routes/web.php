@@ -1,9 +1,13 @@
 <?php
 
 Route::get('/', 'HomeController')->name('home');
+Route::get('/prediction', 'PredictionController@show');
 Route::get('/prediction/user/{userId}', 'PredictionController@show');
-Route::get('/groups/invite/{inviteCode}', 'GroupController@join');
+
+Route::get('/groups/{slug}', 'GroupController@show');
+Route::get('/groups/invite/{inviteCode}', 'GroupController@join')->name('invite-link');
 Route::get('/groups/{groupId}', 'GroupController@show');
+
 
 // Social Logins
 Route::get('login/{platform}', 'Auth\LoginController@redirectToProvider');
