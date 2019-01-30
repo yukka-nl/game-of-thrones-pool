@@ -11,11 +11,23 @@
                     <div class="font-weight-bold mb-1">Name of your group</div>
                     <input type="text" class="form-control" v-model="groupName">
                 </div>
+
+                <b-alert variant="danger"
+                         :show="formErrors.length > 0">
+                    <h5>Oops! It looks like there are some errors.</h5>
+                    <ul>
+                        <div v-for="error in formErrors">
+                            <li v-for="message in error.message">{{message}}</li>
+                        </div>
+                    </ul>
+                </b-alert>
             </div>
 
             <div class="row">
                 <div class="col-sm-12 col-md-6">
-                    <b-btn class="mt-3" variant="outline-secondary" block @click="submitForm(false)">Submit without group</b-btn>
+                    <b-btn class="mt-3" variant="outline-secondary" block @click="submitForm(false)">Submit without
+                        group
+                    </b-btn>
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <b-btn class="mt-3" variant="outline-primary" block @click="submitForm(true)">Create group</b-btn>
@@ -100,7 +112,8 @@
                 ],
                 progressPercentage: 0,
                 groupName: 'Group of ' + this.username,
-                createdGroup: null
+                createdGroup: null,
+                formErrors: []
             }
         },
         mounted() {
@@ -123,7 +136,7 @@
                 this.$refs.submitModal.show();
             },
             submitForm(createGroup) {
-                if(createGroup) {
+                if (createGroup) {
                     this.createGroup();
                 } else {
                     this.createPredictions(false);
@@ -133,14 +146,14 @@
                 let self = this;
                 axios.post('/prediction', this.selections)
                     .then(function (response) {
-                        if(goToGroup) {
+                        if (goToGroup) {
                             window.location.replace(self.createdGroup.link);
                         } else {
                             window.location.replace('/profile/');
                         }
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        console.error(error);
                     });
             },
             createGroup() {
@@ -154,7 +167,16 @@
                         self.createPredictions(true);
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        if (error.response.status === 422) {
+                            var p = error.response.data.errors;
+                            for (var key in p) {
+                                if (p.hasOwnProperty(key)) {
+                                    self.formErrors.push({label: key, message: p[key]});
+                                }
+                            }
+                        } else {
+                            console.error(error);
+                        }
                     });
             }
         },
