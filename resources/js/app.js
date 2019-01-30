@@ -29,6 +29,7 @@ Vue.component('leaderboard', require('./components/Leaderboard.vue').default);
 Vue.component('make-prediction-button', require('./components/MakePredictionButton.vue').default);
 Vue.component('social-media-buttons', require('./components/SocialMediaButtons.vue').default);
 Vue.component('invite-link', require('./components/InviteLink.vue').default);
+Vue.component('copy-to-clipboard', require('./components/CopyToClipboard.vue').default);
 
 const app = new Vue({
     el: '#app'

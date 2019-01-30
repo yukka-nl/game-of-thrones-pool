@@ -28,5 +28,8 @@
                 <i class="fab fa-telegram brand-color-telegram mr-1"></i> Telegram
             </a>
         </network>
+        <span class="d-none d-md-inline">
+            <copy-to-clipboard></copy-to-clipboard>
+        </span>
     </div>
 </social-sharing>
