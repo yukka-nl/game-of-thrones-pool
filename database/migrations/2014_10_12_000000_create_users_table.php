@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
 
+            $table->integer('correct_guesses')->unsigned()->default(0);
+
             $table->string('avatar')->default('/storage/images/defaults/avatar.png');
             $table->string('social_id');
             $table->string('platform');
