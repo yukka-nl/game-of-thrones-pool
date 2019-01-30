@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
 
             $table->integer('correct_guesses')->unsigned()->default(0);
 
-            $table->string('avatar')->default('/img/default-avatar.png');
+            $table->string('avatar')->nullable();
             $table->string('social_id');
             $table->string('platform');
             $table->text('token');
