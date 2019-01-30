@@ -11,11 +11,23 @@
 
         <b-table striped hover :items="items" :fields="fields" v-if="items" :perPage="25" :filter="filter"
                  @filtered="onFiltered" class="leaderboard-table">
-            <template slot="Place" slot-scope="data">
-                {{ data.index + 1 }}
-            </template>
             <template slot="avatar" slot-scope="data">
                 <img :src="data.item.avatar" class="rounded-circle mr-2" style="height: 25px;">
+            </template>
+            <template slot="correct_guesses" slot-scope="data">
+                <span v-if="data.item.has_predictions">{{ data.item.correct_guesses }}</span>
+                <span v-else>No predictions yet.</span>
+            </template>
+            <template slot="predictions_link" slot-scope="data">
+                <a :href="data.item.link" v-if="data.item.has_predictions">
+                    <span>
+                        <i class="far fa-eye"> </i> View prediction
+                    </span>
+                </a>
+                <span class="text-muted" v-else>
+                    <i class="far fa-frown"> </i> No prediction
+                </span>
+
             </template>
         </b-table>
         <b-pagination size="md" :total-rows="items.length" v-model="currentPage" :per-page="25">
@@ -33,7 +45,11 @@
         data() {
             return {
                 fields: [
-                    'Place',
+                    {
+                        key: 'ranking',
+                        label: 'Ranking',
+                        sortable: true
+                    },
                     {
                         key: 'avatar',
                         label: ''
@@ -50,7 +66,7 @@
                     },
                     {
                         key: 'predictions_link',
-                        label: 'Predictions',
+                        label: 'Actions',
                     }
                 ],
                 filter: null,
