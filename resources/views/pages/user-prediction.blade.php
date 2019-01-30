@@ -65,7 +65,7 @@
                     @isset($groupedPredictions[3])
                         <div class="card bg-blue mb-3 mt-4">
                             <div class="card-body text-white pl-3 pr-3 pt-3 pb-3">
-                                <h1 class="h4 m-0"><i class="fas fa-skull mr-1"></i> Becomes a wight</h1>
+                                <h1 class="h4 m-0"><i class="fas fa-skull mr-1"></i> Dies and becomes a wight</h1>
                             </div>
                         </div>
                         @include('partials.character-sheet', ['predictions' => $groupedPredictions[3]])
