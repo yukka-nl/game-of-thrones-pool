@@ -27,6 +27,18 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->append('has_predictions');
+        $this->append('link');
+    }
+
+    public function getLinkAttribute()
+    {
+        return '/predictions/user/' . $this->id;
+    }
+
     public function groups()
     {
         return $this->belongsToMany(Group::class);
@@ -35,6 +47,11 @@ class User extends Authenticatable
     public function predictions()
     {
         return $this->hasMany(Prediction::class);
+    }
+
+    public function getHasPredictionsAttribute()
+    {
+        return $this->hasPredictions();
     }
 
     public function hasPredictions()
