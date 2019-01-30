@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-form-group horizontal label="Filter by name" class="mb-1">
+        <b-form-group horizontal label="Filter by name" class="mb-2">
             <b-input-group>
                 <b-form-input v-model="filter" placeholder="Search name..."/>
                 <b-input-group-append>
