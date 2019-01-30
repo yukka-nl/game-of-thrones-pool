@@ -46,13 +46,15 @@ class LoginController extends Controller
     public function redirectToProvider($platform)
     {
         $redirectUrl = Input::get('redirect') ? route(Input::get('redirect')) : '/';
-        return Socialite::driver($platform)->with(['state' => $redirectUrl])->redirect();
+        session()->put('redirectUrl', $redirectUrl);
+        return Socialite::driver($platform)->redirect();
     }
 
     protected function authenticated(Request $request, $user)
     {
         return redirect($request->get('next'));
     }
+
     /**
      * Obtain the user information from GitHub.
      *
@@ -61,17 +63,22 @@ class LoginController extends Controller
      */
     public function handleProviderCallback($platform)
     {
-        $redirectUrl = request()->input('state');
 
-        $userData = Socialite::driver($platform)->stateless()->user();
+        $userData = Socialite::driver($platform)->user();
 
         $user = $this->getExistingUser($userData, $platform);
 
         auth()->login($user);
 
-        if($redirectUrl) {
+        if (session()->get('redirectUrl')) {
+            if($user->hasPredictions()) {
+                return redirect('/');
+            }
+            $redirectUrl = session()->get('redirectUrl');
+            session()->forget('redirectUrl');
             return redirect($redirectUrl);
         }
+
         return redirect($this->redirectTo)->with('redirectToPrevious', true);
     }
 
