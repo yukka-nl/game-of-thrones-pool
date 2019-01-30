@@ -10,7 +10,7 @@
         </b-form-group>
 
         <b-table striped hover :items="items" :fields="fields" v-if="items" :perPage="25" :filter="filter"
-                 @filtered="onFiltered" class="leaderboard-table" >
+                 @filtered="onFiltered" class="leaderboard-table" responsive>
             <template slot="avatar" slot-scope="data">
                 <img :src="data.item.avatar" class="rounded-circle mr-2" style="height: 25px;">
             </template>
