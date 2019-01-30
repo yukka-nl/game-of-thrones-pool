@@ -5,7 +5,11 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-104461895-2"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
 
         gtag('config', 'UA-104461895-2');
@@ -23,7 +27,16 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
-    <meta property="og:image" content="{{ URL::asset('img/site-preview.png') }}" />
+    <meta property="og:site_name" content="Pool of Dragons">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ Request::url() }}">
+    <meta property="og:image" content="{{ URL::asset('img/site-preview.png') }}"/>
+    <meta property="og:image:secure_url" content="{{ URL::asset('img/site-preview.png') }}">
+    <meta property="og:description"
+          content="Season 8 of Game of Thrones will start soon. Not all your beloved characters will survive the threat
+          of the white walkers. Create a pool with your friends to predict the faith of all remaining characters. Beat
+          your friends by earning the most points or compete in the global leaderboards. ">
+    <meta property="og:title" content="Pool of Dragons. Winter has arrived: it's death pool time.">
 
     <title>Pool of Dragons</title>
 
