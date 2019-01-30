@@ -20,7 +20,6 @@
         <b-pagination size="md" :total-rows="items.length" v-model="currentPage" :per-page="25">
         </b-pagination>
     </div>
-
 </template>
 
 <script>
@@ -54,7 +53,7 @@
                         label: 'Predictions',
                     }
                 ],
-                items: null,
+                items: [],
                 filter: null,
                 currentPage: 1,
 
