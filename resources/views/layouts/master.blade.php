@@ -21,7 +21,7 @@
 <body>
 <div id="app" class="container p-0 mb-5">
     @include('partials.header')
-    <snow></snow>
+    {{--<snow></snow>--}}
 
     @yield('content')
 </div>
