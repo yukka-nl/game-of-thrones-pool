@@ -21,4 +21,5 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/settings', 'SettingsController@show');
     Route::put('/settings', 'SettingsController@update');
+    Route::delete('/settings', 'SettingsController@delete');
 });

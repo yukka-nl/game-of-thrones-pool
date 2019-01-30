@@ -31,11 +31,28 @@
                 Save
             </button>
         </form>
+
+        <b-modal ref="deleteModal" hide-footer title="Delete account">
+            <div class="d-block text-center">
+                <h1 class="h4">Do you really want to delete your account?</h1>
+                By deleting your account all of your data will be removed, including the predictions and groups you've made!
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <b-btn class="mt-3" variant="outline-danger" block @click="hideModal">Cancel</b-btn>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <b-btn class="mt-3" variant="danger" block @click="deleteAccount()">Yes, delete my account</b-btn>
+                </div>
+            </div>
+        </b-modal>
+
         <form>
             <h5 class="mt-4">Danger Zone</h5>
             <hr>
             <div class="form-group">
-                <button @click="deleteAccount()" type="button" class="btn btn-danger btn-block mt-4">
+                <button @click="openModal" type="button" class="btn btn-danger btn-block mt-4">
                     Delete account
                 </button>
             </div>
@@ -78,9 +95,9 @@
             deleteAccount() {
                 var self = this;
                 this.formErrors = [];
-                axios.delete('/settings/', this.formData)
+                axios.delete('/settings/')
                     .then(function (response) {
-                        console.log('Group created!');
+                        window.location.replace('/');
                     })
                     .catch(function (error) {
                         if (error.response.status === 422) {
@@ -94,6 +111,12 @@
                             console.error(error);
                         }
                     });
+            },
+            openModal() {
+                this.$refs.deleteModal.show();
+            },
+            hideModal() {
+                this.$refs.deleteModal.hide();
             }
         },
     }

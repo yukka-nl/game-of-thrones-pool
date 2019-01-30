@@ -19,4 +19,12 @@ class SettingsController extends Controller
         $user->save();
         return response($user, 200);
     }
+
+    public function delete()
+    {
+        $user = Auth::user();
+        auth()->logout();
+        $user->delete();
+        return response('Account deleted.', 200);
+    }
 }
