@@ -34,6 +34,10 @@
                         Points are being rewarded as the show goes on. Points for correct 'Alive' predictions will only
                         be rewarded at the end of the show.
                     </li>
+                    <li>
+                        All characters that have been resurrected previously, for example Jon Snow and The Mountain, are
+                        considered to be alive at the beginning of the season.
+                    </li>
                 </ul>
             </div>
             <div class="col-sm-12">
