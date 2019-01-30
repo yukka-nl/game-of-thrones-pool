@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-form-group horizontal label="Filter by name" class="mb-2">
+        <b-form-group horizontal label="Filter by name" class="mb-4 mt-3">
             <b-input-group>
                 <b-form-input v-model="filter" placeholder="Search name..."/>
                 <b-input-group-append>
@@ -30,8 +30,8 @@
 
             </template>
         </b-table>
-        <b-pagination size="md" :total-rows="items.length" v-model="currentPage" :per-page="25">
-        </b-pagination>
+
+        <b-pagination size="md" :total-rows="items.length" v-model="currentPage" :per-page="25" align="center" class="mt-3"></b-pagination>
     </div>
 </template>
 
