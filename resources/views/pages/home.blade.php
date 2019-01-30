@@ -30,8 +30,6 @@
     </div>
 
     <div class="container card mb-3 card p-4 text-center">
-
-
         <div class="row features">
             <div class="col-sm">
                 <i class="fas fa-skull-crossbones"></i>
