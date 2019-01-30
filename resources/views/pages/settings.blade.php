@@ -14,8 +14,9 @@
         <div class="row">
             <div class="col-sm-12">
                 <h1 class="h2 text-center mb-2">Settings</h1>
+
                 @auth()
-                <settings-form :user="{{ Auth::user() }}"></settings-form>
+                <settings-form></settings-form>
                 @endauth
 
             </div>

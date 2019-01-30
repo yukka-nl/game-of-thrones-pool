@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\SettingUpdateRequest;
+use Illuminate\Support\Facades\Auth;
 
 class SettingsController extends Controller
 {
@@ -11,8 +12,11 @@ class SettingsController extends Controller
         return view('pages.settings');
     }
 
-    public function update(Request $request)
+    public function update(SettingUpdateRequest $request)
     {
-        dd('beep');
+        $user = Auth::user();
+        $user->name = $request->input('username');
+        $user->save();
+        return response($user, 200);
     }
 }
