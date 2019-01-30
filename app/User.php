@@ -7,6 +7,8 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+    const DEFAULT_AVATAR_PATH = '/img/default-avatar.png';
+
     use Notifiable;
 
     /**
@@ -64,5 +66,19 @@ class User extends Authenticatable
         if ($this->hasPredictions()) {
             return $this->predictions->where('character_id', $characterId)->first()->status;
         }
+    }
+
+    /**
+     * @return string
+     */
+    public function getAvatarAttribute(): string
+    {
+
+        if (is_null($this->attributes['avatar'])) {
+            return self::DEFAULT_AVATAR_PATH;
+        }
+
+        return str_replace('http://', 'https://', $this->attributes['avatar']);
+
     }
 }
