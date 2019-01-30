@@ -52,6 +52,10 @@
                     Yukka Software Solutions
                 </u>
             </a>
+            <br>
+            <a href="/privacy" class="text-white">Privacy</a>
+            -
+            <a href="/terms-of-service" class="text-white">Terms Of Service</a>
         </div>
 </footer>
 </body>
