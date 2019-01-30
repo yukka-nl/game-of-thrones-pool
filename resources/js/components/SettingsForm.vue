@@ -52,7 +52,7 @@
         <hr>
         <form class="col-sm-12 col-md-4 p-0">
             <div class="form-group">
-                <button @click="openModal" type="button" class="btn btn-danger btn-block mt-4">
+                <button @click="openModal" type="button" class="btn btn-danger btn-block mt-3">
                     Delete account
                 </button>
             </div>
