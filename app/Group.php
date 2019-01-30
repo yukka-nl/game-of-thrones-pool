@@ -47,4 +47,7 @@ class Group extends Model
         return '/groups/' . $this->id;
     }
 
+    public function inviteLink() {
+        return '/groups/invite/' . $this->invite_code;
+    }
 }

@@ -1,8 +1,8 @@
 <template>
     <div>
-        <form>
-            <h5>Settings</h5>
-            <hr>
+
+        <form class="col-sm-12 col-md-4 p-0">
+
             <div class="form-group">
                 <label for="username">Change your display name</label>
                 <input type="text" class="form-control" id="username" v-model="formData.username"
@@ -27,7 +27,7 @@
             </b-alert>
 
             <button @click="changeSettings()" type="button" :disabled="!formData.username"
-                    class="btn btn-primary btn-block mt-4">
+                    class="btn btn-primary btn-block mt-3">
                 Save
             </button>
         </form>
@@ -48,11 +48,11 @@
             </div>
         </b-modal>
 
-        <form>
-            <h5 class="mt-4">Danger Zone</h5>
-            <hr>
+        <h5 class="mt-4">Danger Zone</h5>
+        <hr>
+        <form class="col-sm-12 col-md-4 p-0">
             <div class="form-group">
-                <button @click="openModal" type="button" class="btn btn-danger btn-block mt-4">
+                <button @click="openModal" type="button" class="btn btn-danger btn-block mt-3">
                     Delete account
                 </button>
             </div>

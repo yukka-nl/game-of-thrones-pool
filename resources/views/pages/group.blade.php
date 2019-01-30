@@ -16,9 +16,13 @@
                     Created 24 hours ago
                 </p>
 
-                <p>
-                    Use this link to invite your friends: <a href="/groups/invite/{{$group->invite_code}}">Link!</a>
-                </p>
+                <div class="text-center">
+                    @auth
+                        @if($group->owner->id === Auth::id())
+                            <invite-link link="{{  URL::to($group->inviteLink()) }}" class="mb-2"></invite-link>
+                        @endif
+                    @endauth
+                </div>
                 <div class="row d-flex justify-content-center">
                     @foreach($group->users as $user)
                         <div class="col-6 col-sm-4 col-md-2 col-lg-2 col-xl-1 mt-3 text-center">
