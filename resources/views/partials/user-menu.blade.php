@@ -14,7 +14,7 @@
                 Your prediction
             </a>
 
-            <a href="#" class="btn btn-primary mt-1">
+            <a href="/settings" class="btn btn-primary mt-1">
                 Settings
             </a>
 

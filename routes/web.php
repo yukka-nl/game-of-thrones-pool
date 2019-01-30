@@ -18,4 +18,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/groups/create', 'GroupController@create');
     Route::post('/groups', 'GroupController@store');
     Route::get('/groups', 'GroupController@index');
+
+    Route::get('/settings', 'SettingsController@show');
+    Route::put('/settings', 'SettingsController@update');
 });
