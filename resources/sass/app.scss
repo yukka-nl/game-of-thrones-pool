@@ -19,10 +19,6 @@ body {
 
 @import '~bootstrap-vue/dist/bootstrap-vue.css';
 
-.container, nav {
-  //z-index: 5;
-}
-
 .features {
   i {
     font-size: 36px;
@@ -34,4 +30,10 @@ body {
 .breadcrumb {
   background-color: #ffff;
   border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.leaderboard-table {
+  td {
+    vertical-align: middle;
+  }
 }
