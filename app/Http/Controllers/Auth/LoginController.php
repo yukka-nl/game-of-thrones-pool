@@ -69,8 +69,10 @@ class LoginController extends Controller
      */
     public function handleProviderCallback(Request $request, $platform)
     {
-        if (!$request->has('code') || $request->has('denied')) {
-            return redirect('/');
+        if(!$request->has('oauth_token')) {
+            if (!$request->has('code') || $request->has('denied')) {
+                return redirect('/');
+            }
         }
 
         $userData = Socialite::driver($platform)->user();
