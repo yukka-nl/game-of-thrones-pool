@@ -15,7 +15,7 @@ class Group extends Model
         parent::boot();
 
         self::creating(function ($model) {
-            $model->slug = str_slug($model->name);
+            $model->slug = Uuid::uuid4()->toString();
             $model->invite_code = Uuid::uuid4()->toString();
         });
     }
