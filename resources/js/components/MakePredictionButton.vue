@@ -5,7 +5,7 @@
             <i class="fab fa-wpforms mr-1"></i> Make your prediction
         </span>
 
-        <a href="/prediction" class="btn btn-outline-secondary btn-lg" v-if="isAuthenticated && madePredictions">
+        <a :href="'/prediction/user/' + userId" class="btn btn-outline-secondary btn-lg" v-if="isAuthenticated && madePredictions">
             <i class="fab fa-wpforms mr-1"></i> View your prediction
         </a>
 
@@ -23,7 +23,7 @@
 
 <script>
     export default {
-        props: ['isAuthenticated', 'madePredictions'],
+        props: ['isAuthenticated', 'madePredictions', 'userId'],
         methods: {
             makePrediction() {
                 if(this.isAuthenticated) {
