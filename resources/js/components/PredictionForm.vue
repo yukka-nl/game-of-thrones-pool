@@ -90,7 +90,6 @@
                                                 :name="character.name"
                                                 stacked
                             />
-
                         </b-form-group>
                 </td>
             </tr>
@@ -123,7 +122,7 @@
                 options: [
                     {text: 'Alive', value: 1},
                     {text: 'Dead', value: 2},
-                    {text: 'Becomes a wight', value: 3}
+                    {text: 'Dead, becomes a wight', value: 3}
                 ],
                 progressPercentage: 0,
                 groupName: 'Group of ' + this.username,
