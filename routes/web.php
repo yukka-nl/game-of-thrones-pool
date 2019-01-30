@@ -5,9 +5,6 @@ Route::get('/prediction', 'PredictionController@show');
 Route::get('/groups/invite/{inviteCode}', 'GroupController@join');
 Route::get('/groups/{groupId}', 'GroupController@show');
 
-// Leaderboard
-Route::get('/leaderboard', 'LeaderboardController@index');
-
 // Social Logins
 Route::get('login/{platform}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{platform}/callback', 'Auth\LoginController@handleProviderCallback');

@@ -39,28 +39,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <h1 class="h2">Group leaderboards</h1>
-                <p>
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Correct guesses</th>
-                        <th scope="col">Points</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @for ($i = 1; $i < 7; $i++)
-                        <tr>
-                            <th scope="row">{{ $i }}</th>
-                            <td>John Doe</td>
-                            <td>6</td>
-                            <td>100</td>
-                        </tr>
-                    @endfor
-                    </tbody>
-                </table>
-                </p>
+                <leaderboard :data="{{ json_encode($leaderboard) }}"></leaderboard>
             </div>
 
         </div>

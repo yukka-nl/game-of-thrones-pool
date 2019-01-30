@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,6 +15,7 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return view('pages.home');
+        $data['leaderboard'] =  array_values(User::get()->sortByDesc('correct_guesses')->toArray());
+        return view('pages.home', $data);
     }
 }

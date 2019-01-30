@@ -25,9 +25,8 @@
 <script>
     export default {
         props: {
-            groupId: {
-                default: null,
-                required: false
+            data: {
+                required: true
             }
         },
         data() {
@@ -53,27 +52,15 @@
                         label: 'Predictions',
                     }
                 ],
-                items: [],
                 filter: null,
+                items: this.data,
                 currentPage: 1,
 
             }
         },
         mounted() {
-            this.getLeaderboard();
         },
         methods: {
-            getLeaderboard() {
-                var self = this;
-                this.formErrors = [];
-                axios.get('/leaderboard')
-                    .then(function (response) {
-                        return self.items = response.data;
-                    })
-                    .catch(function (error) {
-                        console.error(error);
-                    });
-            },
             onFiltered (filteredItems) {
                 // Trigger pagination to update the number of buttons/pages due to filtering
                 this.totalRows = filteredItems.length;
