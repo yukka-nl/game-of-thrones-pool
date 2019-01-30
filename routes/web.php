@@ -14,7 +14,7 @@ Route::get('register', 'Auth\RegisterController@registerPage');
 // Auth routes
 Route::group(['middleware' => ['auth']], function () {
     Route::post('/prediction', 'PredictionController@store');
-    Route::get('/prediction/create', 'PredictionController@create');
+    Route::get('/prediction/create', 'PredictionController@create')->name('make-prediction');
     Route::get('/groups/create', 'GroupController@create');
     Route::post('/groups', 'GroupController@store');
     Route::get('/groups', 'GroupController@index');

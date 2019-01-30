@@ -4,7 +4,7 @@
     <div class="container card mb-3 card p-4">
         <div class="row">
             <div class="col-sm-12 col-md-6">
-                <h1 class="h2">Winter has arrived. Death pool time.</h1>
+                <h1 class="h2">Winter has arrived: it's death pool time.</h1>
                 <p>
                     Season 8 of Game of Thrones will start soon. Not all your beloved characters
                     will survive the threat of the white walkers. Create a pool with your friends to predict the faith
@@ -14,15 +14,9 @@
             </div>
             <div class="col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
                 <div class="text-center">
-                    @if(Auth::check() && Auth::user()->hasPredictions() && Auth::check())
-                        <a href="/prediction" class="btn btn-primary btn-lg">
-                            <i class="fab fa-wpforms mr-1"></i> View your prediction
-                        </a>
-                    @else
-                        <a href="/prediction/create" class="btn btn-primary btn-lg">
-                            <i class="fab fa-wpforms mr-1"></i> Make your prediction
-                        </a>
-                    @endif
+                    <make-prediction-button is-authenticated="{{ Auth::check() }}"
+                                            made-predictions="{{ Auth::check() && Auth::user()->hasPredictions() }}">
+                    </make-prediction-button>
                     @guest
                         <div class="mt-3 mb-1">
                             Already made a prediction? Sign into see your groups!

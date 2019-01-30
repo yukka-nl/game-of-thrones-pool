@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Input;
 use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
@@ -36,6 +37,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+
     /**
      * Redirect the user to the GitHub authentication page.
      *
@@ -43,9 +45,14 @@ class LoginController extends Controller
      */
     public function redirectToProvider($platform)
     {
-        return Socialite::driver($platform)->redirect();
+        $redirectUrl = Input::get('redirect') ? route(Input::get('redirect')) : '/';
+        return Socialite::driver($platform)->with(['state' => $redirectUrl])->redirect();
     }
 
+    protected function authenticated(Request $request, $user)
+    {
+        return redirect($request->get('next'));
+    }
     /**
      * Obtain the user information from GitHub.
      *
@@ -54,11 +61,17 @@ class LoginController extends Controller
      */
     public function handleProviderCallback($platform)
     {
-        $userData = Socialite::driver($platform)->user();
+        $redirectUrl = request()->input('state');
+
+        $userData = Socialite::driver($platform)->stateless()->user();
 
         $user = $this->getExistingUser($userData, $platform);
 
         auth()->login($user);
+
+        if($redirectUrl) {
+            return redirect($redirectUrl);
+        }
         return redirect($this->redirectTo)->with('redirectToPrevious', true);
     }
 
@@ -96,8 +109,6 @@ class LoginController extends Controller
     public function registerNewUser($userData, $platform)
     {
 
-//        dd($userData);
-        // create user
         $user = User::create([
             'name' => $userData->name,
             'email' => $userData->email,
