@@ -27,7 +27,6 @@
             </div>
         </div>
     </div>
-    </div>
 
     <div class="container card mb-3 card p-4 text-center">
 
@@ -67,28 +66,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <h1 class="h2">Global leaderboards</h1>
-                <p>
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Correct guesses</th>
-                        <th scope="col">Points</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @for ($i = 1; $i < 10; $i++)
-                        <tr>
-                            <th scope="row">{{ $i }}</th>
-                            <td>Mark</td>
-                            <td>6</td>
-                            <td>100</td>
-                        </tr>
-                    @endfor
-                    </tbody>
-                </table>
-                </p>
+                <leaderboard :data="{{ json_encode($leaderboard) }}"></leaderboard>
             </div>
 
         </div>

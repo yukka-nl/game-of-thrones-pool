@@ -7,6 +7,7 @@ use App\Group;
 use App\GroupUser;
 
 use App\Http\Requests\GroupStoreRequest;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class GroupController extends Controller
@@ -20,6 +21,7 @@ class GroupController extends Controller
     public function show($groupId)
     {
         $data['group'] = Group::findOrFail($groupId);
+        $data['leaderboard'] = array_values($data['group']->users->sortByDesc('correct_guesses')->toArray());
         return view('pages.group', $data);
     }
 
