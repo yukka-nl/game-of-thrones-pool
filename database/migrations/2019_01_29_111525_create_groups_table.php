@@ -20,8 +20,8 @@ class CreateGroupsTable extends Migration
             $table->string('slug');
             $table->uuid('invite_code')->default(Uuid::uuid4()->toString());
 
-            $table->integer('owner_id')->unsigned()->index()->default(1)->nullable();
-            $table->foreign('owner_id')->references('id')->on('users')->onDelete('set null');
+            $table->integer('owner_id')->unsigned()->index();
+            $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
