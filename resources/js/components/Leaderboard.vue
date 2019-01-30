@@ -47,7 +47,7 @@
                 fields: [
                     {
                         key: 'ranking',
-                        label: 'Ranking',
+                        label: '<i class="fa fa-trophy" aria-hidden="true"></i>',
                         sortable: true
                     },
                     {

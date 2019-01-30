@@ -44,9 +44,9 @@
             </div>
         </div>
 
-        <button @click="openModal" class="btn btn-success btn-block w-100 btn-lg" v-if="progressPercentage === 100">
+        <div @click="openModal" class="btn btn-success btn-block w-100 btn-lg mt-3" v-if="progressPercentage === 100">
             <i class="fas fa-paper-plane mr-1"></i> Submit prediction
-        </button>
+        </div>
 
         <table class="table mt-3 table-responsive" style=" display: table;">
             <thead>
@@ -97,19 +97,19 @@
             </tbody>
         </table>
 
-        <button @click="openModal" class="btn btn-success btn-block w-100 btn-lg" v-if="progressPercentage === 100">
+        <div @click="openModal" class="btn btn-success btn-block w-100 btn-lg" v-if="progressPercentage === 100">
             <i class="fas fa-paper-plane mr-1"></i> Submit prediction
-        </button>
+        </div>
 
         <div class="position-fixed p-3 card" style="bottom: 10px; right: 10px; z-index: 10"
              v-if="progressPercentage === 100">
             <div class="h4 mb-2 text-center">
-                You're all done!
+                You're all set!
             </div>
 
-            <a href="/prediction/create" class="btn btn-success btn-lg">
+            <div href="/prediction/create" class="btn btn-success btn-lg" @click="openModal">
                 <i class="fas fa-paper-plane mr-1"></i> Submit prediction
-            </a>
+            </div>
         </div>
     </main>
 </template>
