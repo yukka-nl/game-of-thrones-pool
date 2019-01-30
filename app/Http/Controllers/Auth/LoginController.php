@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -66,8 +67,11 @@ class LoginController extends Controller
      * @param $platform
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function handleProviderCallback($platform)
+    public function handleProviderCallback(Request $request, $platform)
     {
+        if (!$request->has('code') || $request->has('denied')) {
+            return redirect('/');
+        }
 
         $userData = Socialite::driver($platform)->user();
 
