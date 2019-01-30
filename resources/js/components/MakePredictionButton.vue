@@ -18,6 +18,7 @@
                     <ul class="mt-2">
                         <li>Your name (you can change your display name in the settings)</li>
                         <li>Your profile photo</li>
+                        <li>Social Account ID (used for authentication with chosen Social Platform)</li>
                     </ul>
 
                     You can delete your account anytime you want.
