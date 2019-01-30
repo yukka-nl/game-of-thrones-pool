@@ -1,5 +1,5 @@
 <template>
-    <form>
+    <form @submit.prevent="submitForm">
         <div class="form-group mt-4">
             <label>Enter the name of the group: </label>
             <input type="text" class="form-control" v-model="formData.name">
@@ -14,7 +14,7 @@
                 </ul>
             </b-alert>
 
-            <button @click="submitForm()" type="button" :disabled="!formData.name"
+            <button @click="submitForm()"  type="button" :disabled="!formData.name"
                     class="btn btn-primary btn-block mt-4">
                 Create group!
             </button>
