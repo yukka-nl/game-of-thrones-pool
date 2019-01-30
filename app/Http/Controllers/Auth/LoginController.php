@@ -128,7 +128,7 @@ class LoginController extends Controller
         $user = User::create([
             'name' => $userData->name ?? $userData->nickname,
             'email' => $userData->email,
-            'avatar' => $userData->avatar ?? '/img/default-avatar.png',
+            'avatar' => $userData->avatar,
             'password' => bcrypt(str_random(30)),
             'social_id' => $userData->id,
             'platform' => $platform,
