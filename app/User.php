@@ -36,7 +36,7 @@ class User extends Authenticatable
 
     public function getLinkAttribute()
     {
-        return '/predictions/user/' . $this->id;
+        return '/prediction/user/' . $this->id;
     }
 
     public function groups()
