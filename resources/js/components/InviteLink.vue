@@ -1,13 +1,21 @@
 <template>
-    <main>
-        <i class="fas fa-envelope-open-text mr-1"></i>
-        <span class="mr-2">Invite link</span>
-        <input type="text" :value="link" disabled>
-        <div type="text" class="btn btn-outline-secondary text-muted" @click="doCopy">Copy link</div>
-        <br>
-        <div v-if="status.text" :class="status.class">
-            {{ status.text }}
+    <main class="d-flex justify-content-center">
+        <div class="col-sm-12 col-md-4">
+            <i class="fas fa-envelope-open-text mr-1"></i>
+            <span class="mr-2">Invite link</span>
+
+            <div class="input-group ">
+                <input type="text" class="form-control" :value="link" disabled>
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" @click="doCopy">Copy Link</button>
+                </div>
+            </div>
+            <div v-if="status.text" :class="status.class">
+                {{ status.text }}
+            </div>
         </div>
+
+
     </main>
 </template>
 

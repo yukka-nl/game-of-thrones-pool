@@ -8,6 +8,14 @@
         </ol>
     </nav>
 
+    @auth
+        @if($group->owner->id === Auth::id())
+            <div class="text-center container card  mt-3 mb-3 card p-4">
+                <invite-link link="{{  URL::to($group->inviteLink()) }}" class="mb-2"></invite-link>
+            </div>
+        @endif
+    @endauth
+
     <div class="container card  mt-3 mb-3 card p-4">
         <div class="row">
             <div class="col-sm-12">
@@ -16,13 +24,7 @@
                     Created 24 hours ago
                 </p>
 
-                <div class="text-center">
-                    @auth
-                        @if($group->owner->id === Auth::id())
-                            <invite-link link="{{  URL::to($group->inviteLink()) }}" class="mb-2"></invite-link>
-                        @endif
-                    @endauth
-                </div>
+
                 <div class="row d-flex justify-content-center">
                     @foreach($group->users as $user)
                         <div class="col-6 col-sm-4 col-md-2 col-lg-2 mt-3 text-center">

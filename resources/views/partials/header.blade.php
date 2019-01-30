@@ -1,7 +1,7 @@
-<div class="row">
+<div class="row m-0">
     <div class="col-12 text-center mt-5 mb-4">
         <a href="/">
-            <img src="{{ URL::asset('img/header.png') }}" style="height: 40px;">
+            <img src="{{ URL::asset('img/header.png') }}" class="header-logo">
         </a>
         @include('partials.user-menu')
     </div>

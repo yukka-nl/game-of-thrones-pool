@@ -29,7 +29,7 @@
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/app.css') }}">
 </head>
 <body>
-<div id="app" class="container p-0 mb-4">
+<div id="app" class="container p-0 mb-4 pr-1 pl-1">
     @include('partials.header')
     <snow></snow>
 
