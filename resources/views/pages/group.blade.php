@@ -25,16 +25,14 @@
                 </div>
                 <div class="row d-flex justify-content-center">
                     @foreach($group->users as $user)
-
                         <div class="col-6 col-sm-4 col-md-2 col-lg-2 col-xl-1 mt-3 text-center">
                             <div>
-                                <img src="  {{ $user->avatar }}" class="rounded-circle w-100 mb-2"
+                                <img src="{{ $user->avatar }}" class="rounded-circle w-100 mb-2"
                                      style="max-height: 100px; max-width: 100px;">
                             </div>
                             {{ $user->name }}
                         </div>
                     @endforeach
-
                 </div>
             </div>
 
@@ -45,28 +43,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <h1 class="h2">Group leaderboards</h1>
-                <p>
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Correct guesses</th>
-                        <th scope="col">Points</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @for ($i = 1; $i < 7; $i++)
-                        <tr>
-                            <th scope="row">{{ $i }}</th>
-                            <td>John Doe</td>
-                            <td>6</td>
-                            <td>100</td>
-                        </tr>
-                    @endfor
-                    </tbody>
-                </table>
-                </p>
+                <leaderboard :data="{{ json_encode($leaderboard) }}"></leaderboard>
             </div>
 
         </div>
