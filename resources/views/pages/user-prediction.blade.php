@@ -21,6 +21,14 @@
                     </div>
                 </div>
 
+                @auth
+                    @if(Auth::id() === $user->id)
+                        <div class="text-center mb-3">
+                            @include('partials.share-buttons')
+                        </div>
+                    @endif
+                @endauth
+
                 @if(!$user->hasPredictions())
                     @if(Auth::check())
                         @if(Auth::id() === $user->id)
