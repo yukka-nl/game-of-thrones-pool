@@ -3,7 +3,7 @@
 Route::get('/', 'HomeController')->name('home');
 Route::get('/prediction', 'PredictionController@show');
 Route::get('/groups/invite/{inviteCode}', 'GroupController@join');
-Route::get('/groups/{groupId}', 'GroupController@show');
+Route::get('/groups/{slug}', 'GroupController@show');
 
 // Social Logins
 Route::get('login/{platform}', 'Auth\LoginController@redirectToProvider');

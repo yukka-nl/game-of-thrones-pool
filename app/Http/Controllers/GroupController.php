@@ -18,9 +18,9 @@ class GroupController extends Controller
         return view('pages.groups', $data);
     }
 
-    public function show($groupId)
+    public function show($slug)
     {
-        $data['group'] = Group::findOrFail($groupId);
+        $data['group'] = Group::where('slug', $slug)->get()->first();
 
         $users = $data['group']->users->sortByDesc('correct_guesses');
         $usersAsArray = array_values($users->toArray());

@@ -44,7 +44,7 @@ class Group extends Model
 
     public function getLinkAttribute()
     {
-        return '/groups/' . $this->id;
+        return '/groups/' . $this->slug;
     }
 
     public function inviteLink() {
