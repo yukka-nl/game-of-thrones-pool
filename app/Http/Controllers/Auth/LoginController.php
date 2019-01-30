@@ -119,11 +119,10 @@ class LoginController extends Controller
      */
     public function registerNewUser($userData, $platform)
     {
-        $name = $userData->name ?? $userData->nickname;
         $user = User::create([
-            'name' => $name,
+            'name' => $userData->name ?? $userData->nickname,
             'email' => $userData->email,
-            'avatar' => $userData->avatar,
+            'avatar' => $userData->avatar ?? '/img/default-avatar.png',
             'password' => bcrypt(str_random(30)),
             'social_id' => $userData->id,
             'platform' => $platform,
