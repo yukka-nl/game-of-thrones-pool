@@ -22,15 +22,11 @@
 
 <script>
     export default {
-        props:[
-            'ownerId'
-        ],
         data() {
             return {
                 formErrors: [],
                 formData: {
                     name: null,
-                    owner_id: this.ownerId
                 },
             }
         },

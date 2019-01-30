@@ -15,7 +15,7 @@
                 <h1 class="h2 text-center mb-2">Create Group</h1>
 
                 @auth
-                    <create-group-form :owner-id="{{ Auth::id() }}"></create-group-form>
+                    <create-group-form></create-group-form>
                 @endauth
             </div>
 
