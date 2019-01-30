@@ -16,19 +16,25 @@
                     Created 24 hours ago
                 </p>
 
-                <p>
-                    Use this link to invite your friends: <a href="/groups/invite/{{$group->invite_code}}">Link!</a>
-                </p>
+                <div class="text-center">
+                    @auth
+                        @if($group->owner->id === Auth::id())
+                            <invite-link link="{{  URL::to($group->inviteLink()) }}" class="mb-2"></invite-link>
+                        @endif
+                    @endauth
+                </div>
                 <div class="row d-flex justify-content-center">
-                    @for ($i = 0; $i < 6; $i++)
+                    @foreach($group->users as $user)
+
                         <div class="col-6 col-sm-4 col-md-2 col-lg-2 col-xl-1 mt-3 text-center">
                             <div>
-                                <img src="/img/characters/jon-snow.jpeg" class="rounded-circle w-100 mb-2"
-                                      style="max-height: 100px; max-width: 100px;">
+                                <img src="  {{ $user->avatar }}" class="rounded-circle w-100 mb-2"
+                                     style="max-height: 100px; max-width: 100px;">
                             </div>
-                            John Doe
+                            {{ $user->name }}
                         </div>
-                    @endfor
+                    @endforeach
+
                 </div>
             </div>
 
