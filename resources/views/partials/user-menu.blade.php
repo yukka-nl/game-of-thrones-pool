@@ -10,7 +10,7 @@
                 Groups <span class="ml-1 badge badge-light">{{Auth::user()->groups->count()}}</span>
             </a>
 
-            <a href="#" class="btn btn-primary mt-1">
+            <a href="/prediction/user/{{ Auth::id() }}" class="btn btn-primary mt-1">
                 Your prediction
             </a>
 

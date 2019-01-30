@@ -3,6 +3,7 @@
 Route::get('/', 'HomeController')->name('home');
 Route::get('/prediction', 'PredictionController@show');
 Route::get('/groups/invite/{inviteCode}', 'GroupController@join')->name('invite-link');
+Route::get('/prediction/user/{userId}', 'PredictionController@show');
 Route::get('/groups/{groupId}', 'GroupController@show');
 
 // Social Logins

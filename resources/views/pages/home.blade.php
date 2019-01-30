@@ -15,7 +15,8 @@
             <div class="col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
                 <div class="text-center">
                     <make-prediction-button is-authenticated="{{ Auth::check() }}"
-                                            made-predictions="{{ Auth::check() && Auth::user()->hasPredictions() }}">
+                                            made-predictions="{{ Auth::check() && Auth::user()->hasPredictions() }}"
+                                            user-id="{{ Auth::id() }}">
                     </make-prediction-button>
                     @guest
                         <div class="mt-3 mb-1">

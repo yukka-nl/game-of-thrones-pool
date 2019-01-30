@@ -25,7 +25,7 @@
                 </div>
                 <div class="row d-flex justify-content-center">
                     @foreach($group->users as $user)
-                        <div class="col-6 col-sm-4 col-md-2 col-lg-2 col-xl-1 mt-3 text-center">
+                        <div class="col-6 col-sm-4 col-md-2 col-lg-2 mt-3 text-center">
                             <div>
                                 <img src="{{ $user->avatar }}" class="rounded-circle w-100 mb-2"
                                      style="max-height: 100px; max-width: 100px;">
