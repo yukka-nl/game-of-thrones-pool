@@ -6,21 +6,21 @@ use App\Character;
 use App\User;
 use Illuminate\Console\Command;
 
-class UpdateCharacterStatus extends Command
+class UpdateCorrectGuesses extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'update:character-status';
+    protected $signature = 'update:correct-guesses';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Update the correct guesses for all users.';
 
     /**
      * Create a new command instance.
@@ -39,8 +39,10 @@ class UpdateCharacterStatus extends Command
      */
     public function handle()
     {
+        $this->line('Updating correct guesses...');
         $users = User::all();
         $characters = Character::all();
+        $bar = $this->output->createProgressBar(count($users));
         foreach ($users as $user) {
             if ($user->hasPredictions()){
                 foreach ($characters as $character) {
@@ -50,6 +52,9 @@ class UpdateCharacterStatus extends Command
                 }
                 $user->save();
             }
+            $bar->advance();
         }
+        $bar->finish();
+        $this->line(' All users updated!');
     }
 }
