@@ -3,7 +3,7 @@
 Route::get('/', 'HomeController')->name('home');
 Route::get('/prediction', 'PredictionController@show');
 Route::get('/groups/invite/{inviteCode}', 'GroupController@join');
-Route::get('/groups/{slug}', 'GroupController@show');
+Route::get('/groups/{groupId}', 'GroupController@show');
 
 // Social Logins
 Route::get('login/{platform}', 'Auth\LoginController@redirectToProvider');
@@ -15,7 +15,7 @@ Route::get('register', 'Auth\RegisterController@registerPage');
 Route::group(['middleware' => ['auth']], function () {
     Route::post('/prediction', 'PredictionController@store');
     Route::get('/prediction/create', 'PredictionController@create');
-    Route::get('/groups/create', 'GroupController@create');
+    Route::get('/create-group', 'GroupController@create');
     Route::post('/groups', 'GroupController@store');
     Route::get('/groups', 'GroupController@index');
 

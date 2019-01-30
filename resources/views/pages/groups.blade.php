@@ -13,7 +13,7 @@
             <div class="col-sm-12">
                 <h1 class="h2 text-center mb-2">Groups</h1>
                 <div class="mt-3">
-                    <a href="/groups/create" class="btn btn-primary">Create a new Group!</a>
+                    <a href="/create-group" class="btn btn-primary">Create a new Group!</a>
                 </div>
 
                 <div class="mt-3">
