@@ -30,6 +30,10 @@
                         <strong>Please note:</strong> any character that becomes a wight and is destroyed afterwards is
                         still considered as *Dead, becomes a Wight*
                     </li>
+                    <li>
+                        Points are being rewarded as the show goes on. Points for correct 'Alive' predictions will only
+                        be rewarded at the end of the show.
+                    </li>
                 </ul>
             </div>
             <div class="col-sm-12">
