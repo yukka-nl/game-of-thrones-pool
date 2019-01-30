@@ -21,7 +21,7 @@ class GroupController extends Controller
     public function show($groupId)
     {
         $data['group'] = Group::findOrFail($groupId);
-        $data['leaderboard'] = array_values(User::get()->sortByDesc('correct_guesses')->toArray());
+        $data['leaderboard'] = array_values($data['group']->users->sortByDesc('correct_guesses')->toArray());
         return view('pages.group', $data);
     }
 
