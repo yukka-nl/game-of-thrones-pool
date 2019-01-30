@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-sm-12">
 
-                <prediction-form :characters="{{ $characters }}" username="{{ Auth::user()->name }}"></prediction-form>
+                <prediction-form :characters="{{ $characters }}" username="{{ Auth::user()->name }}" user-id="{{ Auth::id() }}"></prediction-form>
             </div>
 
         </div>

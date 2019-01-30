@@ -116,7 +116,7 @@
 
 <script>
     export default {
-        props: ['characters', 'username'],
+        props: ['characters', 'username', 'userId'],
         data() {
             return {
                 selections: {},
@@ -163,7 +163,7 @@
                         if (goToGroup) {
                             window.location.replace(self.createdGroup.link);
                         } else {
-                            window.location.replace('/profile/');
+                            window.location.replace('/prediction/user/' + self.userId);
                         }
                     })
                     .catch(function (error) {
