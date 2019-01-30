@@ -11,9 +11,16 @@
 
         <b-modal ref="loginModal" hide-footer title="Sign in with social media">
             <div class="d-block">
-                <div class="mb-3">
+                <div class="mb-3 text-left">
                     <h1 class="h4">Sign in</h1>
-                    Sign in with a social media account in order to make a prediction.
+                    Sign in with a social media account in order to make a prediction. We will use the following data:
+
+                    <ul class="mt-2">
+                        <li>Your name (you can change your display name in the settings)</li>
+                        <li>Your profile photo</li>
+                    </ul>
+
+                    You can delete your account anytime you want.
                 </div>
                 <social-media-buttons redirect-url="make-prediction"></social-media-buttons>
             </div>
