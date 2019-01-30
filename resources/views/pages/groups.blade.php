@@ -13,18 +13,38 @@
             <div class="col-sm-12">
                 <h1 class="h2 text-center mb-2">Groups</h1>
                 <div class="mt-3">
-                    <a href="/create-group" class="btn btn-primary">Create a new Group!</a>
+                    <a href="/create-group" class="btn btn-success"><i class="fas fa-plus mr-1"></i> Create a new Group</a>
                 </div>
 
-                <div class="mt-3">
-                    <ul>
-                        @foreach($groups as $group)
-                            <li>
-                                <a href="{{ $group->link }}">{{ $group->name }}</a> {{ $group->owner->id == Auth::id() ?  'Owner' : ''  }}
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
+                <table class="table mt-3 table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">Group name</th>
+                        <th scope="col">Members</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($groups as $group)
+                        <tr>
+                            <td>
+                                <a href="{{ $group->link }}">
+                                    {{ $group->name }}
+                                </a>
+                                @if($group->owner->id == Auth::id())
+                                    <span class="badge badge-primary ml-1">You own this group</span>
+                                @endif
+                            </td>
+                            <td>{{ $group->users->count() }}</td>
+                            <td>
+                                <a href="{{ $group->link }}">
+                                    Go to page
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

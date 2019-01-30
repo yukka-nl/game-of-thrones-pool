@@ -11,8 +11,8 @@
 
     <div class="container card  mt-3 mb-3 card p-4">
         <div class="row">
-            <div class="col-sm-12">
-                <h1 class="h2 text-center mb-2">Create Group</h1>
+            <div class="col-sm-12 col-md-6">
+                <h1 class="h4 mb-2">Create Group</h1>
 
                 @auth
                     <create-group-form></create-group-form>

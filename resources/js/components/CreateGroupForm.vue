@@ -2,7 +2,7 @@
     <form>
         <div class="form-group mt-4">
             <label>Enter the name of the group: </label>
-            <input type="text" v-model="formData.name">
+            <input type="text" class="form-control" v-model="formData.name">
 
             <div class="alert alert-danger mt-4" v-if="formErrors.length > 0">
                 <h5>Oops! It looks like there are some errors.</h5>
@@ -39,7 +39,7 @@
                 this.formErrors = [];
                 axios.post('/groups/', this.formData)
                     .then(function (response) {
-                        console.log('Group created!');
+                        window.location.replace(response.data.link);
                     })
                     .catch(function (error) {
                         if (error.response.status === 422) {
