@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -15,14 +16,26 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $users = User::get()->sortByDesc('correct_guesses');
-        $usersAsArray = array_values($users->toArray());
+        $usersGrouped = DB::table('users')
+            ->select('correct_guesses', DB::raw('count(*) as total'))
+            ->groupBy('correct_guesses')
+            ->orderBy('correct_guesses', 'desc')
+            ->get();
 
-        for ($i = 0; $i < count($usersAsArray); $i++){
-            $usersAsArray[$i]['ranking'] = $i + 1;
+        $usersOrdered = DB::table('users')
+            ->orderBy('correct_guesses', 'desc')
+            ->get();
+
+
+        foreach ($usersOrdered as $user) {
+            foreach ($usersGrouped as $index=>$group){
+                if ($user->correct_guesses == $group->correct_guesses) {
+                    $user->ranking = $index + 1;
+                }
+            }
         }
 
-        $data['leaderboard'] = $usersAsArray;
+        $data['leaderboard'] = $usersOrdered;
         return view('pages.home', $data);
     }
 }

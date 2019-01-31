@@ -58,12 +58,10 @@
                     {
                         key: 'name',
                         label: 'Name',
-                        sortable: true
                     },
                     {
                         key: 'correct_guesses',
                         label: 'Correct guesses',
-                        sortable: true
                     },
                     {
                         key: 'predictions_link',
