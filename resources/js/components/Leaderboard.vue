@@ -9,8 +9,8 @@
             </b-input-group>
         </b-form-group>
 
-        <b-table striped hover :items="items" :fields="fields" v-if="items" :perPage="25" :filter="filter"
-                 @filtered="onFiltered" class="leaderboard-table" responsive>
+        <b-table striped hover :items="items" :fields="fields" v-if="items" :per-page="pageSize" :filter="filter"
+                 @filtered="onFiltered" class="leaderboard-table" :current-page="currentPage" responsive>
             <template slot="avatar" slot-scope="data">
                 <img :src="data.item.avatar" class="rounded-circle mr-2" style="height: 25px;">
             </template>
@@ -31,7 +31,7 @@
             </template>
         </b-table>
 
-        <b-pagination size="md" :total-rows="items.length" v-model="currentPage" :per-page="25" align="center" class="mt-3"></b-pagination>
+        <b-pagination size="md" :total-rows="items.length" v-model="currentPage" :per-page="pageSize" align="center" class="mt-3"></b-pagination>
     </div>
 </template>
 
@@ -44,6 +44,7 @@
         },
         data() {
             return {
+                pageSize : 25,
                 fields: [
                     {
                         key: 'ranking',
