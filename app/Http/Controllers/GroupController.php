@@ -9,6 +9,7 @@ use App\GroupUser;
 use App\Http\Requests\GroupStoreRequest;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class GroupController extends Controller
 {
@@ -22,15 +23,29 @@ class GroupController extends Controller
     {
         $data['group'] = Group::where('slug', $slug)->get()->first();
 
-        $users = $data['group']->users->sortByDesc('correct_guesses');
-        $usersAsArray = array_values($users->toArray());
+        $usersGrouped = DB::table('users')
+            ->join('group_user', 'users.id', '=', 'group_user.user_id')
+            ->select('correct_guesses', DB::raw('count(*) as total'))
+            ->where('group_user.group_id', $data['group']->id)
+            ->groupBy('correct_guesses')
+            ->orderBy('correct_guesses', 'desc')
+            ->get();
 
-        for ($i = 0; $i < count($usersAsArray); $i++){
-            $usersAsArray[$i]['ranking'] = $i + 1;
+        $usersOrdered = DB::table('users')
+            ->join('group_user', 'users.id', '=', 'group_user.user_id')
+            ->where('group_user.group_id', $data['group']->id)
+            ->orderBy('correct_guesses', 'desc')
+            ->get();
+
+        foreach ($usersOrdered as $user) {
+            foreach ($usersGrouped as $index=>$group){
+                if ($user->correct_guesses == $group->correct_guesses) {
+                    $user->ranking = $index + 1;
+                }
+            }
         }
 
-        $data['leaderboard'] = $usersAsArray;
-
+        $data['leaderboard'] = $usersOrdered;
         return view('pages.group', $data);
     }
 
