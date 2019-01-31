@@ -1,8 +1,6 @@
 <template>
     <div>
-
-        <form class="col-sm-12 col-md-4 p-0">
-
+        <form class="col-sm-12 col-md-4 p-0" @submit.prevent="changeSettings">
             <div class="form-group">
                 <label for="username">Change your display name</label>
                 <input type="text" class="form-control" id="username" v-model="formData.username"
@@ -35,7 +33,8 @@
         <b-modal ref="deleteModal" hide-footer title="Delete account">
             <div class="d-block text-center">
                 <h1 class="h4">Do you really want to delete your account?</h1>
-                By deleting your account all of your data will be removed, including the predictions and groups you've made!
+                By deleting your account all of your data will be removed, including the predictions and groups you've
+                made!
             </div>
 
             <div class="row">
