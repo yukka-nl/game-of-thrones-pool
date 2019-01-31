@@ -18,7 +18,7 @@
                 <span>{{ data.item.correct_guesses }}</span>
             </template>
             <template slot="predictions_link" slot-scope="data">
-                <a :href="'prediction/user/' + data.item.id">
+                <a :href="'/prediction/user/' + data.item.user_id">
                     <span>
                         <i class="far fa-eye"> </i> View prediction
                     </span>
