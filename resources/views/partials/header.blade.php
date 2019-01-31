@@ -7,6 +7,10 @@
     </div>
 </div>
 
+<div class="container text-center">
+    <season-countdown deadline="April 15, 2019"></season-countdown>
+</div>
+
 <div class="container">
     <div class="row">
         <div class="col-sm-6 align-items-end d-none d-md-flex">

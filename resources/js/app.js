@@ -30,6 +30,7 @@ Vue.component('make-prediction-button', require('./components/MakePredictionButt
 Vue.component('social-media-buttons', require('./components/SocialMediaButtons.vue').default);
 Vue.component('invite-link', require('./components/InviteLink.vue').default);
 Vue.component('copy-to-clipboard', require('./components/CopyToClipboard.vue').default);
+Vue.component('season-countdown', require('./components/SeasonCountDown.vue').default);
 
 const app = new Vue({
     el: '#app'
