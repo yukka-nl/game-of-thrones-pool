@@ -67,12 +67,15 @@ class GroupController extends Controller
 
     public function join($inviteCode)
     {
+        $group = Group::where('invite_code', $inviteCode)->first();
+        $data['group'] = $group;
+        $data['inviteCode'] = $inviteCode;
+
         // TODO: Don't redirect, but show social login buttons on the group page
         if (!Auth::check()) {
-            return redirect('/register')->with('inviteCode', $inviteCode);
+            return view('pages.register', $data)->with('inviteCode', $inviteCode);
         }
 
-        $group = Group::where('invite_code', $inviteCode)->first();
         if ($group->hasUser(Auth::id())) {
             return redirect($group->link);
         }
