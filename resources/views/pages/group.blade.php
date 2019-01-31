@@ -21,20 +21,25 @@
             <div class="col-sm-12">
                 <h1 class="h2 text-center mb-2">{{ $group->name }} Pool</h1>
                 <p class="text-center text-muted mb-3">
-                    Created 24 hours ago
+                    Created {{ $group->created_at->diffForHumans() }}
                 </p>
 
 
                 <div class="row d-flex justify-content-center">
-                    @foreach($group->users as $user)
-                        <div class="col-6 col-sm-4 col-md-2 col-lg-2 mt-3 text-center">
-                            <div>
-                                <img src="{{ $user->avatar }}" class="rounded-circle w-100 mb-2"
-                                     style="max-height: 100px; max-width: 100px;">
+
+                    @if($group->users->count() <= 24)
+                        @foreach($group->users as $user)
+                            <div class="col-6 col-sm-4 col-md-2 col-lg-2 mt-3 text-center">
+                                <div>
+                                    <img src="{{ $user->avatar }}" class="rounded-circle w-100 mb-2"
+                                         style="max-height: 100px; max-width: 100px;">
+                                </div>
+                                {{ $user->name }}
                             </div>
-                            {{ $user->name }}
-                        </div>
-                    @endforeach
+                        @endforeach
+                    @else
+                        This group has {{ $group->users->count() }} participating users.
+                    @endif
                 </div>
             </div>
 
