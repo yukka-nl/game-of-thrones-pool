@@ -26,7 +26,6 @@ class HomeController extends Controller
             ->orderBy('correct_guesses', 'desc')
             ->get();
 
-
         foreach ($usersOrdered as $user) {
             foreach ($usersGrouped as $index=>$group){
                 if ($user->correct_guesses == $group->correct_guesses) {
@@ -36,6 +35,8 @@ class HomeController extends Controller
         }
 
         $data['leaderboard'] = $usersOrdered;
+        $data['userCount'] = User::count();
+
         return view('pages.home', $data);
     }
 }

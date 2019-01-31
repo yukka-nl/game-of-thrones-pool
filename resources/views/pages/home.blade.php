@@ -65,8 +65,9 @@
         <div class="row">
             <div class="col-sm-12">
                 <h1 class="h2">Global leaderboards</h1>
+                <span class="text-muted">Total users: {{ $userCount }}</span>
 
-                <div class="container">
+                <div class="container p-0">
                     <leaderboard :data="{{ json_encode($leaderboard) }}"></leaderboard>
                 </div>
             </div>
