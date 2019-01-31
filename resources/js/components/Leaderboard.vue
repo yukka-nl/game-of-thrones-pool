@@ -18,7 +18,7 @@
                 <span>{{ data.item.correct_guesses }}</span>
             </template>
             <template slot="predictions_link" slot-scope="data">
-                <a :href="'/prediction/user/' + data.item.user_id">
+                <a :href="'/prediction/user/' + getLinkId(data)">
                     <span>
                         <i class="far fa-eye"> </i> View prediction
                     </span>
@@ -72,6 +72,9 @@
         mounted() {
         },
         methods: {
+            getLinkId(data) {
+                return data.item.user_id || data.item.id;
+            },
             onFiltered(filteredItems) {
                 // Trigger pagination to update the number of buttons/pages due to filtering
                 this.totalRows = filteredItems.length;
