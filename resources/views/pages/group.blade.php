@@ -21,7 +21,7 @@
             <div class="col-sm-12">
                 <h1 class="h2 text-center mb-2">{{ $group->name }} Pool</h1>
                 <p class="text-center text-muted mb-3">
-                    Created 24 hours ago
+                    Created {{ $group->created_at->diffForHumans() }}
                 </p>
 
 
