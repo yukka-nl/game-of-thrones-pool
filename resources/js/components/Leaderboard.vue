@@ -16,7 +16,7 @@
             </template>
             <template slot="correct_guesses" slot-scope="data">
                 <span v-if="data.item.has_predictions">{{ data.item.correct_guesses }}</span>
-                <span v-else>No predictions yet. {{ data.item.correct_guesses }}</span>
+                <span v-else>No predictions yet.</span>
             </template>
             <template slot="predictions_link" slot-scope="data">
                 <a :href="data.item.link" v-if="data.item.has_predictions">
