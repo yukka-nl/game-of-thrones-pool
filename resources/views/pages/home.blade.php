@@ -65,7 +65,10 @@
         <div class="row">
             <div class="col-sm-12">
                 <h1 class="h2">Global leaderboards</h1>
-                <leaderboard :data="{{ json_encode($leaderboard) }}"></leaderboard>
+
+                <div class="container">
+                    <leaderboard :data="{{ json_encode($leaderboard) }}"></leaderboard>
+                </div>
             </div>
 
         </div>
