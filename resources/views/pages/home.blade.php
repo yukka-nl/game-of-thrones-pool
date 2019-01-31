@@ -7,7 +7,7 @@
                 <h1 class="h2">Winter has arrived: it's death pool time.</h1>
                 <p>
                     Season 8 of Game of Thrones will start soon. Not all your beloved characters
-                    will survive the threat of the white walkers. Create a pool with your friends to predict the faith
+                    will survive the threat of the white walkers. Create a pool with your friends to predict the fate
                     of all remaining characters. Beat your friends by earning the most points or compete in the global
                     leaderboards.
                 </p>
@@ -46,7 +46,7 @@
                     Join groups with friends
                 </h2>
                 <p class="text-muted">
-                    Join as many groups as you like, or invite your friends to your groups.
+                    Join as many groups as you like or invite your friends to your groups.
                 </p>
             </div>
             <div class="col-sm">
