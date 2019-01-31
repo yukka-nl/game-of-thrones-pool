@@ -75,7 +75,7 @@ class LoginController extends Controller
             }
         }
 
-        $userData = Socialite::driver($platform)->user();
+        $userData = Socialite::driver($platform)->stateless()->user();
 
         $user = $this->getExistingUser($userData, $platform);
 

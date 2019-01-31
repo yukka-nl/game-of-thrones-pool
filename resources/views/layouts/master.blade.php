@@ -52,28 +52,27 @@
 </div>
 
 <footer class="container mb-3 p-4 text-center text-white">
-    <a href="https://yukka.nl/en" class="text-white" target="_blank" rel="noopener">
+    <div class="mb-3">
+        <a href="https://yukka.nl/en" class="text-white" target="_blank" rel="noopener">
+            <img src="{{ URL::asset('img/yukka.png') }}" style="width: 50px;">
+        </a>
+    </div>
 
-        <div class="mb-3">
-            <a href="https://yukka.nl/en" class="text-white" target="_blank" rel="noopener">
-                <img src="{{ URL::asset('img/yukka.png') }}" style="width: 50px;">
-            </a>
-        </div>
-
-        <div class="footer-text">
-            <a href="https://yukka.nl/en" class="text-white" target="_blank" rel="noopener">
-                Website made by
-                <u>
-                    Yukka Software Solutions
-                </u>
-            </a>
-            <br>
-            <a href="/privacy" class="text-white">Privacy</a>
-            -
-            <a href="/terms-of-service" class="text-white">Terms Of Service</a>
-        </div>
+    <div class="footer-text">
+        <a href="https://yukka.nl/en" class="text-white" target="_blank" rel="noopener">
+            Website made by
+            <u>
+                Yukka Software Solutions
+            </u>
+        </a>
+        <br>
+        <a href="/privacy" class="text-white">Privacy</a>
+        -
+        <a href="/terms-of-service" class="text-white">Terms Of Service</a>
+    </div>
 </footer>
 </body>
 
-<script src="{{ URL::asset('js/app.js') }}"></script>
+<script src="{{ secure_asset('js/app.js') }}"></script>
+
 </html>
