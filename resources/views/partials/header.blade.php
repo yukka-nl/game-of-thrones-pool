@@ -20,8 +20,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-md-4 d-flex justify-content-end">
-            <img src="{{ URL::asset('img/header-topright.png') }}">
+        <div class="col-sm-6 col-md-4 d-flex justify-content-end align-items-end">
+            <img src="{{ URL::asset('img/header-topright.png') }}" style="max-height: 100%;">
         </div>
     </div>
 </div>
