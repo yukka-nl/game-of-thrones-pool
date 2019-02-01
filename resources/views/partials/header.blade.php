@@ -7,11 +7,7 @@
     </div>
 </div>
 
-{{--<div class="container text-center mb-2">--}}
-    {{--<season-countdown deadline="April 15 2019 03:00:00 GMT+0200"></season-countdown>--}}
-{{--</div>--}}
-
-<div class="container">
+<div class="container mt-2">
     <div class="row">
         <div class="col-sm-6 col-md-4 align-items-end d-none d-md-flex">
             <img src="{{ URL::asset('img/header-topleft.png') }}">
