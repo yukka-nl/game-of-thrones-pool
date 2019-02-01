@@ -1,6 +1,6 @@
 <template>
     <main>
-        <span class="btn btn-primary btn-lg" v-if="!isAuthenticated || (isAuthenticated && !madePredictions)"
+        <span class="btn btn-primary btn-lg pulse-button" v-if="!isAuthenticated || (isAuthenticated && !madePredictions)"
               @click="makePrediction()">
             <i class="fab fa-wpforms mr-1"></i> Make your prediction
         </span>
