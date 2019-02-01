@@ -50,6 +50,11 @@
             if (!this.date) {
                 throw new Error("Invalid props value, correct the 'deadline' or 'end'");
             }
+
+            this.diff = this.date - this.now;
+            if(this.diff <= 0 || this.stop){
+                this.diff = 0;
+            }
             interval = setInterval(() => {
                 this.now = Math.trunc((new Date()).getTime() / 1000);
             }, 1000);
