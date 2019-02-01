@@ -41,7 +41,7 @@
     <title>Pool of Dragons</title>
 
     <!-- Fonts -->
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/app.css') }}">
+    <link rel="stylesheet" type="text/css" href="/css/app.css">
 </head>
 <body>
 <div id="app" class="container p-0 mb-4 pr-1 pl-1">
@@ -54,7 +54,7 @@
 <footer class="container mb-3 p-4 text-center text-white">
     <div class="mb-3">
         <a href="https://yukka.nl/en" class="text-white" target="_blank" rel="noopener">
-            <img src="{{ URL::asset('img/yukka.png') }}" style="width: 50px;">
+            <img src="/img/yukka.png" style="width: 50px;">
         </a>
     </div>
 
@@ -73,6 +73,6 @@
 </footer>
 </body>
 
-<script src="{{ secure_asset('js/app.js') }}"></script>
+<script src="/js/app.js"></script>
 
 </html>

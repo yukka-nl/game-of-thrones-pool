@@ -11,6 +11,15 @@
                     of all remaining characters. Beat your friends by earning the most points or compete in the global
                     leaderboards.
                 </p>
+
+                <p>
+                    We are working on some exciting new features, such as global statistics based on all submitted
+                    predictions. Follow us on <a target="_blank" rel="noopener"
+                                                 href="https://twitter.com/yukkasoftware">Twitter</a> or <a
+                            target="_blank" rel="noopener" href="https://www.facebook.com/YukkaSoftwareSolutions">Facebook</a>
+                    to stay up-to-date!
+
+                </p>
             </div>
             <div class="col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
                 <div class="text-center">
