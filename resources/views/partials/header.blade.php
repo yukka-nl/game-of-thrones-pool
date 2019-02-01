@@ -15,7 +15,7 @@
         <div class="col-sm-6 col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0">
             <div class="text-center">
                 <season-countdown deadline="April 15 2019 03:00:00 GMT+0200"></season-countdown>
-                <div class="small text-center text-muted mt-1 mb-1">
+                <div class="small text-center text-muted mt-1 mb-0 mb-sm-3">
                     Until season 8 starts and the pools are locked.
                 </div>
             </div>
