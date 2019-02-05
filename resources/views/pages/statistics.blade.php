@@ -70,19 +70,15 @@
                     <div class="col-12 col-md-2">
                         {{ $character->name }}
                     </div>
-                    <div class="col-12 col-md-9">
-                        <div class="progress" style="height: 1.5rem">
+                    <div class="col-12 col-md-9" style="text-shadow: 2px 2px 3px rgba(0,0,0,0.3);">
+                        <div class="progress" style="height: 2rem">
                             <div class="progress-bar bg-green" role="progressbar"
                                  style="width: {{ 100- ($deadPercentage + $wightPercentage) }}%;"
                                  aria-valuenow="{{ $alivePercentage }}"
                                  aria-valuemin="0"
                                  aria-valuemax="100">
-                                @if($alivePercentage < 10)
-                                    <div class="position-absolute card bg-green">
-                                        @endif
-                                        <span><i class="fas fa-heartbeat"></i> {{ round($alivePercentage, 2) }}% </span>
-                                        @if($alivePercentage < 10)
-                                    </div>
+                                @if($alivePercentage > 5)
+                                    <span><i class="fas fa-heartbeat"></i> {{ round($alivePercentage, 2) }}% </span>
                                 @endif
                             </div>
 
@@ -91,12 +87,8 @@
                                  aria-valuenow="{{ $deadPercentage }}"
                                  aria-valuemin="0"
                                  aria-valuemax="100">
-                                @if($deadPercentage < 10)
-                                    <div class="position-absolute card bg-red">
-                                        @endif
-                                        <span><i class="fas fa-skull-crossbones"></i> {{ round($deadPercentage, 2) }}% </span>
-                                        @if($deadPercentage < 10)
-                                    </div>
+                                @if($deadPercentage > 5)
+                                    <span><i class="fas fa-skull-crossbones"></i> {{ round($deadPercentage, 2) }}% </span>
                                 @endif
                             </div>
 
@@ -105,12 +97,8 @@
                                  aria-valuenow="{{ $wightPercentage }}"
                                  aria-valuemin="0"
                                  aria-valuemax="100">
-                                @if($wightPercentage < 10)
-                                    <div class="position-absolute card bg-blue">
-                                        @endif
-                                        <span><i class="fas fa-skull"></i> {{ round($wightPercentage, 2) }}% </span>
-                                        @if($wightPercentage < 10)
-                                    </div>
+                                @if($wightPercentage > 5)
+                                    <span><i class="fas fa-skull"></i> {{ round($wightPercentage, 2) }}% </span>
                                 @endif
                             </div>
                         </div>
