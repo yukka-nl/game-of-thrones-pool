@@ -1,6 +1,8 @@
 <?php
 
 Route::get('/', 'HomeController')->name('home');
+
+Route::get('/statistics', 'StatisticsPageController');
 Route::get('/prediction', 'PredictionController@show');
 Route::get('/prediction/user/{userId}', 'PredictionController@show');
 

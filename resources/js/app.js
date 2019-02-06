@@ -9,6 +9,7 @@ window.SocialSharing = require('vue-social-sharing');
 window.Vue = require('vue');
 Vue.use(BootstrapVue);
 Vue.use(Snowf);
+
 Vue.use(VueClipboard);
 Vue.use(SocialSharing);
 Vue.use(VueMq, {
@@ -31,6 +32,7 @@ Vue.component('social-media-buttons', require('./components/SocialMediaButtons.v
 Vue.component('invite-link', require('./components/InviteLink.vue').default);
 Vue.component('copy-to-clipboard', require('./components/CopyToClipboard.vue').default);
 Vue.component('season-countdown', require('./components/SeasonCountDown.vue').default);
+Vue.component('character-bar-charts', require('./components/CharacterBarCharts.vue').default);
 
 const app = new Vue({
     el: '#app'
