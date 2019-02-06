@@ -17,7 +17,7 @@
                         <div class="col-sm">
                             @include('partials.top-5-characters', [
                                                                'title' => 'Most predicted as alive',
-                                                               'icon' => 'fas fa-skull-crossbones',
+                                                               'icon' => 'fas fa-heartbeat',
                                                                'background' => 'bg-green',
                                                                'characters' => $alive,
                                                                'statusField' => 'alive',
@@ -27,7 +27,7 @@
                         <div class="col-sm">
                             @include('partials.top-5-characters', [
                                                                'title' => 'Most predicted as dead',
-                                                               'icon' => 'fas fa-heartbeat',
+                                                               'icon' => 'fas fa-skull-crossbones',
                                                                'background' => 'bg-red',
                                                                'characters' => $dead,
                                                                'statusField' => 'dead',
@@ -64,14 +64,23 @@
                 <div class="row mb-3 d-flex align-items-center">
                     <div class="col-12 col-md-1">
                         <img src="/img/characters/{{ $character->image }}"
-                             class="rounded-circle w-100"
+                             class="rounded-circle w-100 mr-3 mr-md-0"
                              style="max-height: 40px; max-width: 40px;">
+                        <span class="d-inline d-md-none font-weight-bold">
+                            {{ $character->name }}
+                        </span>
                     </div>
-                    <div class="col-12 col-md-2">
+                    <div class="col-0 col-md-2 d-none d-md-block">
                         {{ $character->name }}
                     </div>
                     <div class="col-12 col-md-9" style="text-shadow: 2px 2px 3px rgba(0,0,0,0.3);">
-                        <div class="progress" style="height: 2rem">
+                        <character-bar-charts :x-ticks="{min: 0, max: 100}"
+                                              :height="100"
+                                              class="d-block d-md-none mt-2"
+                                              :prediction-dataset="{{ json_encode([$alivePercentage, $deadPercentage, $wightPercentage]) }}">
+                        </character-bar-charts>
+
+                        <div class="progress d-none d-md-flex" style="height: 2rem">
                             <div class="progress-bar bg-green" role="progressbar"
                                  style="width: {{ 100- ($deadPercentage + $wightPercentage) }}%;"
                                  aria-valuenow="{{ $alivePercentage }}"
