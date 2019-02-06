@@ -18,19 +18,21 @@ class StatisticsPageController extends Controller
      */
     public function __invoke(Request $request)
     {
-
         $characters = Character::all();
+
         foreach ($characters as $character) {
-            $character->alive = $character->predictions->where('status_id', 1)->count();
-            $character->dead = $character->predictions->where('status_id', 2)->count();
-            $character->wight = $character->predictions->where('status_id', 3)->count();
+            $characterPredictions = DB::table('predictions')->where('character_id', $character->id)->get();
+            $character->alive = $characterPredictions->where('status_id', 1)->count();
+            $character->dead = $characterPredictions->where('status_id', 2)->count();
+            $character->wight = $characterPredictions->where('status_id', 3)->count();
         }
 
-        $data['totalPredictions'] = Prediction::all()->groupBy('user_id')->count();
+        $data['totalPredictions'] = DB::table('predictions')->distinct('user_id')->count('user_id');
+        $data['characters'] = $characters;
+
         $data['alive'] = $characters->sortByDesc('alive')->take(5);
         $data['dead'] = $characters->sortByDesc('dead')->take(5);
         $data['wight'] = $characters->sortByDesc('wight')->take(5);
-        $data['characters'] = $characters;
 
         return view('pages.statistics', $data);
     }
