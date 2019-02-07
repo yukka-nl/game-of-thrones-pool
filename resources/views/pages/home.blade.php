@@ -38,30 +38,30 @@
         </div>
     </div>
 
-    <div class="container card mb-3 card">
-        <div class="row">
-            <div class="col-6 col-md-6 p-4" style="z-index: 9;">
-                <div class="d-flex align-items-center">
-                    <h1 class="h2 d-inline mr-2">Statistics</h1>
-                    <span class="badge badge-success h4" style="font-size:0.9rem">new</span>
+    {{--<div class="container card mb-3 card">--}}
+        {{--<div class="row">--}}
+            {{--<div class="col-6 col-md-6 p-4" style="z-index: 9;">--}}
+                {{--<div class="d-flex align-items-center">--}}
+                    {{--<h1 class="h2 d-inline mr-2">Statistics</h1>--}}
+                    {{--<span class="badge badge-success h4" style="font-size:0.9rem">new</span>--}}
 
-                </div>
-                <p>
-                    We've published a page with realtime statistics based on all the submitted predictions so far. Find
-                    out what most people predict!
-                </p>
+                {{--</div>--}}
+                {{--<p>--}}
+                    {{--We've published a page with realtime statistics based on all the submitted predictions so far. Find--}}
+                    {{--out what most people predict!--}}
+                {{--</p>--}}
 
-                <a href="/statistics" class="btn btn-outline-secondary mt-2 d-inline-block">
-                    <i class="fas fa-chart-area mr-1"></i> Go to the statistics page
-                </a>
+                {{--<a href="/statistics" class="btn btn-outline-secondary mt-2 d-inline-block">--}}
+                    {{--<i class="fas fa-chart-area mr-1"></i> Go to the statistics page--}}
+                {{--</a>--}}
 
-            </div>
-            <div class="col-6 col-md-6 d-flex justify-content-center align-items-center p-0">
-                <div style="background-image: linear-gradient(to right, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0)), url('/img/statistics-preview.png'); background-size:cover"
-                     class="w-100 h-100"></div>
-            </div>
-        </div>
-    </div>
+            {{--</div>--}}
+            {{--<div class="col-6 col-md-6 d-flex justify-content-center align-items-center p-0">--}}
+                {{--<div style="background-image: linear-gradient(to right, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0)), url('/img/statistics-preview.png'); background-size:cover"--}}
+                     {{--class="w-100 h-100"></div>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</div>--}}
 
     <div class="container card mb-3 card p-4 text-center">
         <div class="row features">
