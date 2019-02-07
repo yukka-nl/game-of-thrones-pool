@@ -80,7 +80,7 @@
                                               :prediction-dataset="{{ json_encode([$alivePercentage, $deadPercentage, $wightPercentage]) }}">
                         </character-bar-charts>
 
-                        <div class="progress d-none d-md-flex" style="height: 2rem">
+                        <div class="progress d-none d-md-flex bg-blue" style="height: 2rem">
                             <div class="progress-bar bg-green" role="progressbar"
                                  style="width: {{ 100- ($deadPercentage + $wightPercentage) }}%;"
                                  aria-valuenow="{{ $alivePercentage }}"
