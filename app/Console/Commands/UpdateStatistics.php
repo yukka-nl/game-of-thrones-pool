@@ -44,8 +44,6 @@ class UpdateStatistics extends Command
 
         $this->updateCharacterPredictionCounts();
         $this->updateTotalPredictionCount();
-
-
         $this->line("Successfully updated all statistics");
     }
 
