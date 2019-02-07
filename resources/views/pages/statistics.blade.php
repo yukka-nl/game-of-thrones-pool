@@ -20,7 +20,7 @@
                                                                'icon' => 'fas fa-heartbeat',
                                                                'background' => 'bg-green',
                                                                'characters' => $alive,
-                                                               'statusField' => 'alive',
+                                                               'statusField' => 'alive_prediction_count',
                                                                'predictionCount' => $totalPredictions
                                                                ])
                         </div>
@@ -30,7 +30,7 @@
                                                                'icon' => 'fas fa-skull-crossbones',
                                                                'background' => 'bg-red',
                                                                'characters' => $dead,
-                                                               'statusField' => 'dead',
+                                                               'statusField' => 'dead_prediction_count',
                                                                'predictionCount' => $totalPredictions
                                                                ])
                         </div>
@@ -40,7 +40,7 @@
                                                             'icon' => 'fas fa-skull',
                                                             'background' => 'bg-blue',
                                                             'characters' => $wight,
-                                                            'statusField' => 'wight',
+                                                            'statusField' => 'wight_prediction_count',
                                                             'predictionCount' => $totalPredictions
                                                             ])
                         </div>
@@ -55,11 +55,11 @@
                     <h2 class="h5 mb-0"><i class="fas fa-chart-bar mr-1"></i> Statistics per character</h2>
                 </div>
             </div>
-            @foreach($characters->sortByDesc('alive') as $character)
+            @foreach($characters->sortByDesc('alive_prediction_count') as $character)
                 @php
-                    $alivePercentage = ($character['alive'] / $totalPredictions) * 100;
-                    $deadPercentage = ($character['dead'] / $totalPredictions) * 100;
-                    $wightPercentage = ($character['wight'] / $totalPredictions) * 100;
+                    $alivePercentage = ($character['alive_prediction_count'] / $totalPredictions) * 100;
+                    $deadPercentage = ($character['dead_prediction_count'] / $totalPredictions) * 100;
+                    $wightPercentage = ($character['wight_prediction_count'] / $totalPredictions) * 100;
                 @endphp
                 <div class="row mb-3 d-flex align-items-center">
                     <div class="col-12 col-md-1">

@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Character;
-use App\Prediction;
-use App\Status;
+use App\Statistic;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class StatisticsPageController extends Controller
 {
@@ -18,22 +16,11 @@ class StatisticsPageController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $characters = Character::all();
-
-        foreach ($characters as $character) {
-            $characterPredictions = DB::table('predictions')->where('character_id', $character->id)->get();
-            $character->alive = $characterPredictions->where('status_id', 1)->count();
-            $character->dead = $characterPredictions->where('status_id', 2)->count();
-            $character->wight = $characterPredictions->where('status_id', 3)->count();
-        }
-
-        $data['totalPredictions'] = DB::table('predictions')->distinct('user_id')->count('user_id');
-        $data['characters'] = $characters;
-
-        $data['alive'] = $characters->sortByDesc('alive')->take(5);
-        $data['dead'] = $characters->sortByDesc('dead')->take(5);
-        $data['wight'] = $characters->sortByDesc('wight')->take(5);
-
+        $data['totalPredictions'] = Statistic::where('key', 'total_predictions')->first()->value;
+        $data['characters'] = Character::all();
+        $data['alive'] = Character::all()->sortByDesc('alive_prediction_count')->take(5);
+        $data['dead'] = Character::all()->sortByDesc('dead_prediction_count')->take(5);
+        $data['wight'] = Character::all()->sortByDesc('wight_prediction_count')->take(5);
         return view('pages.statistics', $data);
     }
 }

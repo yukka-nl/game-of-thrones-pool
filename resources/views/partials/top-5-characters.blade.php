@@ -16,10 +16,6 @@
                 {{ $character->name }}
             </td>
             <td class="align-center">
-                {{--{{ $character }}--}}
-                {{--predictionCount--}}
-                {{--{{ $character[$statusField]  }}<br>--}}
-
                 {{ round(($character[$statusField] / $predictionCount) * 100, 2) }}% <br>
                 <small class="text-muted">of the users think this</small>
             </td>
