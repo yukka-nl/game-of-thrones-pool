@@ -18,6 +18,16 @@
                         </div>
                         <h1 class="h4">Predictions of {{ $user->name }}</h1>
                         <span class="h5 text-muted">Correct guesses: {{ $user->correct_guesses }}</span>
+                        @auth
+                            @if(Auth::id() === $user->id && $user->hasPredictions())
+                                <div class="mt-2">
+                                    <a href="/prediction/edit" class="btn btn-primary">
+                                        <i class="fas fa-pencil-alt"></i>
+                                        Edit your prediction
+                                    </a>
+                                </div>
+                            @endif
+                        @endauth
                     </div>
                 </div>
 
