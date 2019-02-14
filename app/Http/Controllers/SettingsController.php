@@ -15,7 +15,11 @@ class SettingsController extends Controller
     public function update(SettingUpdateRequest $request)
     {
         $user = Auth::user();
-        $user->name = $request->input('username');
+        if($request->has('username')) {
+            $user->name = $request->input('username');
+
+        }
+        $user->show_social_avatar = $request->input('showSocialAvatar');
         $user->save();
         return response($user, 200);
     }
