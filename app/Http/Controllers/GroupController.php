@@ -88,7 +88,7 @@ class GroupController extends Controller
     {
         $group = Group::where('slug', $groupUuid)->first();
         Auth::user()->groups()->detach($group->id);
-        session()->put('message', 'You left ' . $group->name . ' group');
+        session()->flash('message', 'You left ' . $group->name . ' group');
         return response('success', 200);
     }
 }
