@@ -24,7 +24,8 @@ class SettingUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|unique:users,name|max:255',
+            'username' => 'unique:users,name|max:255',
+            'showSocialAvatar' => 'required',
         ];
     }
 }

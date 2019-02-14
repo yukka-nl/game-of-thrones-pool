@@ -74,7 +74,7 @@ class User extends Authenticatable
     public function getAvatarAttribute(): string
     {
 
-        if (is_null($this->attributes['avatar'])) {
+        if (is_null($this->attributes['avatar']) || !$this->show_social_avatar) {
             return self::DEFAULT_AVATAR_PATH;
         }
 

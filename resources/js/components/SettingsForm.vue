@@ -7,6 +7,13 @@
                        placeholder="Enter new name here...">
             </div>
 
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" v-model="formData.showSocialAvatar" id="showSocialAvatar">
+                <label class="form-check-label" for="showSocialAvatar">
+                    Show your photo?
+                </label>
+            </div>
+
             <b-alert variant="danger"
                      :show="formErrors.length > 0">
                 <h5>Oops! It looks like there are some errors.</h5>
@@ -26,7 +33,7 @@
 
             <button @click="changeSettings()" type="button" :disabled="!formData.username"
                     class="btn btn-primary btn-block mt-3">
-                Save
+                Save changes
             </button>
         </form>
 
@@ -61,12 +68,18 @@
 
 <script>
     export default {
+        props: {
+          currentUser: {
+              required: true,
+          }
+        },
         data() {
             return {
                 formErrors: [],
                 showSuccessAlert: false,
                 formData: {
-                    username: null,
+                    username: this.currentUser.name,
+                    showSocialAvatar: this.currentUser.show_social_avatar,
                 },
             }
         },
@@ -74,7 +87,13 @@
             changeSettings() {
                 var self = this;
                 this.formErrors = [];
-                axios.put('/settings/', this.formData)
+
+                let postParams = Object.assign({}, this.formData);
+                if(this.currentUser.name === postParams.username) {
+                    delete postParams.username;
+                }
+
+                axios.put('/settings/', postParams)
                     .then(function (response) {
                         self.showSuccessAlert = true;
                     })

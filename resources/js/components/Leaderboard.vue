@@ -12,9 +12,9 @@
         <b-table striped hover :items="items" :fields="fields" v-if="items" :per-page="pageSize" :filter="filter"
                  @filtered="onFiltered" class="leaderboard-table" :current-page="currentPage" responsive>
             <template slot="avatar" slot-scope="data">
-                <img :src="data.item.avatar" v-if="data.item.avatar" class="rounded-circle mr-2"
+                <img :src="data.item.avatar" v-if="data.item.avatar && data.item.show_social_avatar" class="rounded-circle mr-2"
                      style="height: 25px; width: 25px;">
-                <img src="/img/default-avatar.png" v-if="!data.item.avatar" class="rounded-circle mr-2"
+                <img src="/img/default-avatar.png" v-if="!data.item.avatar || !data.item.show_social_avatar" class="rounded-circle mr-2"
                      style="height: 25px; width: 25px;">
             </template>
             <template slot="correct_guesses" slot-scope="data">
