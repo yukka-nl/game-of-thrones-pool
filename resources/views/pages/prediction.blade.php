@@ -38,6 +38,11 @@
                         All characters that have been resurrected previously, for example Jon Snow and The Mountain, are
                         considered to be alive at the beginning of the season.
                     </li>
+                    <li>
+                        If a character does not appear at all in the season, the prediction related to that character
+                        will not count. For example: if you think Daario will survive and he doesn't appear in the
+                        season, you will not receive any points.
+                    </li>
                 </ul>
             </div>
             <div class="col-sm-12">
