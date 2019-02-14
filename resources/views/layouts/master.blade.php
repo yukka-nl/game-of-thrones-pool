@@ -48,6 +48,12 @@
     @include('partials.header')
     <snow></snow>
 
+    @if(session('message'))
+        <div class="alert alert-success animated flash" role="alert">
+            {{ session('message') }}
+        </div>
+    @endif
+
     @yield('content')
 </div>
 

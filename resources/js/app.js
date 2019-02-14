@@ -33,6 +33,7 @@ Vue.component('invite-link', require('./components/InviteLink.vue').default);
 Vue.component('copy-to-clipboard', require('./components/CopyToClipboard.vue').default);
 Vue.component('season-countdown', require('./components/SeasonCountDown.vue').default);
 Vue.component('character-bar-charts', require('./components/CharacterBarCharts.vue').default);
+Vue.component('group-options-dropdown', require('./components/GroupOptionsDropdown.vue').default);
 
 const app = new Vue({
     el: '#app'

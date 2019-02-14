@@ -8,6 +8,7 @@ Route::get('/prediction/user/{userId}', 'PredictionController@show');
 
 Route::get('/groups/{slug}', 'GroupController@show');
 Route::get('/groups/invite/{inviteCode}', 'GroupController@join')->name('invite-link');
+Route::post('/groups/leave/{uuid}', 'GroupController@leave');
 Route::get('/groups/{groupId}', 'GroupController@show');
 
 Route::get('/privacy', 'PageController@privacy');

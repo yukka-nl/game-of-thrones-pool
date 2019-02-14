@@ -19,14 +19,21 @@
     <div class="container card  mt-3 mb-3 card p-4">
         <div class="row">
             <div class="col-sm-12">
-                <h1 class="h2 text-center mb-2">{{ $group->name }} Pool</h1>
-                <p class="text-center text-muted mb-3">
-                    Created {{ $group->created_at->diffForHumans() }}
-                </p>
+                <div class="text-center d-flex align-items-center justify-content-center">
+                    <h1 class="h2">Pool: {{ $group->name }}</h1>
+                </div>
 
+                <div class="text-center text-muted mb-2">
+                    Created {{ $group->created_at->diffForHumans() }} <br>
+                </div>
+
+                @if($group->owner->id !== Auth::id())
+                    <group-options-dropdown :group="{{ json_encode($group) }}"
+                                            :is-owner="{{ json_encode($group->owner->id === Auth::id()) }}">
+                    </group-options-dropdown>
+                @endif
 
                 <div class="row d-flex justify-content-center">
-
                     @if($group->users->count() <= 24)
                         @foreach($group->users as $user)
                             <div class="col-6 col-sm-4 col-md-2 col-lg-2 mt-3 text-center">

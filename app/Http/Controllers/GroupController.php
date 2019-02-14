@@ -83,4 +83,12 @@ class GroupController extends Controller
         Auth::user()->groups()->attach($group->id);
         return redirect($group->link)->with('message', 'Joined ' . $group->name . ' group!');
     }
+
+    public function leave($groupUuid)
+    {
+        $group = Group::where('slug', $groupUuid)->first();
+        Auth::user()->groups()->detach($group->id);
+        session()->put('message', 'You left ' . $group->name . ' group');
+        return response('success', 200);
+    }
 }
