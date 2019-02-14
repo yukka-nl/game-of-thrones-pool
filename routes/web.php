@@ -6,6 +6,7 @@ Route::get('/statistics', 'StatisticsPageController');
 Route::get('/prediction', 'PredictionController@show');
 Route::get('/prediction/user/{userId}', 'PredictionController@show');
 
+
 Route::get('/groups/{slug}', 'GroupController@show');
 Route::get('/groups/invite/{inviteCode}', 'GroupController@join')->name('invite-link');
 Route::post('/groups/leave/{uuid}', 'GroupController@leave');
@@ -32,4 +33,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/settings', 'SettingsController@show');
     Route::put('/settings', 'SettingsController@update');
     Route::delete('/settings', 'SettingsController@delete');
+
+    Route::get('/prediction/edit', 'PredictionController@edit');
+    Route::put('/prediction', 'PredictionController@update');
 });

@@ -41,4 +41,23 @@ class PredictionController extends Controller
         $data['characters'] = Character::all();
         return view('pages.prediction', $data);
     }
+
+    public function edit() {
+        $data['characters'] = Character::all();
+        $data['predictions'] = Auth::user()->predictions;
+        $data['predictions'] = $data['predictions']->mapWithKeys(function ($item) {
+            return [$item['character_id'] => $item['status_id']];
+        });
+        return view('pages.user-prediction-edit', $data);
+    }
+
+    public function update(Request $request) {
+        foreach ($request->all() as $characterId => $status) {
+            $prediction = Prediction::where('user_id', Auth::id())->where('character_id', $characterId)->first();
+            $prediction->status_id = $status;
+            $prediction->save();
+        }
+        session()->flash('message', 'You have edited your prediction');
+        return response('success', 200);
+    }
 }

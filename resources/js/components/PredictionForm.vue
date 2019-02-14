@@ -53,7 +53,7 @@
             <tr>
                 <th scope="col">Image</th>
                 <th scope="col">Name</th>
-                <th scope="col">Prediction</th>
+                <th scope="col" class="text-center">Prediction</th>
             </tr>
             </thead>
             <tbody>

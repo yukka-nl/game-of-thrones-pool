@@ -4,7 +4,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Make prediction</li>
+            <li class="breadcrumb-item active" aria-current="page">Edit Prediction</li>
         </ol>
     </nav>
 
@@ -14,8 +14,11 @@
                 @include('partials.rules')
             </div>
             <div class="col-sm-12">
-                <prediction-form :characters="{{ $characters }}" username="{{ Auth::user()->name }}"
-                                 user-id="{{ Auth::id() }}"></prediction-form>
+                <prediction-edit-form :characters="{{ $characters }}"
+                                      username="{{ Auth::user()->name }}"
+                                      user-id="{{ Auth::id() }}"
+                                      :predictions="{{ json_encode($predictions) }}">
+                </prediction-edit-form>
             </div>
         </div>
     </div>

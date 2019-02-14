@@ -27,6 +27,12 @@
                                             made-predictions="{{ Auth::check() && Auth::user()->hasPredictions() }}"
                                             user-id="{{ Auth::id() }}">
                     </make-prediction-button>
+                    @if(Auth::check() && Auth::user()->hasPredictions())
+                        <div class="mt-2">
+                            <a href="/prediction/edit"><i class="fas fa-pencil-alt"></i> Edit your prediction</a>
+                        </div>
+                    @endif
+
                     @guest
                         <div class="mt-3 mb-1">
                             Already made a prediction? Sign into see your groups!
