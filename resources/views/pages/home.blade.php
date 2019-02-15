@@ -106,11 +106,6 @@
             <h1 class="h2 d-inline mr-2">Battle of the Houses</h1>
             <span class="badge badge-success h4" style="font-size:0.9rem">new</span>
         </div>
-
-        <span>
-            Pledge your sword to one of the houses and compete against each other.
-        </span>
-        <hr class="mb-4 mt-3">
         <div class="container p-0 mb-2">
             <houses-leaderboard :data="{{ json_encode($leaderboard) }}"></houses-leaderboard>
         </div>
