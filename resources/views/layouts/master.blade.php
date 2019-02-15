@@ -58,8 +58,7 @@
                 </div>
             </div>
             <div class="container p-0">
-                <houses-leaderboard :data="{{ json_encode($leaderboard) }}"
-                                    :user-logged-in="{{ json_encode(Auth::check()) }}"
+                <houses-leaderboard :user-logged-in="{{ json_encode(Auth::check()) }}"
                                     :user-house-id="{{ json_encode(Auth::check() ? Auth::user()->house_id : null ) }}"
                                     :hide-stats="true"
                                     :refresh-after-join="true">
