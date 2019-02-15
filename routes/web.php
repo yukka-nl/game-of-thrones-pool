@@ -6,6 +6,11 @@ Route::get('/statistics', 'StatisticsPageController');
 Route::get('/prediction', 'PredictionController@show');
 Route::get('/prediction/user/{userId}', 'PredictionController@show');
 
+
+Route::get('/update/houses', function(){
+    return view('pages.house_update');
+});
+
 Route::get('/houses', 'HouseController@index');
 Route::post('/houses/join', 'HouseController@join');
 

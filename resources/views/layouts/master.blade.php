@@ -30,8 +30,17 @@
     <meta property="og:site_name" content="Pool of Dragons">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ Request::url() }}">
-    <meta property="og:image" content="{{ URL::asset('img/site-preview.png') }}"/>
-    <meta property="og:image:secure_url" content="{{ URL::asset('img/site-preview.png') }}">
+
+    @if(View::hasSection('meta-images'))
+        @yield('meta-images')
+    @else
+        <meta property="og:image" content="{{ URL::asset('img/site-preview.png') }}"/>
+        <meta property="og:image:secure_url" content="{{ URL::asset('img/site-preview.png') }}">
+    @endif
+
+
+
+
     <meta property="og:description"
           content="Season 8 of Game of Thrones will start soon. Not all your beloved characters will survive the threat
           of the white walkers. Create a pool with your friends to predict the faith of all remaining characters. Beat
@@ -47,7 +56,6 @@
 <div id="app" class="container p-0 mb-4 pr-1 pl-1">
     @include('partials.header')
     <snow></snow>
-
 
     @if(Auth::check() && !Auth::user()->house_id && Auth::user()->hasPredictions())
         <div class="container card alert-primary mb-3 card p-4 text-center">
