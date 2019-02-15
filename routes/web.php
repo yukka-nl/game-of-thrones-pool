@@ -39,3 +39,48 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/prediction/edit', 'PredictionController@edit');
     Route::put('/prediction', 'PredictionController@update');
 });
+
+Route::get('/debug', function (){
+    \Illuminate\Support\Facades\DB::table('houses')->insert([
+        [
+            'name' => 'Baratheon',
+            'image' => 'baratheon.svg',
+        ],
+        [
+            'name' => 'Arryn',
+            'image' => 'arryn.svg',
+        ],
+        [
+            'name' => 'Greyjoy',
+            'image' => 'greyjoy.svg',
+        ],
+        [
+            'name' => 'Lannister',
+            'image' => 'lannister.svg',
+        ],
+        [
+            'name' => 'Martell',
+            'image' => 'martell.svg',
+        ],
+        [
+            'name' => 'Stark',
+            'image' => 'stark.svg',
+        ],
+        [
+            'name' => 'Targaryen',
+            'image' => 'targaryen.svg',
+        ],
+        [
+            'name' => 'Tully',
+            'image' => 'tully.svg',
+        ],
+        [
+            'name' => 'Tyrell',
+            'image' => 'tyrell.svg',
+        ],
+        [
+            'name' => 'Freefolk',
+            'image' => 'freefolk.svg',
+        ],
+    ]);
+});
