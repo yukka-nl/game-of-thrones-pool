@@ -49,7 +49,7 @@
     <snow></snow>
 
 
-    @if(Auth::check() && !Auth::user()->house_id)
+    @if(Auth::check() && !Auth::user()->house_id && Auth::user()->hasPredictions())
         <div class="container card alert-primary mb-3 card p-4 text-center">
             <div class="d-flex align-items-center justify-content-center">
                 <div>
