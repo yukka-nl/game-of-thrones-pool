@@ -61,7 +61,7 @@
             </tbody>
         </table>
 
-        <div @click="openModal" class="btn btn-success btn-block w-100 btn-lg" v-if="showSubmitButton">
+        <div @click="submitForm" class="btn btn-success btn-block w-100 btn-lg" v-if="showSubmitButton">
             <i class="fas fa-paper-plane mr-1"></i> Update prediction
         </div>
 
@@ -71,7 +71,7 @@
                 You're all set!
             </div>
 
-            <div href="/prediction/create" class="btn btn-success btn-lg" @click="openModal">
+            <div href="/prediction/create" class="btn btn-success btn-lg" @click="submitForm">
                 <i class="fas fa-paper-plane mr-1"></i> Update prediction
             </div>
         </div>
@@ -123,9 +123,6 @@
             calculateCompletionPercentage() {
                 let filledInCount = Object.keys(this.selections).filter(x => this.selections[x] !== null).length;
                 this.progressPercentage = Math.round((filledInCount / Object.keys(this.selections).length) * 100);
-            },
-            openModal() {
-                this.$refs.submitModal.show();
             },
             submitForm(createGroup) {
                 let self = this;
