@@ -117,7 +117,6 @@
                 this.selections[characterId] = value;
                 this.calculateCompletionPercentage();
                 if (this.watchForChanges) {
-                    console.log("ha");
                     this.showSubmitButton = true;
                 }
             },

@@ -48,7 +48,28 @@
     @include('partials.header')
     <snow></snow>
 
-    @if(session('message'))
+
+    @if(Auth::check() && !Auth::user()->house_id)
+        <div class="container card alert-primary mb-3 card p-4 text-center">
+            <div class="d-flex align-items-center justify-content-center">
+                <div>
+                    <h1 class="h2 d-inline mr-2">You haven't joined a house yet. Click on a sigil to join a house.</h1>
+                    <span class="badge badge-success h4 d-inline" style="font-size:0.9rem">new</span>
+                </div>
+            </div>
+            <div class="container p-0">
+                <houses-leaderboard :data="{{ json_encode($leaderboard) }}"
+                                    :user-logged-in="{{ json_encode(Auth::check()) }}"
+                                    :user-house-id="{{ json_encode(Auth::check() ? Auth::user()->house_id : null ) }}"
+                                    :hide-stats="true"
+                                    :refresh-after-join="true">
+                </houses-leaderboard>
+            </div>
+        </div>
+    @endif
+
+
+@if(session('message'))
         <div class="alert alert-success animated flash" role="alert">
             {{ session('message') }}
         </div>
@@ -75,6 +96,13 @@
         <a href="/privacy" class="text-white">Privacy</a>
         -
         <a href="/terms-of-service" class="text-white">Terms Of Service</a>
+        <br>
+        <a href="https://awoiaf.westeros.org/index.php/List_of_houses" class="text-white small" target="_blank" rel="noopener">
+            House sigils credits to
+            <u>
+                awoiaf.westeros.org
+            </u>
+        </a>
     </div>
 </footer>
 </body>
