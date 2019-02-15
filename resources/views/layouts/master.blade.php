@@ -75,6 +75,13 @@
         <a href="/privacy" class="text-white">Privacy</a>
         -
         <a href="/terms-of-service" class="text-white">Terms Of Service</a>
+        <br>
+        <a href="https://awoiaf.westeros.org/index.php/List_of_houses" class="text-white small" target="_blank" rel="noopener">
+            House sigils credits to
+            <u>
+                awoiaf.westeros.org
+            </u>
+        </a>
     </div>
 </footer>
 </body>

@@ -41,6 +41,11 @@ class User extends Authenticatable
         return '/prediction/user/' . $this->id;
     }
 
+    public function house()
+    {
+        return $this->belongsTo(House::class);
+    }
+
     public function groups()
     {
         return $this->belongsToMany(Group::class);

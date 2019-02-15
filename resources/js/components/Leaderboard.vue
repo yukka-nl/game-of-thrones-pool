@@ -12,10 +12,20 @@
         <b-table striped hover :items="items" :fields="fields" v-if="items" :per-page="pageSize" :filter="filter"
                  @filtered="onFiltered" class="leaderboard-table" :current-page="currentPage" responsive>
             <template slot="avatar" slot-scope="data">
-                <img :src="data.item.avatar" v-if="data.item.avatar && data.item.show_social_avatar" class="rounded-circle mr-2"
+                <img :src="data.item.avatar" v-if="data.item.avatar && data.item.show_social_avatar"
+                     class="rounded-circle mr-2"
                      style="height: 25px; width: 25px;">
-                <img src="/img/default-avatar.png" v-if="!data.item.avatar || !data.item.show_social_avatar" class="rounded-circle mr-2"
+                <img src="/img/default-avatar.png" v-if="!data.item.avatar || !data.item.show_social_avatar"
+                     class="rounded-circle mr-2"
                      style="height: 25px; width: 25px;">
+            </template>
+            <template slot="house" slot-scope="data">
+                <img :src="'/img/sigils-by-id/' + data.item.house_id + '.svg'"
+                     v-if="data.item.house_id"
+                     style="height: 25px; width: 25px;">
+                <span v-if="!data.item.house_id">
+                     <img src="/img/sigils/none.png" v-if="!data.item.house_id" style="height: 25px; width: 25px;">
+                </span>
             </template>
             <template slot="correct_guesses" slot-scope="data">
                 <span>{{ data.item.correct_guesses }}</span>
@@ -48,11 +58,18 @@
                     {
                         key: 'ranking',
                         label: '<i class="fa fa-trophy" aria-hidden="true"></i>',
-                        sortable: true
+                        sortable: true,
+                        tdClass: 'image-td-rank',
                     },
                     {
                         key: 'avatar',
-                        label: ''
+                        label: '',
+                        tdClass: 'image-td',
+                    },
+                    {
+                        key: 'house',
+                        label: 'House',
+                        tdClass: 'image-td',
                     },
                     {
                         key: 'name',
@@ -88,6 +105,13 @@
     }
 </script>
 
-<style scoped>
+<style>
+    .image-td {
+        width: 30px;
+        text-align: center;
+    }
 
+    .image-td-rank {
+        width: 75px;
+    }
 </style>
