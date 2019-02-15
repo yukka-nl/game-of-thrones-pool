@@ -17,7 +17,7 @@
 
                     <ul class="mt-2">
                         <li>Your name (you can change your display name in the settings)</li>
-                        <li>Your profile photo</li>
+                        <li>Your profile photo (you can disable this in the settings)</li>
                         <li>Social Account ID (used for authentication with chosen Social Platform)</li>
                     </ul>
 

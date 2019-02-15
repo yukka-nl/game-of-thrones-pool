@@ -7,6 +7,7 @@ Route::get('/prediction', 'PredictionController@show');
 Route::get('/prediction/user/{userId}', 'PredictionController@show');
 
 Route::get('/houses', 'HouseController@index');
+Route::post('/houses/join', 'HouseController@join');
 
 Route::get('/groups/{slug}', 'GroupController@show');
 Route::get('/groups/invite/{inviteCode}', 'GroupController@join')->name('invite-link');

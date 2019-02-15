@@ -103,11 +103,16 @@
 
     <div class="container card  mt-3 mb-3 card p-4 text-center">
         <div class="d-flex align-items-center justify-content-center">
-            <h1 class="h2 d-inline mr-2">Battle of the Houses</h1>
-            <span class="badge badge-success h4" style="font-size:0.9rem">new</span>
+            <div>
+                <h1 class="h2 d-inline mr-2">Battle of the Houses</h1>
+                <span class="badge badge-success h4 d-inline" style="font-size:0.9rem">new</span>
+            </div>
         </div>
-        <div class="container p-0 mb-2">
-            <houses-leaderboard :data="{{ json_encode($leaderboard) }}"></houses-leaderboard>
+        <div class="container p-0">
+            <houses-leaderboard :data="{{ json_encode($leaderboard) }}"
+                                :user-logged-in="{{ json_encode(Auth::check()) }}"
+                                :user-house-id="{{ json_encode(Auth::check() ? Auth::user()->house_id : null ) }}">
+            </houses-leaderboard>
         </div>
     </div>
 
