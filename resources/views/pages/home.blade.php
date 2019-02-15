@@ -44,13 +44,45 @@
         </div>
     </div>
 
+    @guest
+        <div class="container card mb-3 card p-4 text-center">
+            <div class="row features">
+                <div class="col-sm">
+                    <i class="fas fa-skull-crossbones"></i>
+                    <h2 class="h4">
+                        Make predictions
+                    </h2>
+                    <p class="text-muted">
+                        Which characters will die, stay alive or turn into a wight?
+                    </p>
+                </div>
+                <div class="col-sm">
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                    <h2 class="h4">
+                        Join groups with friends
+                    </h2>
+                    <p class="text-muted">
+                        Join as many groups as you like or invite your friends to your groups.
+                    </p>
+                </div>
+                <div class="col-sm">
+                    <i class="fas fa-trophy"></i>
+                    <h2 class="h4">
+                        Compete in the leaderboards
+                    </h2>
+                    <p class="text-muted">
+                        Beat others in the global or group leaderboards!
+                    </p>
+                </div>
+            </div>
+        </div>
+    @endguest
+
     <div class="container card mb-3 card">
         <div class="row">
             <div class="col-6 col-md-6 p-4" style="z-index: 9;">
                 <div class="d-flex align-items-center">
                     <h1 class="h2 d-inline mr-2">Statistics</h1>
-                    <span class="badge badge-success h4" style="font-size:0.9rem">new</span>
-
                 </div>
                 <p>
                     We've published a page with realtime statistics based on all the submitted predictions so far. Find
@@ -69,35 +101,18 @@
         </div>
     </div>
 
-    <div class="container card mb-3 card p-4 text-center">
-        <div class="row features">
-            <div class="col-sm">
-                <i class="fas fa-skull-crossbones"></i>
-                <h2 class="h4">
-                    Make predictions
-                </h2>
-                <p class="text-muted">
-                    Which characters will die, stay alive or turn into a wight?
-                </p>
-            </div>
-            <div class="col-sm">
-                <i class="fa fa-users" aria-hidden="true"></i>
-                <h2 class="h4">
-                    Join groups with friends
-                </h2>
-                <p class="text-muted">
-                    Join as many groups as you like or invite your friends to your groups.
-                </p>
-            </div>
-            <div class="col-sm">
-                <i class="fas fa-trophy"></i>
-                <h2 class="h4">
-                    Compete in the leaderboards
-                </h2>
-                <p class="text-muted">
-                    Beat others in the global or group leaderboards!
-                </p>
-            </div>
+    <div class="container card  mt-3 mb-3 card p-4 text-center">
+        <div class="d-flex align-items-center justify-content-center">
+            <h1 class="h2 d-inline mr-2">Battle of the Houses</h1>
+            <span class="badge badge-success h4" style="font-size:0.9rem">new</span>
+        </div>
+
+        <span>
+            Pledge your sword to one of the houses and compete against each other.
+        </span>
+        <hr class="mb-4 mt-3">
+        <div class="container p-0 mb-2">
+            <houses-leaderboard :data="{{ json_encode($leaderboard) }}"></houses-leaderboard>
         </div>
     </div>
 
