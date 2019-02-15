@@ -33,50 +33,16 @@
         data() {
             return {
                 sigilImagePath: '/img/sigils/',
-                houses: [
-                    {
-                        name: 'Baratheon',
-                        image: 'baratheon.svg',
-                    },
-                    {
-                        name: 'Arryn',
-                        image: 'arryn.svg',
-                    },
-                    {
-                        name: 'Greyjoy',
-                        image: 'greyjoy.svg',
-                    },
-                    {
-                        name: 'Lannister',
-                        image: 'lannister.svg',
-                    },
-                    {
-                        name: 'Martell',
-                        image: 'martell.svg',
-                    },
-                    {
-                        name: 'Stark',
-                        image: 'stark.svg',
-                    },
-                    {
-                        name: 'Targaryen',
-                        image: 'targaryen.svg',
-                    },
-                    {
-                        name: 'Tully',
-                        image: 'tully.svg',
-                    },
-                    {
-                        name: 'Tyrell',
-                        image: 'tyrell.svg',
-                    },
-                    {
-                        name: 'Freefolk',
-                        image: 'freefolk.svg',
-                    },
-                ],
+                houses: []
             }
         },
+        mounted() {
+            let self = this;
+            axios.get('houses')
+                .then(function (response) {
+                    self.houses = response.data
+                })
+        }
     }
 </script>
 
