@@ -1,7 +1,5 @@
 <template>
     <div>
-
-
         <div v-if="items.length > 0">
             <b-form-group horizontal label="Filter by name" class="mb-4 mt-3">
                 <b-input-group>

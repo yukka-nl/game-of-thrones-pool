@@ -38,9 +38,6 @@
         <meta property="og:image:secure_url" content="{{ URL::asset('img/site-preview.png') }}">
     @endif
 
-
-
-
     <meta property="og:description"
           content="Season 8 of Game of Thrones will start soon. Not all your beloved characters will survive the threat
           of the white walkers. Create a pool with your friends to predict the faith of all remaining characters. Beat
@@ -76,14 +73,15 @@
     @endif
 
 
-@if(session('message'))
+    @if(session('message'))
         <div class="alert alert-success animated flash" role="alert">
             {{ session('message') }}
         </div>
     @endif
 
     @yield('content')
-</div>
+
+
 
 <footer class="container mb-3 p-4 text-center text-white">
     <div class="mb-3">
@@ -92,26 +90,24 @@
         </a>
     </div>
 
-    <div class="footer-text">
-        <a href="https://yukka.nl/en" class="text-white" target="_blank" rel="noopener">
+    <div>
+        <a href="https://yukka.nl/en" class="footer-text text-white" target="_blank" rel="noopener">
             Website made by
             <u>
                 Yukka Software Solutions
             </u>
         </a>
         <br>
-        <a href="/privacy" class="text-white">Privacy</a>
+        <a href="/privacy" class="footer-text text-white">Privacy</a>
         -
-        <a href="/terms-of-service" class="text-white">Terms Of Service</a>
+        <a href="/terms-of-service" class="footer-text text-white">Terms Of Service</a>
         <br>
-        <a href="https://awoiaf.westeros.org/index.php/List_of_houses" class="text-white small" target="_blank" rel="noopener">
-            House sigils credits to
-            <u>
-                awoiaf.westeros.org
-            </u>
-        </a>
+        <sigils-credits text-class="text-white footer-text" label-text="House sigils credits"></sigils-credits>
+
     </div>
 </footer>
+</div>
+
 </body>
 
 <script src="/js/app.js"></script>
