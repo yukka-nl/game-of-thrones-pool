@@ -1,12 +1,19 @@
 <template>
     <main>
+
         <div class="mt-1">
             Pledge your sword to one of the houses and compete against each other. <span class="text-primary btn-link" @click="showModal">Learn more.</span>
+        </div>
+        <div v-if="houses.length === 0" class="text-center mt-3 mb-3">
+            <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+            <div>
+                Loading...
+            </div>
         </div>
         <hr class="mb-4 mt-3">
         <div class="container p-0 p-md-2">
             <div class="row d-flex justify-content-center p-0 pl-md-3 pr-md-3">
-                <div :class="houseCard(house.id)" v-for="house in houses" @click="openJoinHouseModal(house)">
+                <div :class="houseCard(house.id)" v-for="house in houses" @click="openJoinHouseModal(house)" v-if="houses.length > 0">
                     <div class="sigil-wrapper">
                         <img :src="sigilImagePath + house.image" class="sigil"></img>
                     </div>
@@ -16,7 +23,7 @@
                     <div>
                     <span class="text-muted small" v-if="!hideStats">
                         <i class="fas fa-users"></i>
-                        {{ house.userCount }}
+                        {{ house.users_count }}
                     </span>
                     </div>
                     <div >

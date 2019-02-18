@@ -45,6 +45,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('/prediction', 'PredictionController@update');
 });
 
+
+Route::get('/api/leaderboard', 'GetLeaderboardController');
+
 Route::get('/debug', function(){
     $data['leaderboard'] = App\User::orderBy('house_id', 'desc')->get();
     $data['userCount'] = $data['leaderboard']->count();
