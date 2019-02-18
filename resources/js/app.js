@@ -40,6 +40,8 @@ Vue.component('leaderboard', require('./components/Leaderboard.vue').default);
 Vue.component('group-leaderboard', require('./components/GroupLeaderboard.vue').default);
 Vue.component('global-leaderboard', require('./components/GlobalLeaderboard.vue').default);
 
+Vue.component('sigils-credits', require('./components/SigilsCredits.vue').default);
+
 const app = new Vue({
     el: '#app'
 });

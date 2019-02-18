@@ -37,6 +37,8 @@
             </div>
         </div>
 
+        <sigils-credits text-class="float-right" label-text="House sigils credits"></sigils-credits>
+
         <b-modal ref="joinHouse" hide-footer title="Join House">
             <div v-if="selectedHouse">
                 <h1 class="h4">Would you like to join {{ selectedHouse.name }}?</h1>
