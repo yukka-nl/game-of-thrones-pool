@@ -17,6 +17,14 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
+        // TODO: Use ranking feature after S8 airs.
+//        $data = $this->getUsersWithRanking();
+        $data = $this->getUsersPreRelease();
+        return view('pages.home', $data);
+    }
+
+    public function getUsersWithRanking()
+    {
         $usersGrouped = DB::table('users')
             ->select('correct_guesses', DB::raw('count(*) as total'))
             ->groupBy('correct_guesses')
@@ -37,7 +45,14 @@ class HomeController extends Controller
 
         $data['leaderboard'] = $usersOrdered;
         $data['userCount'] = User::count();
+        return $data;
+    }
 
-        return view('pages.home', $data);
+    public function getUsersPreRelease()
+    {
+        $data['leaderboard'] = User::orderBy('house_id', 'desc')
+            ->get();
+        $data['userCount'] = $data['leaderboard']->count();
+        return $data;
     }
 }

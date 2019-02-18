@@ -38,6 +38,7 @@ class User extends Authenticatable
 
     public function getLinkAttribute()
     {
+
         return '/prediction/user/' . $this->id;
     }
 

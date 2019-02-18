@@ -11,6 +11,10 @@
 
         <b-table striped hover :items="items" :fields="fields" v-if="items" :per-page="pageSize" :filter="filter"
                  @filtered="onFiltered" class="leaderboard-table" :current-page="currentPage" responsive>
+            <template slot="ranking" slot-scope="data">
+                <span v-if="data.item.ranking">{{ data.item.ranking }}</span>
+                <span v-if="!data.item.ranking">-</span>
+            </template>
             <template slot="avatar" slot-scope="data">
                 <img :src="data.item.avatar" v-if="data.item.avatar && data.item.show_social_avatar"
                      class="rounded-circle mr-2"
