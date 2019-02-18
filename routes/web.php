@@ -48,5 +48,5 @@ Route::group(['middleware' => ['auth']], function () {
 Route::get('/debug', function(){
     $data['leaderboard'] = App\User::orderBy('house_id', 'desc')->get();
     $data['userCount'] = $data['leaderboard']->count();
-    dd($data);
+    return view('pages.debug', $data);
 });
