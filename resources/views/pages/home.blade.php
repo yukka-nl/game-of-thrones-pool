@@ -82,7 +82,7 @@
                 <span class="text-muted">Total users: {{ $userCount }}</span>
 
                 <div class="container p-0">
-                    <leaderboard :data="{{ json_encode($leaderboard) }}"></leaderboard>
+                    {{--<leaderboard :data="{{ json_encode($leaderboard) }}"></leaderboard>--}}
                 </div>
             </div>
 

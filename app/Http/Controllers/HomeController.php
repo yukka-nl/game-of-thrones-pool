@@ -50,8 +50,7 @@ class HomeController extends Controller
 
     public function getUsersPreRelease()
     {
-        $data['leaderboard'] = User::orderBy('house_id', 'desc')
-            ->get();
+        $data['leaderboard'] = User::orderBy('house_id', 'desc')->get();
         $data['userCount'] = $data['leaderboard']->count();
         return $data;
     }
