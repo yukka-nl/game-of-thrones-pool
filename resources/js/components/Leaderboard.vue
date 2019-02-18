@@ -1,11 +1,6 @@
 <template>
     <div>
-        <div v-if="items.length === 0" class="text-center">
-            <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
-            <div>
-                Loading...
-            </div>
-        </div>
+
 
         <div v-if="items.length > 0">
             <b-form-group horizontal label="Filter by name" class="mb-4 mt-3">
@@ -59,11 +54,16 @@
 
 <script>
     export default {
+        props: {
+          data: {
+              required: true
+          }
+        },
         data() {
             return {
                 pageSize: 25,
                 filter: null,
-                items: [],
+                items: this.data,
                 currentPage: 1,
                 fields: [
                     {
@@ -96,12 +96,6 @@
                     }
                 ],
             }
-        },
-        mounted() {
-            let self = this;
-            axios.get('/api/leaderboard').then(function (response) {
-                self.items = response.data;
-            })
         },
         methods: {
             getLinkId(data) {

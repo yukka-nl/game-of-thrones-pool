@@ -47,9 +47,4 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 Route::get('/api/leaderboard', 'GetLeaderboardController');
-
-Route::get('/debug', function(){
-    $data['leaderboard'] = App\User::orderBy('house_id', 'desc')->get();
-    $data['userCount'] = $data['leaderboard']->count();
-    return view('pages.debug', $data);
-});
+Route::get('/api/leaderboard/group/{slug}', 'GetGroupLeaderboardController');

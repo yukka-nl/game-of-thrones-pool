@@ -27,7 +27,6 @@ Vue.component('prediction-edit-form', require('./components/PredictionEditForm.v
 Vue.component('snow', require('./components/Snow.vue').default);
 Vue.component('create-group-form', require('./components/CreateGroupForm.vue').default);
 Vue.component('settings-form', require('./components/SettingsForm.vue').default);
-Vue.component('leaderboard', require('./components/Leaderboard.vue').default);
 Vue.component('houses-leaderboard', require('./components/HousesLeaderboard.vue').default);
 Vue.component('make-prediction-button', require('./components/MakePredictionButton.vue').default);
 Vue.component('social-media-buttons', require('./components/SocialMediaButtons.vue').default);
@@ -36,6 +35,10 @@ Vue.component('copy-to-clipboard', require('./components/CopyToClipboard.vue').d
 Vue.component('season-countdown', require('./components/SeasonCountDown.vue').default);
 Vue.component('character-bar-charts', require('./components/CharacterBarCharts.vue').default);
 Vue.component('group-options-dropdown', require('./components/GroupOptionsDropdown.vue').default);
+
+Vue.component('leaderboard', require('./components/Leaderboard.vue').default);
+Vue.component('group-leaderboard', require('./components/GroupLeaderboard.vue').default);
+Vue.component('global-leaderboard', require('./components/GlobalLeaderboard.vue').default);
 
 const app = new Vue({
     el: '#app'

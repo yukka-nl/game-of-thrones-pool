@@ -57,7 +57,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <h1 class="h2">Group leaderboards</h1>
-                <leaderboard :data="{{ json_encode($leaderboard) }}"></leaderboard>
+                <group-leaderboard slug="{{ $group->slug }}"></group-leaderboard>
             </div>
 
         </div>

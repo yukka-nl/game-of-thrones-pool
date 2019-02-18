@@ -82,7 +82,7 @@
                 <span class="text-muted">Total users: {{ $userCount }}</span>
 
                 <div class="container p-0">
-                    <leaderboard></leaderboard>
+                    <global-leaderboard></global-leaderboard>
                 </div>
             </div>
 
