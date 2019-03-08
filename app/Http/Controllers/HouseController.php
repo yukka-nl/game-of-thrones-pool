@@ -24,4 +24,9 @@ class HouseController extends Controller
         }
         return $user->house_id;
     }
+
+    public function predictions()
+    {
+        return view('pages.house-predictions');
+    }
 }
