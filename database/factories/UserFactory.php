@@ -24,6 +24,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'token' => str_random(10),
         'platform' => 'yukka',
         'avatar' => $faker->imageUrl($width = 640, $height = 480),
-        'correct_guesses' => rand(0, 33)
+        'correct_guesses' => 0,
+        'house_id' => rand(1, 10)
     ];
 });
