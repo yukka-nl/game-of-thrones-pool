@@ -14,6 +14,7 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\User::class, function (Faker $faker) {
+    $houseId = rand(1, 13);
     return [
         'name' => $faker->name,
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
@@ -23,6 +24,6 @@ $factory->define(App\User::class, function (Faker $faker) {
         'platform' => 'yukka',
         'avatar' => $faker->imageUrl($width = 640, $height = 480),
         'correct_guesses' => 0,
-        'house_id' => rand(1, 10)
+        'house_id' => $houseId > 10 ? null : $houseId
     ];
 });

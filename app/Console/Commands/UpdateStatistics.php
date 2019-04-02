@@ -41,7 +41,6 @@ class UpdateStatistics extends Command
      */
     public function handle()
     {
-
         $this->updateCharacterPredictionCounts();
         $this->updateTotalPredictionCount();
         $this->line("Successfully updated all statistics");
