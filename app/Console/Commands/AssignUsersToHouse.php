@@ -43,45 +43,53 @@ class AssignUsersToHouse extends Command
         $this->line($usersWithoutHouse->count() . ' users without a House.');
 
         if($this->option('weighted')){
-            $this->line('Assigning users based on current user spread.');
-            $houses = House::all();
-            $usersWithHouse = $houses->sum(function($house) {
-                return $house->users->count();
-            });
-
-            $usersPerHouse = $houses->map(function($house) {
-                return $house->users->count();
-            });
-
-            $probabilities = collect();
-            foreach ($usersPerHouse as $key=>$userCount) {
-                $prob = $usersWithHouse / $userCount;
-                $probabilities->push($prob);
-                $this->line('Chance of joining ' . House::find($key + 1)->name . ": \t" . $prob);
-            }
-
-            $results = collect();
-            foreach ($usersWithoutHouse as $user) {
-                $rand = mt_rand(1, $probabilities->sum());
-                foreach ($probabilities as $key => $value) {
-                    $rand -= $value;
-                    if ($rand <= 0) {
-                        $houseId = $key + 1;
-                        $results->push($houseId);
-                        $user->house_id = $houseId;
-                        $user->save();
-                        break;
-                    }
-                }
-            }
+            $this->assignBasedOnWeight($usersWithoutHouse);
         } else {
-            $this->line('Assigning users randomly.');
-            foreach ($usersWithoutHouse as $user) {
-                $houseId = rand(1,10);
-                $user->house_id = $houseId;
-                $user->save();
-            }
+            $this->assignRandomly($usersWithoutHouse);
         }
         $this->line('All users assigned to houses.');
+    }
+
+    private function assignBasedOnWeight($usersWithoutHouse) {
+        $this->line('Assigning users based on current user spread.');
+        $houses = House::all();
+        $usersWithHouse = $houses->sum(function($house) {
+            return $house->users->count();
+        });
+
+        $usersPerHouse = $houses->map(function($house) {
+            return $house->users->count();
+        });
+
+        $probabilities = collect();
+        foreach ($usersPerHouse as $key=>$userCount) {
+            $prob = $usersWithHouse / $userCount;
+            $probabilities->push($prob);
+            $this->line('Chance of joining ' . House::find($key + 1)->name . ": \t" . $prob);
+        }
+
+        $results = collect();
+        foreach ($usersWithoutHouse as $user) {
+            $rand = mt_rand(1, $probabilities->sum());
+            foreach ($probabilities as $key => $value) {
+                $rand -= $value;
+                if ($rand <= 0) {
+                    $houseId = $key + 1;
+                    $results->push($houseId);
+                    $user->house_id = $houseId;
+                    $user->save();
+                    break;
+                }
+            }
+        }
+    }
+
+    private function assignRandomly($usersWithoutHouse) {
+        $this->line('Assigning users randomly.');
+        foreach ($usersWithoutHouse as $user) {
+            $houseId = rand(1,10);
+            $user->house_id = $houseId;
+            $user->save();
+        }
     }
 }
