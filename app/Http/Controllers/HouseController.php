@@ -29,6 +29,9 @@ class HouseController extends Controller
 
     public function predictions()
     {
+        if(Auth::user()->hasHousePredictions()) {
+            return redirect()->action('HouseController@predictionResults');
+        }
         $data['houseCharacters'] = HouseCharacter::all();
         $data['houses'] = House::all();
 
@@ -55,5 +58,12 @@ class HouseController extends Controller
         } else {
             return response("You already made a prediction", 500);
         }
+    }
+
+    public function predictionResults()
+    {
+        $data['characters'] = HouseCharacter::all();
+        $data['houses'] = House::all();
+        return view('pages.house-predictions-result', $data);
     }
 }

@@ -140,7 +140,7 @@
                 let self = this;
                 axios.post('/predictions/house', this.selections)
                     .then(function (response) {
-
+                        window.location.replace('/predictions/house/results');
                     })
                     .catch(function (error) {
                         console.error(error);
