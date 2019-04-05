@@ -64,7 +64,6 @@
         <div class="d-flex align-items-center justify-content-center">
             <div>
                 <h1 class="h2 d-inline mr-2">Battle of the Houses</h1>
-                <span class="badge badge-success h4 d-inline" style="font-size:0.9rem">new</span>
             </div>
         </div>
         <div class="container p-0">

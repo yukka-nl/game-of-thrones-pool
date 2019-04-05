@@ -2,7 +2,7 @@
     <main>
 
         <div class="mt-1">
-            Pledge your sword to one of the houses and compete against each other. <span class="text-primary btn-link" @click="showModal">Learn more.</span>
+            Pledge your sword to one of the houses and compete against each other. <a class="text-primary btn-link" href="/predictions/house">Cast your vote.</a>
         </div>
         <div v-if="houses.length === 0" class="text-center mt-3 mb-3">
             <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>

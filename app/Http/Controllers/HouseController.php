@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\House;
+use App\HouseCharacter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,6 +28,8 @@ class HouseController extends Controller
 
     public function predictions()
     {
-        return view('pages.house-predictions');
+        $data['houseCharacters'] = HouseCharacter::all();
+        $data['houses'] = House::all();
+        return view('pages.house-predictions', $data);
     }
 }

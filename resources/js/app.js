@@ -23,6 +23,8 @@ Vue.use(VueMq, {
 });
 
 Vue.component('prediction-form', require('./components/PredictionForm.vue').default);
+Vue.component('house-prediction-form', require('./components/HousePredictionForm.vue').default);
+
 Vue.component('prediction-edit-form', require('./components/PredictionEditForm.vue').default);
 Vue.component('snow', require('./components/Snow.vue').default);
 Vue.component('create-group-form', require('./components/CreateGroupForm.vue').default);
