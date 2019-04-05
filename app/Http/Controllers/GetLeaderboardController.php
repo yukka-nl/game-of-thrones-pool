@@ -15,24 +15,10 @@ class GetLeaderboardController extends Controller
             ->orderBy('correct_guesses', 'desc')
             ->get();
 
-        // TODO: Order by correct guesses when S8 airs
-//        $usersOrdered = DB::table('users')
-//            ->orderBy('correct_guesses', 'desc')
-//            ->get();
-
-        $usersOrderedWithHouse = DB::table('users')
-            ->whereNotNull('house_id')
+        $usersOrdered = DB::table('users')
             ->select(['avatar', 'correct_guesses', 'name', 'house_id', 'show_social_avatar', 'id'])
-            ->orderBy('created_at', 'desc')
+            ->orderBy('correct_guesses', 'desc')
             ->get();
-
-        $usersOrderedWithoutHouse = DB::table('users')
-            ->whereNull('house_id')
-            ->select(['avatar', 'correct_guesses', 'name', 'house_id', 'show_social_avatar', 'id'])
-            ->orderBy('created_at', 'desc')
-            ->get();
-
-        $usersOrdered = $usersOrderedWithHouse->merge($usersOrderedWithoutHouse);
 
         foreach ($usersOrdered as $user) {
             foreach ($usersGrouped as $index=>$group){
