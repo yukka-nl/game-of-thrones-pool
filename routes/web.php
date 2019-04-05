@@ -46,6 +46,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/predictions/house', 'HouseController@predictions');
     Route::post('/predictions/house', 'HouseController@storePrediction');
+    Route::get('/predictions/house/results', 'HouseController@predictionResults');
 });
 
 
