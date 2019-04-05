@@ -31,7 +31,6 @@
                     Complete season
                     {{--<season-countdown deadline="April 15 2019 03:00:00 GMT+0200"--}}
                                       {{--class="mb-3 float-right"></season-countdown>--}}
-
                 </h1>
             </div>
         </div>

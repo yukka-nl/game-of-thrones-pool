@@ -26,3 +26,9 @@
         }
     }
 </script>
+
+<style>
+    .snowf-canvas {
+        position: fixed!important;
+    }
+</style>
