@@ -3,8 +3,10 @@
 namespace App\Console\Commands;
 
 use App\Character;
+use App\Prediction;
 use App\User;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 
 class UpdateCorrectGuesses extends Command
 {
@@ -40,21 +42,23 @@ class UpdateCorrectGuesses extends Command
     public function handle()
     {
         $this->line('Updating correct guesses...');
-        $users = User::all();
-        $characters = Character::all();
-        $bar = $this->output->createProgressBar(count($users));
-        foreach ($users as $user) {
-            if ($user->hasPredictions()){
-                foreach ($characters as $character) {
-                    if ($character->status_id == $user->characterPrediction($character->id)->id) {
-                        $user->correct_guesses += 1;
-                    }
-                }
-                $user->save();
-            }
+        $characters = Character::whereNotNull('status_id')->get();
+
+        $bar = $this->output->createProgressBar($characters->count());
+        foreach ($characters as $character) {
+            $correctPredictions = DB::table('predictions')
+                ->select('user_id')
+                ->where('character_id', $character->id)
+                ->where('status_id', $character->status_id)
+                ->get();
+
+            DB::table('users')
+                ->whereIn('id', $correctPredictions->pluck('user_id'))
+                ->increment('correct_guesses');
             $bar->advance();
         }
         $bar->finish();
-        $this->line(' All users updated!');
+
+        $this->line(' All predictions updated!');
     }
 }
