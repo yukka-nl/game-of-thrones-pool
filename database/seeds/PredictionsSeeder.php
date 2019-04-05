@@ -49,6 +49,16 @@ class PredictionsSeeder extends Seeder
                 ['status_id' => rand(1,3), 'character_id' => 32, 'user_id' => $user->id],
                 ['status_id' => rand(1,3), 'character_id' => 33, 'user_id' => $user->id],
             ]);
+
+            DB::table('house_predictions')->insert([
+                ['status_id' => rand(1,3), 'character_id' => 1, 'user_id' => $user->id, 'house_id' => $user->house_id],
+                ['status_id' => rand(1,3), 'character_id' => 2, 'user_id' => $user->id, 'house_id' => $user->house_id],
+                ['status_id' => rand(1,3), 'character_id' => 3, 'user_id' => $user->id, 'house_id' => $user->house_id],
+                ['status_id' => rand(1,3), 'character_id' => 4, 'user_id' => $user->id, 'house_id' => $user->house_id],
+                ['status_id' => rand(1,3), 'character_id' => 5, 'user_id' => $user->id, 'house_id' => $user->house_id],
+                ['status_id' => rand(1,3), 'character_id' => 6, 'user_id' => $user->id, 'house_id' => $user->house_id],
+                ['status_id' => rand(1,3), 'character_id' => 7, 'user_id' => $user->id, 'house_id' => $user->house_id],
+            ]);
         }
     }
 }
