@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\House;
 use App\HouseCharacter;
+use App\HousePrediction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,5 +32,21 @@ class HouseController extends Controller
         $data['houseCharacters'] = HouseCharacter::all();
         $data['houses'] = House::all();
         return view('pages.house-predictions', $data);
+    }
+
+    public function storePrediction(Request $request)
+    {
+        if(!Auth::user()->hasHousePredictions()) {
+            foreach ($request->all() as $characterId => $status) {
+                HousePrediction::create([
+                    'status_id' => $status,
+                    'character_id' => $characterId,
+                    'user_id' => Auth::id(),
+                    'house_id' => Auth::user()->house_id
+                ]);
+            }
+        } else {
+            return response("You already made a prediction", 500);
+        }
     }
 }

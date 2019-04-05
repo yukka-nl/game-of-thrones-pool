@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHouseCharacterPredictionsTable extends Migration
+class CreateHousePredictionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateHouseCharacterPredictionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('house_character_predictions', function (Blueprint $table) {
+        Schema::create('house_predictions', function (Blueprint $table) {
             $table->increments('id');
 
             $table->integer('status_id')->unsigned()->index();
@@ -24,6 +24,9 @@ class CreateHouseCharacterPredictionsTable extends Migration
 
             $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+            $table->integer('house_id')->unsigned()->index();
+            $table->foreign('house_id')->references('id')->on('houses')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -35,6 +38,6 @@ class CreateHouseCharacterPredictionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('house_character_predictions');
+        Schema::dropIfExists('house_predictions');
     }
 }

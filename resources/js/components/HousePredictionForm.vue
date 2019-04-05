@@ -11,7 +11,7 @@
             <div class="row">
 
                 <div class="col-sm-12 col-md-12">
-                    <b-btn class="mt-3" variant="outline-primary" block @click="submitForm(true)">Submit prediction</b-btn>
+                    <b-btn class="mt-3" variant="outline-primary" block @click="submitForm()">Submit prediction</b-btn>
                 </div>
             </div>
         </b-modal>
@@ -35,6 +35,9 @@
                 <th scope="col">Image</th>
                 <th scope="col">Name</th>
                 <th scope="col" class="text-center">Prediction</th>
+                <th scope="col" class="text-center">
+                    <img :src="sigilImagePath + house.image" style="height: 30px;"></img> Current vote
+                </th>
             </tr>
             </thead>
             <tbody>
@@ -73,6 +76,9 @@
                         />
                     </b-form-group>
                 </td>
+                <td class="text-center">
+                    Dead ({{ Math.floor(Math.random() * 100) }}%)
+                </td>
             </tr>
             </tbody>
         </table>
@@ -96,9 +102,10 @@
 
 <script>
     export default {
-        props: ['characters', 'username', 'userId'],
+        props: ['characters', 'username', 'userId', 'house'],
         data() {
             return {
+                sigilImagePath: '/img/sigils/',
                 selections: {},
                 options: [
                     {text: 'Alive', value: 1},
@@ -108,7 +115,7 @@
                 progressPercentage: 0,
                 groupName: 'Group of ' + this.username,
                 createdGroup: null,
-                formErrors: []
+                formErrors: [],
             }
         },
         mounted() {
@@ -129,22 +136,11 @@
             openModal() {
                 this.$refs.submitModal.show();
             },
-            submitForm(createGroup) {
-                if (createGroup) {
-                    this.createGroup();
-                } else {
-                    this.createPredictions(false);
-                }
-            },
-            createPredictions(goToGroup) {
+            submitForm() {
                 let self = this;
-                axios.post('/house/prediction', this.selections)
+                axios.post('/predictions/house', this.selections)
                     .then(function (response) {
-                        if (goToGroup) {
-                            window.location.replace(self.createdGroup.link);
-                        } else {
-                            window.location.replace('/prediction/user/' + self.userId);
-                        }
+
                     })
                     .catch(function (error) {
                         console.error(error);

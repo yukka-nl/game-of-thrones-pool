@@ -23,13 +23,11 @@
                             House Predictions
                         </h1>
                         <p class="mb-3 text-center">
-                            Score points for your house and lead your house,
-                            <strong>{{ Auth::user()->house->name }}</strong>, to victory. Be aware: the house
+                            Score points for your house, <strong>{{ Auth::user()->house->name }}</strong>, and lead it to victory. Be aware: the house
                             predictions are collective, which means that you vote for your prediction together with your
                             other house members. The predictions with the most votes will become the final prediction of
                             the house.
                         </p>
-
                         <p class="text-center">
                             <strong>
                                 These predictions are only for the house leaderboards and do not
@@ -40,8 +38,12 @@
                 </div>
             </div>
         </div>
-
-        <house-prediction-form :characters="{{ $houseCharacters }}" username="{{ Auth::user()->name }}"
-                               user-id="{{ Auth::id() }}" :houses="{{ $houses }}"></house-prediction-form>
+        <house-prediction-form
+                :characters="{{ $houseCharacters }}"
+                username="{{ Auth::user()->name }}"
+                user-id="{{ Auth::id() }}"
+                :house="{{ Auth::user()->house }}"
+                :houses="{{ $houses }}">
+        </house-prediction-form>
     </div>
 @endsection
