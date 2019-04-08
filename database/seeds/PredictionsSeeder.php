@@ -60,6 +60,18 @@ class PredictionsSeeder extends Seeder
                     ['status_id' => rand(1,3), 'character_id' => 6, 'user_id' => $user->id, 'house_id' => $user->house_id],
                     ['status_id' => rand(1,3), 'character_id' => 7, 'user_id' => $user->id, 'house_id' => $user->house_id],
                 ]);
+                DB::table('house_question_answers')->insert([
+                    ['house_question_id' => 1, 'house_question_option_id' => rand(1, 2), 'user_id' => $user->id, 'house_id' => $user->house_id],
+                    ['house_question_id' => 2, 'house_question_option_id' => rand(3, 5), 'user_id' => $user->id, 'house_id' => $user->house_id],
+                    ['house_question_id' => 3, 'house_question_option_id' => rand(6, 9), 'user_id' => $user->id, 'house_id' => $user->house_id],
+                    ['house_question_id' => 4, 'house_question_option_id' => rand(10, 13), 'user_id' => $user->id, 'house_id' => $user->house_id],
+                    ['house_question_id' => 5, 'house_question_option_id' => rand(14, 15), 'user_id' => $user->id, 'house_id' => $user->house_id],
+                    ['house_question_id' => 6, 'house_question_option_id' => rand(16, 17), 'user_id' => $user->id, 'house_id' => $user->house_id],
+                    ['house_question_id' => 7, 'house_question_option_id' => rand(18, 19), 'user_id' => $user->id, 'house_id' => $user->house_id],
+                    ['house_question_id' => 8, 'house_question_option_id' => rand(20, 21), 'user_id' => $user->id, 'house_id' => $user->house_id],
+                    ['house_question_id' => 9, 'house_question_option_id' => rand(22, 61), 'user_id' => $user->id, 'house_id' => $user->house_id],
+                    ['house_question_id' => 10, 'house_question_option_id' => rand(62, 101), 'user_id' => $user->id, 'house_id' => $user->house_id],
+                ]);
             }
         }
     }

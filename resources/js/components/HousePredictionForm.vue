@@ -108,20 +108,30 @@
                 <td class="position-relative col-6 col-sm-12 d-none d-md-table-cell">
                     <div class="d-flex align-items-center justify-content-center position-absolute h-100 w-100">
                         <b-form-group>
+                            <b-form-select v-model="selections['q' + question.id]"
+                                           :options="formatQuestionOption(question.options)"
+                                           @input="changed($event, 'q' + question.id)"
+                                           v-if="question.options.length > 4">
+                            </b-form-select>
+
                             <b-form-radio-group :id="'question' + question.title"
                                                 buttons
                                                 v-model="selections['q' + question.id]"
                                                 button-variant="outline-secondary"
                                                 :options="formatQuestionOption(question.options)"
                                                 @input="changed($event, 'q' + question.id)"
-                                                :name="question.title"
-                            />
+                                                :name="question.title" v-else/>
 
                         </b-form-group>
                     </div>
                 </td>
                 <td class="d-md-none d-table-cell">
                     <b-form-group>
+                        <b-form-select v-model="selections['q' + question.id]"
+                                       :options="formatQuestionOption(question.options)"
+                                       @input="changed($event, 'q' + question.id)"
+                                       v-if="question.options.length > 4">
+                        </b-form-select>
                         <b-form-radio-group :id="'question' + question.title"
                                             buttons
                                             v-model="selections['q' + question.id]"
@@ -129,17 +139,17 @@
                                             :options="formatQuestionOption(question.options)"
                                             @input="changed($event, 'q' + question.id)"
                                             :name="question.title"
-                                            stacked
-                        />
+                                            stacked v-else/>
                     </b-form-group>
                 </td>
                 <td class="text-center">
-                    beep
+                    {{ houseQuestionStatus(question) || 'No predictions yet' }}
+                    {{ houseQuestionPercentage(question, house) }}
                 </td>
             </tr>
             </tbody>
         </table>
-        {{selections}}
+
         <div @click="openModal" class="btn btn-success btn-block w-100 btn-lg" v-if="progressPercentage === 100">
             <i class="fas fa-paper-plane mr-1"></i> Submit house prediction
         </div>
@@ -226,10 +236,16 @@
                     return 'Dead, becomes a wight';
                 }
             },
+            houseQuestionStatus(question, house) {
+
+            },
+            houseQuestionPercentage(question) {
+
+            },
             formatQuestionOption(options) {
                 let result = [];
-                options.forEach(function(option) {
-                    result.push({text:option.label, value:option.id});
+                options.forEach(function (option) {
+                    result.push({text: option.label, value: option.id});
                 });
                 return result;
             },
