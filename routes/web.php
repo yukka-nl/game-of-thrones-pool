@@ -31,6 +31,9 @@ Route::get('login/{platform}/callback', 'Auth\LoginController@handleProviderCall
 Route::get('logout', 'Auth\LoginController@logout');
 Route::get('register', 'Auth\RegisterController@registerPage');
 
+Route::get('/predictions/house', 'HouseController@predictions');
+Route::get('/predictions/house/results', 'HouseController@predictionResults');
+
 // Auth routes
 Route::group(['middleware' => ['auth']], function () {
     Route::post('/prediction', 'PredictionController@store');
@@ -46,6 +49,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/prediction/edit', 'PredictionController@edit');
     Route::put('/prediction', 'PredictionController@update');
+
+    Route::post('/predictions/house', 'HouseController@storePrediction');
 });
 
 

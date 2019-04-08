@@ -7,6 +7,12 @@
                      style="max-height: 100px; max-width: 100px;">
             </div>
             {{ $prediction->character->name }}
+
+            @if($prediction->house_id)
+                <span class="badge badge-primary" data-toggle="tooltip" data-placement="top" title="This house prediction does not count for the group or global leaderboards.">
+                    House <i class="fas fa-question-circle"></i>
+                </span>
+            @endif
         </div>
     @endforeach
 </div>

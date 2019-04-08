@@ -52,10 +52,29 @@ class User extends Authenticatable
         return $this->belongsToMany(Group::class);
     }
 
+    public function housePredictions()
+    {
+        return $this->hasMany(HousePrediction::class);
+    }
+
+    public function houseAnswers()
+    {
+        return $this->hasMany(HouseQuestionAnswer::class);
+    }
+
     public function predictions()
     {
         return $this->hasMany(Prediction::class);
     }
+
+    public function allPredictions()
+    {
+        return $this->predictions->merge($this->housePredictions);
+    }
+
+//    public function allPredictions() {
+//        return collect([$this->predictions, $this->housePredictions])->collapse();
+//    }
 
     public function getHasPredictionsAttribute()
     {
@@ -67,10 +86,29 @@ class User extends Authenticatable
         return $this->predictions->count() > 0;
     }
 
+    public function hasHousePredictions()
+    {
+        return $this->housePredictions()->count() > 0 && $this->houseAnswers()->count() > 0;
+    }
+
     public function characterPrediction($characterId)
     {
         if ($this->hasPredictions()) {
             return $this->predictions->where('character_id', $characterId)->first()->status;
+        }
+    }
+
+    public function getAnswer($question)
+    {
+        if ($this->hasHousePredictions()) {
+            return $this->houseAnswers->where('house_question_id', $question->id)->first()->houseQuestionOption;
+        }
+    }
+
+    public function getPrediction($character)
+    {
+        if ($this->hasHousePredictions()) {
+            return $this->housePredictions->where('character_id', $character->id)->first()->status;
         }
     }
 

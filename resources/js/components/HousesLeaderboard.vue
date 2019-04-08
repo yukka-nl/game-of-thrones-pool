@@ -1,8 +1,11 @@
 <template>
     <main>
 
-        <div class="mt-1">
-            Pledge your sword to one of the houses and compete against each other. <span class="text-primary btn-link" @click="showModal">Learn more.</span>
+        <div class="mt-1" v-if="!hideTitle">
+            Pledge your sword to one of the houses and make additional predictions to lead it to victory.
+            <a class="text-primary btn-link" href="/predictions/house" v-if="chosenHouse">
+                Cast your vote.
+            </a>
         </div>
         <div v-if="houses.length === 0" class="text-center mt-3 mb-3">
             <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
@@ -42,7 +45,7 @@
         <b-modal ref="joinHouse" hide-footer title="Join House">
             <div v-if="selectedHouse">
                 <h1 class="h4">Would you like to join {{ selectedHouse.name }}?</h1>
-                You can still switch houses until the April 7th.
+                You can't switch houses anymore once you joined a house.
             </div>
 
             <div class="row">
@@ -133,6 +136,10 @@
             refreshAfterJoin: {
                 default: false,
                 required: false,
+            },
+            hideTitle: {
+                default: false,
+                required: false,
             }
         },
         data() {
@@ -159,6 +166,11 @@
                     this.$refs.loginModal.show();
                     return;
                 }
+
+                if(this.chosenHouse) {
+                    return;
+                }
+
                 this.selectedHouse = house;
                 this.$refs.joinHouse.show()
             },

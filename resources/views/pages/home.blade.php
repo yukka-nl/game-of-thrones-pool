@@ -60,11 +60,10 @@
         </div>
     </div>
 
-    <div class="container card  mt-3 mb-3 card p-4 text-center">
+    <div class="container card mt-3 mb-3 card p-4 text-center">
         <div class="d-flex align-items-center justify-content-center">
             <div>
                 <h1 class="h2 d-inline mr-2">Battle of the Houses</h1>
-                <span class="badge badge-success h4 d-inline" style="font-size:0.9rem">new</span>
             </div>
         </div>
         <div class="container p-0">
@@ -73,7 +72,25 @@
                                 :user-house-id="{{ json_encode(Auth::check() ? Auth::user()->house_id : null ) }}">
             </houses-leaderboard>
         </div>
+
+        <a class="btn btn-lg btn-outline-secondary" href="/predictions/house/results">
+            <i class="fas fa-vote-yea mb-2"></i> View all house predictions <span class="badge badge-success h4 d-inline" style="font-size: 0.9rem;">new</span>
+        </a>
     </div>
+
+
+{{--    <div class="container card  mt-3 mb-3 card p-4">--}}
+{{--        <div class="row">--}}
+{{--            <div class="col-sm-12">--}}
+{{--                <h1 class="h2">Houses leaderboards</h1>--}}
+
+{{--                <div class="container p-0">--}}
+{{--                    <houses-leaderboard-table></houses-leaderboard-table>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+
+{{--        </div>--}}
+{{--    </div>--}}
 
     <div class="container card  mt-3 mb-3 card p-4">
         <div class="row">

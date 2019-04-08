@@ -53,7 +53,6 @@
                 @endif
 
                 @if($user->hasPredictions())
-
                     @isset($groupedPredictions[1])
                         <div class="card bg-green mb-3">
                             <div class="card-body text-white pl-3 pr-3 pt-3 pb-3">
