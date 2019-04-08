@@ -21,6 +21,11 @@ class HouseController extends Controller
     public function join(Request $request)
     {
         $user = Auth::user();
+
+        if ($user->house_id) {
+            return response("You already joined a house", 500);
+        }
+
         $user->house_id = $request->houseId;
         $user->save();
 
@@ -32,13 +37,13 @@ class HouseController extends Controller
 
     public function predictions()
     {
-        if(Auth::check()) {
+        if (Auth::check()) {
             $user = Auth::user();
             if ($user->hasHousePredictions()) {
                 return redirect()->action('HouseController@predictionResults');
             }
 
-            if($user->house_id) {
+            if ($user->house_id) {
                 $data['houseCharacters'] = HouseCharacter::all();
                 $data['houseQuestions'] = HouseQuestion::all();
                 $house = House::findOrFail($user->house_id);
