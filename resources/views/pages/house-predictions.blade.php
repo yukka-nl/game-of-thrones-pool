@@ -25,7 +25,7 @@
         </div>
     @endguest
 
-    @if(Auth::check() && !Auth::user()->house_id)
+    @if(Auth::check() && (!Auth::user()->house_id || !Auth::user()->hasPredictions))
         <div class="container card mt-3 mb-3 card p-4">
 
             <h1 class="h4 mb-2 text-center">
@@ -62,7 +62,7 @@
 
     @endif
 
-    @if(Auth::check() && Auth::user()->house_id)
+    @if(Auth::check() && Auth::user()->house_id && Auth::user()->hasPredictions)
         <div class="container card mt-3 mb-3 card p-4 house-predictions">
             <div class="row d-flex justify-content-center">
                 <div class="col-12 col-md-12">
