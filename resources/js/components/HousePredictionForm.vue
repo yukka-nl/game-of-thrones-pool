@@ -105,30 +105,11 @@
                 <td class="align-middle">
                     {{ question.title }}
                 </td>
-                <td class="position-relative col-6 col-sm-12 d-none d-md-table-cell">
-                    <div class="d-flex align-items-center justify-content-center position-absolute h-100 w-100">
-                        <b-form-group>
-                            <b-form-select v-model="selections['q' + question.id]"
-                                           :options="formatQuestionOption(question.options)"
-                                           @input="changed($event, 'q' + question.id)"
-                                           v-if="question.options.length > 4">
-                            </b-form-select>
-
-                            <b-form-radio-group :id="'question' + question.title"
-                                                buttons
-                                                v-model="selections['q' + question.id]"
-                                                button-variant="outline-secondary"
-                                                :options="formatQuestionOption(question.options)"
-                                                @input="changed($event, 'q' + question.id)"
-                                                :name="question.title" v-else/>
-
-                        </b-form-group>
-                    </div>
-                </td>
-                <td class="d-md-none d-table-cell">
+                <td class="d-table-cell">
                     <b-form-group>
                         <b-form-select v-model="selections['q' + question.id]"
                                        :options="formatQuestionOption(question.options)"
+                                       class="w-100"
                                        @input="changed($event, 'q' + question.id)"
                                        v-if="question.options.length > 4">
                         </b-form-select>
@@ -139,6 +120,7 @@
                                             :options="formatQuestionOption(question.options)"
                                             @input="changed($event, 'q' + question.id)"
                                             :name="question.title"
+                                            class="w-100"
                                             stacked v-else/>
                     </b-form-group>
                 </td>
