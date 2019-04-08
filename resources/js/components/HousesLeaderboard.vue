@@ -1,8 +1,11 @@
 <template>
     <main>
 
-        <div class="mt-1">
-            Pledge your sword to one of the houses and compete against each other. <a class="text-primary btn-link" href="/predictions/house">Cast your vote.</a>
+        <div class="mt-1" v-if="!hideTitle">
+            Pledge your sword to one of the houses and compete against each other.
+            <a class="text-primary btn-link" href="/predictions/house" v-if="chosenHouse">
+                Cast your vote.
+            </a>
         </div>
         <div v-if="houses.length === 0" class="text-center mt-3 mb-3">
             <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
@@ -131,6 +134,10 @@
                 required: false,
             },
             refreshAfterJoin: {
+                default: false,
+                required: false,
+            },
+            hideTitle: {
                 default: false,
                 required: false,
             }

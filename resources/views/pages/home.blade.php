@@ -60,7 +60,7 @@
         </div>
     </div>
 
-    <div class="container card  mt-3 mb-3 card p-4 text-center">
+    <div class="container card mt-3 mb-3 card p-4 text-center">
         <div class="d-flex align-items-center justify-content-center">
             <div>
                 <h1 class="h2 d-inline mr-2">Battle of the Houses</h1>
