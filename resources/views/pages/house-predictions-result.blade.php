@@ -82,9 +82,11 @@
                             {{ $character->name }}
                         </strong>
                         <br>
-                        <span class="text-muted">
-                            Your vote: {{ Auth::user()->getPrediction($character)->status }}
-                        </span>
+                        @auth
+                            <span class="text-muted">
+                                Your vote: {{ Auth::user()->getPrediction($character)->status }}
+                            </span>
+                        @endauth
                     </div>
 
                     @foreach($houses as $house)
@@ -128,33 +130,34 @@
                     </div>
                 </div>
             @endforeach
+        </div>
 
-            @foreach($questions as $question)
-                <div class="col-12 col-md-12 mt-4 text-center card bg-light p-3">
-                    <div>
-                        <strong>
-                            {{ $question->title }}
-                        </strong>
-                        <br>
+        @foreach($questions as $question)
+            <div class="col-12 col-md-12 mt-4 text-center card">
+                <div class="p-3">
+                    <strong>
+                        {{ $question->title }}
+                    </strong>
+                    <br>
+                    @auth
                         <span class="text-muted">
                             Your vote: {{ Auth::user()->getAnswer($question)->label }}
                         </span>
-                    </div>
-
-                    <div class="row d-flex justify-content-center">
-                        @foreach($houses as $house)
-                            <div class=" col-1 mt-0 mt-md-3 text-center alert-light alert">
-                                <div class="text-center d-inline-block m-1">
-                                    <img src="/img/sigils/{{ $house->image }}" style="height: 30px"><br>
-                                    {!! $question->getTopPredictionForHouse($house) ?? 'No predictions yet.'!!}
-                                </div>
-
-                            </div>
-                        @endforeach
-                    </div>
+                    @endauth
                 </div>
-            @endforeach
-        </div>
+
+                <div class="row d-flex justify-content-center">
+                    @foreach($houses as $house)
+                        <div class="col-6 col-md-2 mt-0 mt-md-3 text-center alert-light alert">
+                            <div class="text-center d-inline-block m-1">
+                                <img src="/img/sigils/{{ $house->image }}" style="height: 30px"><br>
+                                {!! $question->getTopPredictionForHouse($house) ?? '-'!!}
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        @endforeach
     </div>
 
 @endsection

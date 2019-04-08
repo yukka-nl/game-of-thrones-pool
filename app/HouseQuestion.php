@@ -37,7 +37,7 @@ class HouseQuestion extends Model
 
         $status = HouseQuestionOption::findOrFail($topPrediction->house_question_option_id)->label;
         if ($html){
-            return $status .' <span class="badge badge-primary">'. round(($topPrediction->total / $house->amountOfUsers) * 100, 2) . '%</span>';
+            return $status .' <br><span class="badge badge-primary">'. round(($topPrediction->total / $house->amountOfUsers) * 100, 2) . '%</span>';
         }
         return ['status' => $status, 'total' => $topPrediction->total];
     }
