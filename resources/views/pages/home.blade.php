@@ -74,6 +74,20 @@
         </div>
     </div>
 
+
+{{--    <div class="container card  mt-3 mb-3 card p-4">--}}
+{{--        <div class="row">--}}
+{{--            <div class="col-sm-12">--}}
+{{--                <h1 class="h2">Houses leaderboards</h1>--}}
+
+{{--                <div class="container p-0">--}}
+{{--                    <houses-leaderboard-table></houses-leaderboard-table>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+
+{{--        </div>--}}
+{{--    </div>--}}
+
     <div class="container card  mt-3 mb-3 card p-4">
         <div class="row">
             <div class="col-sm-12">

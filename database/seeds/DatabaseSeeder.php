@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(HouseCharactersTableSeeder::class);
         $this->call(StatusTableSeeder::class);
         $this->call(HousesTableSeeder::class);
+        $this->call(HouseQuestionsSeeder::class);
     }
 }
