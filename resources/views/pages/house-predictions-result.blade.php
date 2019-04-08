@@ -24,7 +24,8 @@
                     House Predictions
                 </h1>
                 <p class="mb-3 text-center">
-                    Score points for your house, <strong>{{ Auth::user()->house->name }}</strong>, and lead it to victory. Be aware: the house
+                    Score points for your house, <strong>{{ Auth::user()->house->name }}</strong>, and lead it to
+                    victory. Be aware: the house
                     predictions are collective, which means that you vote for your prediction together with your
                     other house members. The predictions with the most votes will become the final prediction of
                     the house.
@@ -38,27 +39,66 @@
             </div>
         </div>
 
-        <div class="row d-flex justify-content-center">
+        <div class="row d-flex justify-content-center pr-3 pl-3">
+
             @foreach($characters as $character)
-                <div class="col-12 col-md-6 mt-4 text-center">
+                @php
+                    $predictions["Alive"] = [];
+                    $predictions["Dead"] = [];
+                    $predictions["Wight"] = [];
+                @endphp
+
+                <div class="col-12 col-md-12 mt-4 text-center card bg-light p-3">
                     <div>
                         <img src="{{ URL::asset('img/characters/' . $character->image) }}"
                              class="rounded-circle w-100 mb-2"
                              style="max-height: 100px; max-width: 100px;">
+                        <br>
+                        <strong>
+                            {{ $character->name }}
+                        </strong>
+                        <br>
+                        <span class="text-muted">
+                            Your vote: Alive
+                        </span>
                     </div>
-                    <strong>
-                        {{ $character->name }}
-                    </strong>
-                    <br>
-                    <span class="text-muted">
-                        Your vote: Alive
-                    </span>
-                    <br>
 
                     @foreach($houses as $house)
-                        <img src="/img/sigils/{{ $house->image }}" style="height: 15px">
-                        {{ $house->name }} - {{ $character->getTopPredictionForHouse($house)}}<br>
+                        @php
+                            $housePrediction = $character->getTopPredictionForHouse($house);
+                            $predictions[$housePrediction->predictionStatus][] = $housePrediction;
+                        @endphp
                     @endforeach
+
+                    <div class="row">
+                        <div class="col-12 col-md-4 mt-0 mt-md-3 text-center alert-success alert mt-3">
+                            <h2 class="h5">Alive</h2>
+                            @foreach($predictions["Alive"] as $house)
+                                <div class="text-center d-inline-block m-1">
+                                    <img src="/img/sigils/{{ $house->image }}" style="height: 30px"><br>
+                                    <span class="badge badge-success">{{ $house->predictionPercentage }}%</span>
+                                </div>
+                            @endforeach
+                        </div>
+                        <div class="col-12 col-md-4 mt-0 mt-md-3 text-center alert-danger alert">
+                            <h2 class="h5">Dead</h2>
+                            @foreach($predictions["Dead"] as $house)
+                                <div class="text-center d-inline-block m-1">
+                                    <img src="/img/sigils/{{ $house->image }}" style="height: 30px"><br>
+                                    <span class="badge badge-danger">{{ $house->predictionPercentage }}%</span>
+                                </div>
+                            @endforeach
+                        </div>
+                        <div class="col-12 col-md-4 mt-0 mt-md-3 text-center alert-primary alert">
+                            <h2 class="h5">Dies and becomes a wight</h2>
+                            @foreach($predictions["Wight"] as $house)
+                                <div class="text-center d-inline-block m-1">
+                                    <img src="/img/sigils/{{ $house->image }}" style="height: 30px"><br>
+                                    <span class="badge badge-primary">{{ $house->predictionPercentage }}%</span>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
             @endforeach
         </div>
