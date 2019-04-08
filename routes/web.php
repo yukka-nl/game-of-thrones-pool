@@ -1,5 +1,8 @@
 <?php
 
+use App\Character;
+use Illuminate\Support\Facades\DB;
+
 Route::get('/', 'HomeController')->name('home');
 
 Route::get('/statistics', 'StatisticsPageController');

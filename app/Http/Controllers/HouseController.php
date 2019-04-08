@@ -34,6 +34,13 @@ class HouseController extends Controller
         }
         $data['houseCharacters'] = HouseCharacter::all();
         $data['houses'] = House::all();
+
+        foreach ($data['houseCharacters'] as $houseCharacter) {
+            foreach ($data['houses'] as $house) {
+                $houseCharacter[$house->name] = $houseCharacter->getPredictionsForHouse($house->id);
+            }
+        }
+
         return view('pages.house-predictions', $data);
     }
 

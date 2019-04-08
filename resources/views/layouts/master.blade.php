@@ -54,7 +54,7 @@
     @include('partials.header')
     <snow></snow>
     @if(!View::hasSection('hide-house-prediction-cta'))
-        @if(Auth::check() && Auth::user()->house_id && Auth::user()->hasPredictions())
+        @if(Auth::check() && Auth::user()->house_id && Auth::user()->hasPredictions() && !Auth::user()->hasHousePredictions())
             <div class="container card alert-primary mb-3 card p-4 text-center">
                 <div class="d-flex justify-content-center">
                     <img src="/img/sigils-by-id/{{ Auth::user()->house_id }}.svg" class="sigil mb-3 mt-2"

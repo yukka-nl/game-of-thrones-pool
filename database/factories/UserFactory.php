@@ -14,16 +14,16 @@ use Faker\Generator as Faker;
 */
 
 $factory->define(App\User::class, function (Faker $faker) {
+    $houseId = rand(1, 13);
     return [
         'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
         'remember_token' => str_random(10),
         'social_id' => $faker->randomNumber($nbDigits = NULL, $strict = false),
         'token' => str_random(10),
         'platform' => 'yukka',
         'avatar' => $faker->imageUrl($width = 640, $height = 480),
-        'correct_guesses' => rand(0, 33)
+        'correct_guesses' => 0,
+        'house_id' => $houseId > 10 ? null : $houseId
     ];
 });
