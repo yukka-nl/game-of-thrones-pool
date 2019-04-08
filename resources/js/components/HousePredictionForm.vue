@@ -77,8 +77,8 @@
                     </b-form-group>
                 </td>
                 <td class="text-center">
-                    {{ housePredictionStatus(character.predictions[0].status_id) }}
-                    {{ Math.floor((character.predictions[0].total / house.amountOfUsers) * 100) }}%
+                    {{ housePredictionStatus(character) || 'No predictions yet' }}
+                    {{ housePredictionPercentage(character, house) }}
                 </td>
             </tr>
             </tbody>
@@ -147,13 +147,23 @@
                         console.error(error);
                     });
             },
-            housePredictionStatus(statusId) {
+            housePredictionPercentage(character, house) {
+                if (character.predictions.length < 1) {
+                    return null;
+                }
+                return Math.floor((character.predictions[0].total / house.amountOfUsers) * 100) + '%';
+            },
+            housePredictionStatus(character) {
+                if (character.predictions.length < 1) {
+                    return null;
+                }
+                let statusId = character.predictions[0].status_id;
                 if (statusId === 1) {
                     return 'Alive';
-                } else if(statusId === 2){
+                } else if (statusId === 2) {
                     return 'Dead';
-                } else{
-                    return 'Wight';
+                } else {
+                    return 'Dead, becomes a wight';
                 }
             },
             createGroup() {
