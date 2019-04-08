@@ -80,6 +80,7 @@ class HouseController extends Controller
     public function predictionResults()
     {
         $data['characters'] = HouseCharacter::all();
+        $data['questions'] = HouseQuestion::all();
         $data['houses'] = House::all();
         return view('pages.house-predictions-result', $data);
     }

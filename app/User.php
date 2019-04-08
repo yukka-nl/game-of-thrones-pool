@@ -57,7 +57,8 @@ class User extends Authenticatable
         return $this->hasMany(HousePrediction::class);
     }
 
-    public function houseAnswers() {
+    public function houseAnswers()
+    {
         return $this->hasMany(HouseQuestionAnswer::class);
     }
 
@@ -66,7 +67,8 @@ class User extends Authenticatable
         return $this->hasMany(Prediction::class);
     }
 
-    public function allPredictions() {
+    public function allPredictions()
+    {
         return $this->predictions->merge($this->housePredictions);
     }
 
@@ -94,6 +96,16 @@ class User extends Authenticatable
         if ($this->hasPredictions()) {
             return $this->predictions->where('character_id', $characterId)->first()->status;
         }
+    }
+
+    public function getAnswer($question)
+    {
+        return $this->houseAnswers->where('house_question_id', $question->id)->first()->houseQuestionOption;
+    }
+
+    public function getPrediction($character)
+    {
+        return $this->housePredictions->where('character_id', $character->id)->first()->status;
     }
 
     /**
