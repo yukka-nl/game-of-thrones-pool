@@ -84,7 +84,7 @@
                         <br>
                         @auth
                             <span class="text-muted">
-                                Your vote: {{ Auth::user()->getPrediction($character)->status }}
+                                Your vote: {{ Auth::user()->getPrediction($character)->status ?? '-' }}
                             </span>
                         @endauth
                     </div>
@@ -141,7 +141,7 @@
                     <br>
                     @auth
                         <span class="text-muted">
-                            Your vote: {{ Auth::user()->getAnswer($question)->label }}
+                            Your vote: {{ Auth::user()->getAnswer($question)->label ?? '-' }}
                         </span>
                     @endauth
                 </div>

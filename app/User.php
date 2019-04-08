@@ -100,12 +100,16 @@ class User extends Authenticatable
 
     public function getAnswer($question)
     {
-        return $this->houseAnswers->where('house_question_id', $question->id)->first()->houseQuestionOption;
+        if ($this->hasHousePredictions()) {
+            return $this->houseAnswers->where('house_question_id', $question->id)->first()->houseQuestionOption;
+        }
     }
 
     public function getPrediction($character)
     {
-        return $this->housePredictions->where('character_id', $character->id)->first()->status;
+        if ($this->hasHousePredictions()) {
+            return $this->housePredictions->where('character_id', $character->id)->first()->status;
+        }
     }
 
     /**
