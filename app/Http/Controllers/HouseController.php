@@ -21,7 +21,7 @@ class HouseController extends Controller
         $user->house_id = $request->houseId;
         $user->save();
 
-        if($request->flashMessage == 'true') {
+        if ($request->flashMessage == 'true') {
             session()->flash('message', 'You have joined ' . $user->house->name . '!');
         }
         return $user->house_id;
@@ -29,16 +29,15 @@ class HouseController extends Controller
 
     public function predictions()
     {
-        if(Auth::user()->hasHousePredictions()) {
+        $user = Auth::user();
+        if ($user->hasHousePredictions()) {
             return redirect()->action('HouseController@predictionResults');
         }
         $data['houseCharacters'] = HouseCharacter::all();
-        $data['houses'] = House::all();
+        $house = House::findOrFail($user->house_id);
 
         foreach ($data['houseCharacters'] as $houseCharacter) {
-            foreach ($data['houses'] as $house) {
-                $houseCharacter[$house->name] = $houseCharacter->getPredictionsForHouse($house->id);
-            }
+            $houseCharacter['predictions'] = $houseCharacter->getPredictionsForHouse($house->id);
         }
 
         return view('pages.house-predictions', $data);
@@ -46,7 +45,7 @@ class HouseController extends Controller
 
     public function storePrediction(Request $request)
     {
-        if(!Auth::user()->hasHousePredictions()) {
+        if (!Auth::user()->hasHousePredictions()) {
             foreach ($request->all() as $characterId => $status) {
                 HousePrediction::create([
                     'status_id' => $status,

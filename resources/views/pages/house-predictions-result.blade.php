@@ -56,7 +56,8 @@
                     <br>
 
                     @foreach($houses as $house)
-                        <img src="/img/sigils/{{ $house->image }}" style="height: 15px"> {{ $house->name }} - Dead (40%)<br>
+                        <img src="/img/sigils/{{ $house->image }}" style="height: 15px">
+                        {{ $house->name }} - {{ $character->getTopPredictionForHouse($house)}}<br>
                     @endforeach
                 </div>
             @endforeach

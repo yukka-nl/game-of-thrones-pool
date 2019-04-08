@@ -77,7 +77,8 @@
                     </b-form-group>
                 </td>
                 <td class="text-center">
-                    Dead ({{ Math.floor(Math.random() * 100) }}%)
+                    {{ housePredictionStatus(character) || 'No predictions yet' }}
+                    {{ housePredictionPercentage(character, house) }}
                 </td>
             </tr>
             </tbody>
@@ -145,6 +146,25 @@
                     .catch(function (error) {
                         console.error(error);
                     });
+            },
+            housePredictionPercentage(character, house) {
+                if (character.predictions.length < 1) {
+                    return null;
+                }
+                return Math.floor((character.predictions[0].total / house.amountOfUsers) * 100) + '%';
+            },
+            housePredictionStatus(character) {
+                if (character.predictions.length < 1) {
+                    return null;
+                }
+                let statusId = character.predictions[0].status_id;
+                if (statusId === 1) {
+                    return 'Alive';
+                } else if (statusId === 2) {
+                    return 'Dead';
+                } else {
+                    return 'Dead, becomes a wight';
+                }
             },
             createGroup() {
                 let self = this;

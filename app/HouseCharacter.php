@@ -20,4 +20,15 @@ class HouseCharacter extends Model
 
         return $result;
     }
+
+    public function getTopPredictionForHouse($house)
+    {
+        $predictions = $this->getPredictionsForHouse($house->id);
+        $topPrediction = $predictions->first();
+        if(!$topPrediction) {
+            return 'No prediction yet.';
+        }
+        $status = Status::findOrFail($topPrediction->status_id)->status;
+        return $status . ' ('. round(($topPrediction->total / $house->amountOfUsers) * 100) .'%)';
+    }
 }
