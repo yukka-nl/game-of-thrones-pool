@@ -72,6 +72,10 @@
                                 :user-house-id="{{ json_encode(Auth::check() ? Auth::user()->house_id : null ) }}">
             </houses-leaderboard>
         </div>
+
+        <a class="btn btn-lg btn-outline-secondary" href="/predictions/house/results">
+            <i class="fas fa-vote-yea mb-2"></i> View all house predictions <span class="badge badge-success h4 d-inline" style="font-size: 0.9rem;">new</span>
+        </a>
     </div>
 
 

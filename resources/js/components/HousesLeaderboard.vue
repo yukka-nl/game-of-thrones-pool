@@ -2,7 +2,7 @@
     <main>
 
         <div class="mt-1" v-if="!hideTitle">
-            Pledge your sword to one of the houses and compete against each other.
+            Pledge your sword to one of the houses and make additional predictions to lead it to victory.
             <a class="text-primary btn-link" href="/predictions/house" v-if="chosenHouse">
                 Cast your vote.
             </a>

@@ -70,6 +70,10 @@ class User extends Authenticatable
         return $this->predictions->merge($this->housePredictions);
     }
 
+//    public function allPredictions() {
+//        return collect([$this->predictions, $this->housePredictions])->collapse();
+//    }
+
     public function getHasPredictionsAttribute()
     {
         return $this->hasPredictions();

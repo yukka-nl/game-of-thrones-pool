@@ -25,6 +25,20 @@
             </div>
         @endguest
 
+        @auth
+            @if(!Auth::user()->hasPredictions)
+                <div class="text-center">
+                    You have to make your own predictions before you can participate in the battle of houses.
+                    <br>
+
+                    <a class="btn btn-primary btn-lg pulse-button mt-3" href="/prediction/create">
+                        <i class="fab fa-wpforms mr-1"></i> Make your prediction
+                    </a>
+                </div>
+            @endif
+        @endauth
+
+
         @if(Auth::check() && Auth::user()->house_id)
             <div class="alert alert-primary d-flex justify-content-center" role="alert">
                 <div class="col-sm-12 col-md-8 text-center">
