@@ -14,7 +14,7 @@ class PredictionController extends Controller
     public function show($userId)
     {
         $data['user'] = User::findOrFail($userId);
-        $data['groupedPredictions'] = $data['user']->predictions->groupBy('status_id');
+        $data['groupedPredictions'] = $data['user']->allPredictions()->groupBy('status_id');
         return view('pages.user-prediction', $data);
     }
 

@@ -62,6 +62,10 @@ class User extends Authenticatable
         return $this->hasMany(Prediction::class);
     }
 
+    public function allPredictions() {
+        return $this->predictions->merge($this->housePredictions);
+    }
+
     public function getHasPredictionsAttribute()
     {
         return $this->hasPredictions();

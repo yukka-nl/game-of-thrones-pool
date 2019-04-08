@@ -15,7 +15,7 @@ class HousePrediction extends Model
 
     public function character()
     {
-        return $this->belongsTo(Character::class);
+        return $this->belongsTo(HouseCharacter::class);
     }
 
     public function house()

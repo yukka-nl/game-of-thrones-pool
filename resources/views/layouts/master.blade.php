@@ -151,4 +151,10 @@
 
 <script src="/js/app.js"></script>
 
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+
 </html>

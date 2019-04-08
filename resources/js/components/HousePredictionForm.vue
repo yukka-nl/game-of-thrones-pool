@@ -5,7 +5,7 @@
             <div class="d-block text-center">
                 <h1 class="h4">Submit your house prediction?</h1>
                 House predictions are only relevant to the Battle between Houses: they do not count for your individual
-                predictions.
+                predictions. <strong>You can not change your prediction after you submit it.</strong>
             </div>
 
             <div class="row">
