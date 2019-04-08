@@ -210,8 +210,7 @@
                 let self = this;
                 axios.post('/predictions/house', this.selections)
                     .then(function (response) {
-                        console.log(response);
-                        // window.location.replace('/predictions/house/results');
+                        window.location.replace('/predictions/house/results');
                     })
                     .catch(function (error) {
                         console.error(error);
@@ -236,11 +235,17 @@
                     return 'Dead, becomes a wight';
                 }
             },
-            houseQuestionStatus(question, house) {
-
+            houseQuestionStatus(question) {
+                if (question.answers == null) {
+                    return null;
+                }
+                return question.answers.status
             },
-            houseQuestionPercentage(question) {
-
+            houseQuestionPercentage(question, house) {
+                if (question.answers == null) {
+                    return null;
+                }
+                return Math.floor((question.answers.total / house.amountOfUsers) * 100) + '%';
             },
             formatQuestionOption(options) {
                 let result = [];

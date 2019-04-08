@@ -46,6 +46,9 @@ class HouseController extends Controller
                 foreach ($data['houseCharacters'] as $houseCharacter) {
                     $houseCharacter['predictions'] = $houseCharacter->getPredictionsForHouse($house->id);
                 }
+                foreach ($data['houseQuestions'] as $houseQuestion) {
+                    $houseQuestion['answers'] = $houseQuestion->getTopAnswerForHouse($house);
+                }
             }
         }
         return view('pages.house-predictions', $data ?? []);
