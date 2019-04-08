@@ -67,8 +67,7 @@
                     :characters="{{ $houseCharacters }}"
                     username="{{ Auth::user()->name }}"
                     user-id="{{ Auth::id() }}"
-                    :house="{{ Auth::user()->house }}"
-                    :houses="{{ $houses }}">
+                    :house="{{ Auth::user()->house }}">
             </house-prediction-form>
         </div>
     @endif
