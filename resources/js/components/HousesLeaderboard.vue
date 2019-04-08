@@ -45,7 +45,7 @@
         <b-modal ref="joinHouse" hide-footer title="Join House">
             <div v-if="selectedHouse">
                 <h1 class="h4">Would you like to join {{ selectedHouse.name }}?</h1>
-                You can still switch houses until the April 7th.
+                You can't switch houses anymore once you joined a house.
             </div>
 
             <div class="row">
@@ -166,6 +166,11 @@
                     this.$refs.loginModal.show();
                     return;
                 }
+
+                if(this.chosenHouse) {
+                    return;
+                }
+
                 this.selectedHouse = house;
                 this.$refs.joinHouse.show()
             },
