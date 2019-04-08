@@ -8,7 +8,8 @@
                 predictions.
 
                 <div class="alert alert-warning mt-2">
-                    <strong><i class="fas fa-exclamation-triangle"></i> You can not change your prediction after you submit it.</strong>
+                    <strong><i class="fas fa-exclamation-triangle"></i> You can not change your prediction after you
+                        submit it.</strong>
                 </div>
             </div>
 
@@ -55,12 +56,12 @@
                 <td class="position-relative col-6 col-sm-12 d-none d-md-table-cell">
                     <div class="d-flex align-items-center justify-content-center position-absolute h-100 w-100">
                         <b-form-group>
-                            <b-form-radio-group :id="character.name"
+                            <b-form-radio-group :id="'character' + character.name"
                                                 buttons
-                                                v-model="selections[character.id]"
+                                                v-model="selections['c' + character.id]"
                                                 button-variant="outline-secondary"
                                                 :options="options"
-                                                @input="changed($event, character.id)"
+                                                @input="changed($event, 'c' + character.id)"
                                                 :name="character.name"
                             />
 
@@ -69,12 +70,12 @@
                 </td>
                 <td class="d-md-none d-table-cell">
                     <b-form-group>
-                        <b-form-radio-group :id="character.name"
+                        <b-form-radio-group :id="'character' + character.name"
                                             buttons
-                                            v-model="selections[character.id]"
+                                            v-model="selections['c' + character.id]"
                                             button-variant="outline-secondary"
                                             :options="options"
-                                            @input="changed($event, character.id)"
+                                            @input="changed($event, 'c' + character.id)"
                                             :name="character.name"
                                             stacked
                         />
@@ -85,9 +86,60 @@
                     {{ housePredictionPercentage(character, house) }}
                 </td>
             </tr>
+
             </tbody>
         </table>
 
+        <table class="table mt-3 table-responsive" style=" display: table;">
+            <thead>
+            <tr>
+                <th scope="col">Question</th>
+                <th scope="col" class="text-center">Option</th>
+                <th scope="col" class="text-center">
+                    <img :src="sigilImagePath + house.image" style="height: 30px;"></img> Current vote
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="question in questions">
+                <td class="align-middle">
+                    {{ question.title }}
+                </td>
+                <td class="position-relative col-6 col-sm-12 d-none d-md-table-cell">
+                    <div class="d-flex align-items-center justify-content-center position-absolute h-100 w-100">
+                        <b-form-group>
+                            <b-form-radio-group :id="'question' + question.title"
+                                                buttons
+                                                v-model="selections['q' + question.id]"
+                                                button-variant="outline-secondary"
+                                                :options="formatQuestionOption(question.options)"
+                                                @input="changed($event, 'q' + question.id)"
+                                                :name="question.title"
+                            />
+
+                        </b-form-group>
+                    </div>
+                </td>
+                <td class="d-md-none d-table-cell">
+                    <b-form-group>
+                        <b-form-radio-group :id="'question' + question.title"
+                                            buttons
+                                            v-model="selections['q' + question.id]"
+                                            button-variant="outline-secondary"
+                                            :options="formatQuestionOption(question.options)"
+                                            @input="changed($event, 'q' + question.id)"
+                                            :name="question.title"
+                                            stacked
+                        />
+                    </b-form-group>
+                </td>
+                <td class="text-center">
+                    beep
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        {{selections}}
         <div @click="openModal" class="btn btn-success btn-block w-100 btn-lg" v-if="progressPercentage === 100">
             <i class="fas fa-paper-plane mr-1"></i> Submit house prediction
         </div>
@@ -107,7 +159,7 @@
 
 <script>
     export default {
-        props: ['characters', 'username', 'userId', 'house'],
+        props: ['characters', 'questions', 'username', 'userId', 'house'],
         data() {
             return {
                 sigilImagePath: '/img/sigils/',
@@ -126,8 +178,11 @@
         mounted() {
             let self = this;
             this.characters.forEach(character => {
-                self.selections[character.id] = null;
+                self.selections['c' + character.id] = null;
             });
+            this.questions.forEach(question => {
+                self.selections['q' + question.id] = null;
+            })
         },
         methods: {
             changed(value, characterId) {
@@ -145,7 +200,8 @@
                 let self = this;
                 axios.post('/predictions/house', this.selections)
                     .then(function (response) {
-                        window.location.replace('/predictions/house/results');
+                        console.log(response);
+                        // window.location.replace('/predictions/house/results');
                     })
                     .catch(function (error) {
                         console.error(error);
@@ -169,6 +225,13 @@
                 } else {
                     return 'Dead, becomes a wight';
                 }
+            },
+            formatQuestionOption(options) {
+                let result = [];
+                options.forEach(function(option) {
+                    result.push({text:option.label, value:option.id});
+                });
+                return result;
             },
             createGroup() {
                 let self = this;

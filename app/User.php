@@ -57,6 +57,10 @@ class User extends Authenticatable
         return $this->hasMany(HousePrediction::class);
     }
 
+    public function houseAnswers() {
+        return $this->hasMany(HouseQuestionAnswer::class);
+    }
+
     public function predictions()
     {
         return $this->hasMany(Prediction::class);
@@ -78,7 +82,7 @@ class User extends Authenticatable
 
     public function hasHousePredictions()
     {
-        return $this->housePredictions()->count() > 0;
+        return $this->housePredictions()->count() > 0 && $this->houseAnswers()->count() > 0;
     }
 
     public function characterPrediction($characterId)
