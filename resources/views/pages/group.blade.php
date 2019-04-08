@@ -27,7 +27,7 @@
                     Created {{ $group->created_at->diffForHumans() }} <br>
                 </div>
 
-                @if($group->owner->id !== Auth::id())
+                @if($group->owner->id !== Auth::id() && $group->hasUser(Auth::id()) )
                     <group-options-dropdown :group="{{ json_encode($group) }}"
                                             :is-owner="{{ json_encode($group->owner->id === Auth::id()) }}">
                     </group-options-dropdown>
