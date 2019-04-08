@@ -17,24 +17,52 @@
         </ol>
     </nav>
 
-    @if(!Auth::user()->house_id)
+    @guest
         <div class="container card mt-3 mb-3 card p-4">
+            You need to be signed in to participate in the Battle of the Houses.
+
+            @include('partials.social-login-buttons')
+        </div>
+    @endguest
+
+    @if(Auth::check() && !Auth::user()->house_id)
+        <div class="container card mt-3 mb-3 card p-4">
+
             <h1 class="h4 mb-2 text-center">
                 House Predictions
             </h1>
-            You first need to join a house in order to make house predictions.
-            <div class="container p-0">
-                <houses-leaderboard :user-logged-in="{{ json_encode(Auth::check()) }}"
-                                    :user-house-id="{{ json_encode(Auth::check() ? Auth::user()->house_id : null ) }}"
-                                    :hide-stats="true"
-                                    :hide-title="true"
-                                    :refresh-after-join="true">
-                </houses-leaderboard>
-            </div>
+
+            @if(!Auth::user()->hasPredictions)
+                <div class="text-center">
+                    You have to make your own predictions before you can participate in the battle of houses.
+                    <br>
+
+                    <a class="btn btn-primary btn-lg pulse-button mt-3" href="/prediction/create">
+                        <i class="fab fa-wpforms mr-1"></i> Make your prediction
+                    </a>
+                </div>
+            @endif
+
+            @if(Auth::user()->hasPredictions)
+                <div class="alert alert-warning mt-2">
+                    <strong><i class="fas fa-exclamation-triangle"></i> You first need to join a house in order to make
+                        house predictions. Choose your house.</strong>
+                </div>
+
+                <div class="container p-0">
+                    <houses-leaderboard :user-logged-in="{{ json_encode(Auth::check()) }}"
+                                        :user-house-id="{{ json_encode(Auth::check() ? Auth::user()->house_id : null ) }}"
+                                        :hide-stats="true"
+                                        :hide-title="true"
+                                        :refresh-after-join="true">
+                    </houses-leaderboard>
+                </div>
+            @endif
         </div>
+
     @endif
 
-    @if(Auth::user()->house_id)
+    @if(Auth::check() && Auth::user()->house_id)
         <div class="container card mt-3 mb-3 card p-4 house-predictions">
             <div class="row d-flex justify-content-center">
                 <div class="col-12 col-md-12">

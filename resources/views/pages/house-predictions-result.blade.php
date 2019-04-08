@@ -14,30 +14,40 @@
     </nav>
 
     <div class="container card mt-3 mb-3 card p-4 house-predictions">
-        <h1 class="h4">House predictions</h1>
+        <h1 class="h4">House predictions results</h1>
         <hr>
 
-        <div class="alert alert-primary d-flex justify-content-center" role="alert">
-            <div class="col-sm-12 col-md-8 text-center">
-                <img src="/img/sigils-by-id/{{ Auth::user()->house_id }}.svg" class="sigil mb-3 mt-2">
-                <h1 class="h4 mb-2 text-center">
-                    House Predictions
-                </h1>
-                <p class="mb-3 text-center">
-                    Score points for your house, <strong>{{ Auth::user()->house->name }}</strong>, and lead it to
-                    victory. Be aware: the house
-                    predictions are collective, which means that you vote for your prediction together with your
-                    other house members. The predictions with the most votes will become the final prediction of
-                    the house.
-                </p>
-                <p class="text-center">
-                    <strong>
-                        These predictions are only for the house leaderboards and do not
-                        count for the global or group leaderboards.
-                    </strong>
-                </p>
+        @guest
+            <div class="text-center">
+                Sign in to make your own predictions.
+
+                @include('partials.social-login-buttons')
             </div>
-        </div>
+        @endguest
+
+        @if(Auth::check() && Auth::user()->house_id)
+            <div class="alert alert-primary d-flex justify-content-center" role="alert">
+                <div class="col-sm-12 col-md-8 text-center">
+                    <img src="/img/sigils-by-id/{{ Auth::user()->house_id }}.svg" class="sigil mb-3 mt-2">
+                    <h1 class="h4 mb-2 text-center">
+                        House Predictions
+                    </h1>
+                    <p class="mb-3 text-center">
+                        Score points for your house, <strong>{{ Auth::user()->house->name }}</strong>, and lead it to
+                        victory. Be aware: the house
+                        predictions are collective, which means that you vote for your prediction together with your
+                        other house members. The predictions with the most votes will become the final prediction of
+                        the house.
+                    </p>
+                    <p class="text-center">
+                        <strong>
+                            These predictions are only for the house leaderboards and do not
+                            count for the global or group leaderboards.
+                        </strong>
+                    </p>
+                </div>
+            </div>
+        @endif
 
         <div class="row d-flex justify-content-center pr-3 pl-3">
 
@@ -60,6 +70,8 @@
                         <br>
                         <span class="text-muted">
                             Your vote: Alive
+{{--                            // TODO --}}
+
                         </span>
                     </div>
 
@@ -75,7 +87,8 @@
                             <h2 class="h5">Alive</h2>
                             @foreach($predictions["Alive"] as $house)
                                 <div class="text-center d-inline-block m-1">
-                                    <img src="/img/sigils/{{ $house->image }}" style="height: 30px"><br>
+                                    <img src="/img/sigils/{{ $house->image }}" style="height: 30px" class="mouse-over"
+                                         data-toggle="tooltip" data-placement="top" title="{{ $house->name }}"><br>
                                     <span class="badge badge-success">{{ $house->predictionPercentage }}%</span>
                                 </div>
                             @endforeach
@@ -84,7 +97,8 @@
                             <h2 class="h5">Dead</h2>
                             @foreach($predictions["Dead"] as $house)
                                 <div class="text-center d-inline-block m-1">
-                                    <img src="/img/sigils/{{ $house->image }}" style="height: 30px"><br>
+                                    <img src="/img/sigils/{{ $house->image }}" style="height: 30px" class="mouse-over"
+                                         data-toggle="tooltip" data-placement="top" title="{{ $house->name }}"><br>
                                     <span class="badge badge-danger">{{ $house->predictionPercentage }}%</span>
                                 </div>
                             @endforeach
@@ -93,7 +107,8 @@
                             <h2 class="h5">Dies and becomes a wight</h2>
                             @foreach($predictions["Wight"] as $house)
                                 <div class="text-center d-inline-block m-1">
-                                    <img src="/img/sigils/{{ $house->image }}" style="height: 30px"><br>
+                                    <img src="/img/sigils/{{ $house->image }}" style="height: 30px" class="mouse-over"
+                                         data-toggle="tooltip" data-placement="top" title="{{ $house->name }}"><br>
                                     <span class="badge badge-primary">{{ $house->predictionPercentage }}%</span>
                                 </div>
                             @endforeach

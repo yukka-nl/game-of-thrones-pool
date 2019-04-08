@@ -53,7 +53,9 @@
 <div id="app" class="container p-0 mb-4 pr-1 pl-1">
     @include('partials.header')
     <snow></snow>
+
     @if(!View::hasSection('hide-house-prediction-cta'))
+
         @if(Auth::check() && Auth::user()->house_id && Auth::user()->hasPredictions() && !Auth::user()->hasHousePredictions())
             <div class="container card alert-primary mb-3 card p-4 text-center">
                 <div class="d-flex justify-content-center">
@@ -76,7 +78,7 @@
 
                 <p class="mb-3 text-center">
                     You have joined <strong>{{ Auth::user()->house->name }}</strong>. You can now predict the fate of
-                    the  remaining characters, such as the dragons, to score points for your house.
+                    the remaining characters, such as the dragons, to score points for your house.
                 </p>
 
                 <p class="text-center">
@@ -118,6 +120,22 @@
             {{ session('message') }}
         </div>
     @endif
+
+    <div class="container card mb-3 p-2 text-center">
+        <div>
+            <span class="badge badge-pill badge-success">New</span> We have added additional characters as part of the
+            <a href="/predictions/house">battle of the houses</a>.
+            <div class="text-center small-avatars mt-3 mb-3 d-inline ml-2">
+                <img src="/img/characters/drogon.jpeg" class="rounded-circle">
+                <img src="/img/characters/rhaegal.jpeg" class="rounded-circle">
+                <img src="/img/characters/meera_reed.jpeg" class="rounded-circle">
+                <img src="/img/characters/robin_arryn.jpeg" class="rounded-circle">
+                <img src="/img/characters/lyanna_mormont.jpeg" class="rounded-circle">
+                <img src="/img/characters/yohn_royce.jpeg" class="rounded-circle">
+                <img src="/img/characters/edmure_tully.jpeg" class="rounded-circle">
+            </div>
+        </div>
+    </div>
 
     @yield('content')
 

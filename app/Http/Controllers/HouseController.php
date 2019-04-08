@@ -29,18 +29,22 @@ class HouseController extends Controller
 
     public function predictions()
     {
-        $user = Auth::user();
-        if ($user->hasHousePredictions()) {
-            return redirect()->action('HouseController@predictionResults');
-        }
-        $data['houseCharacters'] = HouseCharacter::all();
-        $house = House::findOrFail($user->house_id);
+        if(Auth::check()) {
+            $user = Auth::user();
+            if ($user->hasHousePredictions()) {
+                return redirect()->action('HouseController@predictionResults');
+            }
 
-        foreach ($data['houseCharacters'] as $houseCharacter) {
-            $houseCharacter['predictions'] = $houseCharacter->getPredictionsForHouse($house->id);
-        }
+            if($user->house_id) {
+                $data['houseCharacters'] = HouseCharacter::all();
+                $house = House::findOrFail($user->house_id);
 
-        return view('pages.house-predictions', $data);
+                foreach ($data['houseCharacters'] as $houseCharacter) {
+                    $houseCharacter['predictions'] = $houseCharacter->getPredictionsForHouse($house->id);
+                }
+            }
+        }
+        return view('pages.house-predictions', $data ?? []);
     }
 
     public function storePrediction(Request $request)

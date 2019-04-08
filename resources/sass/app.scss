@@ -213,6 +213,10 @@ body {
 
 .small-avatars {
   img {
-    width: 30px!important;
+    width: 30px !important;
   }
+}
+
+.mouse-over:hover {
+  cursor: pointer;
 }
