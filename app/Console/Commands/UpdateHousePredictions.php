@@ -47,6 +47,17 @@ class UpdateHousePredictions extends Command
 
         $bar = $this->output->createProgressBar($houseCharacters->count());
         foreach ($houseCharacters as $houseCharacter) {
+            $correctPredictionsQuery = DB::table('house_predictions')
+                ->select('user_id')
+                ->where('character_id', $houseCharacter->id)
+                ->where('status_id', $houseCharacter->status_id)
+                ->update(['is_correct' => true]);
+            $incorrectPredictionsQuery = DB::table('house_predictions')
+                ->select('user_id')
+                ->where('character_id', $houseCharacter->id)
+                ->where('status_id', '!=', $houseCharacter->status_id)
+                ->update(['is_correct' => false]);
+
             foreach ($houses as $house) {
                 $housePrediction = $houseCharacter->getTopPredictionForHouseAsStatus($house);
                 if ($housePrediction->id == $houseCharacter->status_id) {
@@ -59,8 +70,8 @@ class UpdateHousePredictions extends Command
         $bar->finish();
         $this->line(' All house character predictions updated!');
 
-        $bar = $this->output->createProgressBar($houseCharacters->count());
         $houseQuestions = HouseQuestion::all();
+        $bar = $this->output->createProgressBar($houseQuestions->count());
         foreach ($houseQuestions as $question) {
             $correctAnswers = $question->getCorrectAnswers();
             foreach ($houses as $house) {
