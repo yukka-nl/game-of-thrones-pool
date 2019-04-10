@@ -9,7 +9,7 @@ class FakeUserTablesSeeder extends \Illuminate\Database\Seeder
      */
     public function run()
     {
-        for ($i = 0; $i <= 10000; $i++) {
+        for ($i = 1; $i <= 20000; $i++) {
             factory(\App\User::class)->create();
         }
     }
