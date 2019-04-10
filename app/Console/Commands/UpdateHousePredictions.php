@@ -2,8 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\House;
+use App\HouseCharacter;
 use Illuminate\Console\Command;
-use Faker\Factory as Faker;
+use Illuminate\Support\Facades\DB;
 
 class UpdateHousePredictions extends Command
 {
@@ -38,6 +40,29 @@ class UpdateHousePredictions extends Command
      */
     public function handle()
     {
+        $this->line('Updating correct guesses...');
+        $houseCharacters = HouseCharacter::whereNotNull('status_id')->get();
+        
+        $bar = $this->output->createProgressBar($houseCharacters->count());
+        foreach ($houseCharacters as $houseCharacter) {
+            $correctPredictionsQuery = DB::table('predictions')
+                ->select('user_id')
+                ->where('character_id', $houseCharacter->id)
+                ->where('status_id', $houseCharacter->status_id);
 
+            $correctPredictionsQuery->update(['is_correct' => true]);
+            $correctPredictionsCollection = $correctPredictionsQuery->get();
+
+            foreach (House::all() as $house) {
+                $housePrediction = $houseCharacter->getTopPredictionForHouseAsStatus($house);
+                if ($housePrediction->id == $houseCharacter->status_id) {
+                    $house->correct_predictions += 1;
+                    $house->save();
+                }
+            }
+            $bar->advance();
+        }
+        $bar->finish();
+        $this->line("\n" . 'All predictions updated!');
     }
 }
