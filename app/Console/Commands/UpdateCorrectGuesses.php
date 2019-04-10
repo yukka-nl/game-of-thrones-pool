@@ -51,6 +51,12 @@ class UpdateCorrectGuesses extends Command
                 ->where('character_id', $character->id)
                 ->where('status_id', $character->status_id);
 
+            $incorrectPredictionsQuery = DB::table('predictions')
+                ->select('user_id')
+                ->where('character_id', $character->id)
+                ->where('status_id', '!=', $character->status_id)
+                ->update(['is_correct' => false]);
+
             $correctPredictionsQuery->update(['is_correct' => true]);
             $correctPredictionsCollection = $correctPredictionsQuery->get();
 
