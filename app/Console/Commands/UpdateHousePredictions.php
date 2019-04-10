@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\House;
 use App\HouseCharacter;
+use App\HouseQuestion;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
@@ -41,19 +42,12 @@ class UpdateHousePredictions extends Command
     public function handle()
     {
         $this->line('Updating correct guesses...');
+        $houses = House::all();
         $houseCharacters = HouseCharacter::whereNotNull('status_id')->get();
-        
+
         $bar = $this->output->createProgressBar($houseCharacters->count());
         foreach ($houseCharacters as $houseCharacter) {
-            $correctPredictionsQuery = DB::table('predictions')
-                ->select('user_id')
-                ->where('character_id', $houseCharacter->id)
-                ->where('status_id', $houseCharacter->status_id);
-
-            $correctPredictionsQuery->update(['is_correct' => true]);
-            $correctPredictionsCollection = $correctPredictionsQuery->get();
-
-            foreach (House::all() as $house) {
+            foreach ($houses as $house) {
                 $housePrediction = $houseCharacter->getTopPredictionForHouseAsStatus($house);
                 if ($housePrediction->id == $houseCharacter->status_id) {
                     $house->correct_predictions += 1;
@@ -63,6 +57,22 @@ class UpdateHousePredictions extends Command
             $bar->advance();
         }
         $bar->finish();
-        $this->line("\n" . 'All predictions updated!');
+        $this->line(' All house character predictions updated!');
+
+        $bar = $this->output->createProgressBar($houseCharacters->count());
+        $houseQuestions = HouseQuestion::all();
+        foreach ($houseQuestions as $question) {
+            $correctAnswers = $question->getCorrectAnswers();
+            foreach ($houses as $house) {
+                $topAnswer = $question->getTopAnswerForHouse($house);
+                if ($correctAnswers->contains('id', $topAnswer->id)) {
+                    $house->correct_predictions += 1;
+                    $house->save();
+                }
+            }
+            $bar->advance();
+        }
+        $bar->finish();
+        $this->line(' All house questions updated!');
     }
 }
