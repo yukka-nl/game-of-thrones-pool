@@ -9,7 +9,8 @@ class HouseQuestion extends Model
 {
     protected $with = ['options'];
 
-    public function options() {
+    public function options()
+    {
         return $this->hasMany(HouseQuestionOption::class);
     }
 
@@ -26,23 +27,36 @@ class HouseQuestion extends Model
         return $result;
     }
 
-    public function getTopPredictionForHouse($house, $html = true)
+    public function getTopAnswerForHouse($house, $html = false, $array = false)
     {
         $predictions = $this->getPredictionsForHouse($house->id);
         $topPrediction = $predictions->first();
 
-        if(!$topPrediction) {
+        if (!$topPrediction) {
             return null;
         }
 
-        $status = HouseQuestionOption::findOrFail($topPrediction->house_question_option_id)->label;
-        if ($html){
-            return $status .' <br><span class="badge badge-primary">'. round(($topPrediction->total / $house->amountOfUsers) * 100, 2) . '%</span>';
+        $status = HouseQuestionOption::findOrFail($topPrediction->house_question_option_id);
+        if ($html) {
+            return $status->label . ' <br><span class="badge badge-primary">' . round(($topPrediction->total / $house->amountOfUsers) * 100, 2) . '%</span>';
+        } elseif ($array) {
+            return ['status' => $status->label, 'total' => $topPrediction->total];
         }
-        return ['status' => $status, 'total' => $topPrediction->total];
+        return $status;
     }
 
-    public function getTopAnswerForHouse($house) {
-        return $this->getTopPredictionForHouse($house, false);
+    public function getTopAnswerForHouseAsHtml($house)
+    {
+        return $this->getTopAnswerForHouse($house, true);
+    }
+
+    public function getTopAnswerForHouseAsArray($house)
+    {
+        return $this->getTopAnswerForHouse($house, false, true);
+    }
+
+    public function getCorrectAnswers()
+    {
+        return $this->options->where('is_correct', true);
     }
 }

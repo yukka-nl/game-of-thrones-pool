@@ -151,7 +151,7 @@
                         <div class="col-6 col-md-2 mt-0 mt-md-3 text-center alert-light alert">
                             <div class="text-center d-inline-block m-1">
                                 <img src="/img/sigils/{{ $house->image }}" style="height: 30px"><br>
-                                {!! $question->getTopPredictionForHouse($house) ?? '-'!!}
+                                {!! $question->getTopAnswerForHouseAsHtml($house) ?? '-'!!}
                             </div>
                         </div>
                     @endforeach

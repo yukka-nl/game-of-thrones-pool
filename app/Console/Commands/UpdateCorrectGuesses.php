@@ -15,14 +15,14 @@ class UpdateCorrectGuesses extends Command
      *
      * @var string
      */
-    protected $signature = 'update:correct-guesses';
+    protected $signature = 'update:character-predictions';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Update the correct guesses for all users.';
+    protected $description = 'Update the correct predictions for all users.';
 
     /**
      * Create a new command instance.
@@ -41,24 +41,34 @@ class UpdateCorrectGuesses extends Command
      */
     public function handle()
     {
+        DB::table('users')->update(['correct_guesses' => 0]);
+        $this->line('Correct guesses have been reset.');
         $this->line('Updating correct guesses...');
         $characters = Character::whereNotNull('status_id')->get();
 
         $bar = $this->output->createProgressBar($characters->count());
         foreach ($characters as $character) {
-            $correctPredictions = DB::table('predictions')
+            $correctPredictionsQuery = DB::table('predictions')
                 ->select('user_id')
                 ->where('character_id', $character->id)
-                ->where('status_id', $character->status_id)
-                ->get();
+                ->where('status_id', $character->status_id);
+
+            $incorrectPredictionsQuery = DB::table('predictions')
+                ->select('user_id')
+                ->where('character_id', $character->id)
+                ->where('status_id', '!=', $character->status_id)
+                ->update(['is_correct' => false]);
+
+            $correctPredictionsQuery->update(['is_correct' => true]);
+            $correctPredictionsCollection = $correctPredictionsQuery->get();
 
             DB::table('users')
-                ->whereIn('id', $correctPredictions->pluck('user_id'))
+                ->whereIn('id', $correctPredictionsCollection->pluck('user_id'))
                 ->increment('correct_guesses');
             $bar->advance();
         }
         $bar->finish();
 
-        $this->line(' All predictions updated!');
+        $this->line("\n" . 'All predictions updated!');
     }
 }
