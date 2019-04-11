@@ -41,6 +41,8 @@ class UpdateHousePredictions extends Command
      */
     public function handle()
     {
+        DB::table('houses')->update(['correct_predictions' => 0]);
+        $this->line('Correct guesses have been reset.');
         $this->line('Updating correct guesses...');
         $houses = House::all();
         $houseCharacters = HouseCharacter::whereNotNull('status_id')->get();

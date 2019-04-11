@@ -41,6 +41,8 @@ class UpdateCorrectGuesses extends Command
      */
     public function handle()
     {
+        DB::table('users')->update(['correct_guesses' => 0]);
+        $this->line('Correct guesses have been reset.');
         $this->line('Updating correct guesses...');
         $characters = Character::whereNotNull('status_id')->get();
 
