@@ -52,7 +52,7 @@ class HouseController extends Controller
                     $houseCharacter['predictions'] = $houseCharacter->getPredictionsForHouse($house->id);
                 }
                 foreach ($data['houseQuestions'] as $houseQuestion) {
-                    $houseQuestion['answers'] = $houseQuestion->getTopAnswerForHouse($house);
+                    $houseQuestion['answers'] = $houseQuestion->getTopAnswerForHouseAsArray($house);
                 }
             }
         }
