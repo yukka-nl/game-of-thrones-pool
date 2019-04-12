@@ -140,6 +140,10 @@
             hideTitle: {
                 default: false,
                 required: false,
+            },
+            lockdown: {
+                default: false,
+                required: false,
             }
         },
         data() {
@@ -162,6 +166,10 @@
                     })
             },
             openJoinHouseModal(house) {
+                if(this.lockdown) {
+                    return;
+                }
+
                 if(!this.userLoggedIn) {
                     this.$refs.loginModal.show();
                     return;
@@ -195,7 +203,7 @@
                 this.$refs.battleOfHouses.hide()
             },
             houseCard(houseId) {
-                let classes = "house-card mb-2 mb-md-0 text-center alert col-4 col-lg-2 col-xl p-2 p-md-3";
+                let classes = "mb-2 mb-md-0 text-center alert col-4 col-lg-2 col-xl p-2 p-md-3";
 
                 if (this.chosenHouse) {
                     if (houseId === this.chosenHouse) {
@@ -203,6 +211,10 @@
                     } else {
                         classes += " other-houses";
                     }
+                }
+
+                if(!this.lockdown) {
+                    classes += " house-card";
                 }
 
                 return classes;
