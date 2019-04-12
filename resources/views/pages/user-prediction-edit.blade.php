@@ -14,11 +14,17 @@
                 @include('partials.rules')
             </div>
             <div class="col-sm-12">
-                <prediction-edit-form :characters="{{ $characters }}"
-                                      username="{{ Auth::user()->name }}"
-                                      user-id="{{ Auth::id() }}"
-                                      :predictions="{{ json_encode($predictions) }}">
-                </prediction-edit-form>
+                @if(!config('app.lockdown'))
+                    <prediction-edit-form :characters="{{ $characters }}"
+                                          username="{{ Auth::user()->name }}"
+                                          user-id="{{ Auth::id() }}"
+                                          :predictions="{{ json_encode($predictions) }}">
+                    </prediction-edit-form>
+                @else
+                    <div class="alert alert-danger" role="alert">
+                        Sorry, the website is in lockdown. No predictions can be made.
+                    </div>
+                @endif
             </div>
         </div>
     </div>

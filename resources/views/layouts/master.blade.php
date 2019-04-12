@@ -114,10 +114,14 @@
         </div>
     @endif
 
-
     @if(session('message'))
         <div class="alert alert-success animated flash" role="alert">
             {{ session('message') }}
+        </div>
+    @endif
+    @if(session('warning'))
+        <div class="alert alert-danger animated flash" role="alert">
+            {{ session('warning') }}
         </div>
     @endif
 
