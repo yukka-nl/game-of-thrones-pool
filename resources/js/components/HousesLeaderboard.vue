@@ -2,9 +2,16 @@
     <main>
 
         <div class="mt-1" v-if="!hideTitle">
-            Pledge your sword to one of the houses and make additional predictions to lead it to victory.
-            <a class="text-primary btn-link" href="/predictions/house" v-if="chosenHouse">
-                Cast your vote.
+            The house points are updated every week and are calculated in the following manner:
+
+            <div class="mt-2">
+            <code>
+                House points = total correct house predictions + average correct predictions of the users within the house
+            </code>
+            </div>
+
+            <a class="btn btn-outline-secondary mt-2" href="/predictions/house/results">
+                <i class="fas fa-vote-yea mb-2"></i> View all house predictions <span class="badge badge-success h4 d-inline" >new</span>
             </a>
         </div>
         <div v-if="houses.length === 0" class="text-center mt-3 mb-3">
@@ -29,9 +36,10 @@
                         {{ house.users_count }}
                     </span>
                     </div>
-                    <div >
-                        <span class="badge badge-primary" v-if="!hideStats">0% correct</span>
-                        <br>
+                    <div class="mt-2">
+                        <div class="alert alert-primary p-1 mt-0 mr-0 ml-0 mb-1" v-if="!hideStats">
+                            {{ house.totalScore }} points
+                        </div>
                         <span v-if="chosenHouse && (house.id === chosenHouse)" class="text-primary small">
                             Your choice
                         </span>
@@ -158,7 +166,8 @@
                 let self = this;
                 axios.get('/houses')
                     .then(function (response) {
-                        self.houses = response.data
+                        let houses = response.data;
+                        self.houses = houses.sort((a, b) => b.totalScore.localeCompare(a.totalScore));
                     })
             },
             openJoinHouseModal(house) {

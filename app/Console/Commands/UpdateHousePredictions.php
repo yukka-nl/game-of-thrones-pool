@@ -87,5 +87,14 @@ class UpdateHousePredictions extends Command
         }
         $bar->finish();
         $this->line(' All house questions updated!');
+
+        foreach ($houses as $house) {
+            $house->average_user_correct_guesses = $house->users->avg('correct_guesses') * 100000;
+            $this->line($house->users->avg('correct_guesses'));
+            $house->save();
+            $bar->advance();
+        }
+        $this->line(' Calculated average user correct guesses!');
+        $bar->finish();
     }
 }

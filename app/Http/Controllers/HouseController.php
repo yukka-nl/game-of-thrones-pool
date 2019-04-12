@@ -15,7 +15,7 @@ class HouseController extends Controller
 {
     public function index()
     {
-        return House::withCount('users')->orderBy('users_count', 'desc')->get();
+        return House::withCount('users')->get();
     }
 
     public function join(Request $request)

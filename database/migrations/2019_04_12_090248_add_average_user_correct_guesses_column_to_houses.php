@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddCorrectPredictionsColumnToHousesTable extends Migration
+class AddAverageUserCorrectGuessesColumnToHouses extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddCorrectPredictionsColumnToHousesTable extends Migration
     public function up()
     {
         Schema::table('houses', function (Blueprint $table) {
-            $table->string('correct_predictions')->default('');
+            $table->unsignedInteger('average_user_correct_guesses')->default(0);
         });
     }
 
@@ -26,7 +26,7 @@ class AddCorrectPredictionsColumnToHousesTable extends Migration
     public function down()
     {
         Schema::table('houses', function (Blueprint $table) {
-            $table->dropColumn('correct_predictions');
+            $table->dropColumn('average_user_correct_guesses');
         });
     }
 }
