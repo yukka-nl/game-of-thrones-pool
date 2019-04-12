@@ -121,13 +121,28 @@
         </div>
     @endif
 
+    <div class="container card mb-3 p-2 text-center">
+        <div>
+            <span class="badge badge-pill badge-success">New</span> We have added additional characters as part of the
+            <a href="/predictions/house">battle of the houses</a>.
+            <div class="text-center small-avatars mt-3 mb-3 d-inline ml-2">
+                <img src="/img/characters/drogon.jpeg" class="rounded-circle">
+                <img src="/img/characters/rhaegal.jpeg" class="rounded-circle">
+                <img src="/img/characters/meera_reed.jpeg" class="rounded-circle">
+                <img src="/img/characters/robin_arryn.jpeg" class="rounded-circle">
+                <img src="/img/characters/lyanna_mormont.jpeg" class="rounded-circle">
+                <img src="/img/characters/yohn_royce.jpeg" class="rounded-circle">
+                <img src="/img/characters/edmure_tully.jpeg" class="rounded-circle">
+            </div>
+        </div>
+    </div>
+
     <div class="container mb-3 p-2 text-center alert alert-warning">
             <i class="far fa-clock"></i>
             The predictions results will be updated within 48 hours after a new episode airs.
     </div>
 
     @yield('content')
-
 
     <footer class="container mb-3 p-4 text-center text-white">
         <div class="mb-3">

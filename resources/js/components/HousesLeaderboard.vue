@@ -6,7 +6,7 @@
 
             <div class="mt-2">
             <code>
-                House points = total correct house predictions + average correct predictions of the users within the house
+                House points = total correct house predictions + average correct user predictions within the house
             </code>
             </div>
 
