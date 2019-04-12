@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Laravel\Socialite\Facades\Socialite;
+use mysql_xdevapi\Exception;
 
 class LoginController extends Controller
 {
@@ -69,7 +70,7 @@ class LoginController extends Controller
      */
     public function handleProviderCallback(Request $request, $platform)
     {
-        if(!$request->has('oauth_token')) {
+        if (!$request->has('oauth_token')) {
             if (!$request->has('code') || $request->has('denied')) {
                 return redirect('/');
             }
@@ -77,7 +78,12 @@ class LoginController extends Controller
 
         $userData = Socialite::driver($platform)->stateless()->user();
 
-        $user = $this->getExistingUser($userData, $platform);
+        try {
+            $user = $this->getExistingUser($userData, $platform);
+        } catch (\Exception $e) {
+            session()->flash('warning', 'Sorry, season 8 has started. Registrations are closed.');
+            return redirect('/');
+        }
 
         auth()->login($user);
 
@@ -104,12 +110,16 @@ class LoginController extends Controller
      * @param $userData
      * @param string $platform
      * @return \App\User
+     * @throws \Exception
      */
     public function getExistingUser($userData, $platform)
     {
         $user = User::where('social_id', $userData->id)->first();
 
         if (!$user) {
+            if (config('app.lockdown')) {
+                throw new \Exception('Lockdown in effect', 42);
+            }
             $user = $this->registerNewUser($userData, $platform);
         }
 

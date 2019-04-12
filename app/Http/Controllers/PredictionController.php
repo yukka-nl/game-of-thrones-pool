@@ -20,7 +20,11 @@ class PredictionController extends Controller
 
     public function store(Request $request)
     {
-        if(!Auth::user()->hasPredictions()) {
+        if (config('app.lockdown')) {
+            return response("Sorry, season 8 has started. No predictions can be made.", 403);
+        }
+
+        if (!Auth::user()->hasPredictions()) {
             foreach ($request->all() as $characterId => $status) {
                 Prediction::create([
                     'status_id' => $status,
@@ -35,14 +39,20 @@ class PredictionController extends Controller
 
     public function create()
     {
-        if(Auth::user()->hasPredictions()) {
+        if (Auth::user()->hasPredictions()) {
             return response("You already made a prediction", 500);
         }
+
+        if (config('app.lockdown')) {
+            session()->flash('warning', 'Sorry, season 8 has started. No predictions can be made.');
+        }
+
         $data['characters'] = Character::all();
         return view('pages.prediction', $data);
     }
 
-    public function edit() {
+    public function edit()
+    {
         $data['characters'] = Character::all();
         $data['predictions'] = Auth::user()->predictions;
         $data['predictions'] = $data['predictions']->mapWithKeys(function ($item) {
@@ -51,7 +61,12 @@ class PredictionController extends Controller
         return view('pages.user-prediction-edit', $data);
     }
 
-    public function update(Request $request) {
+    public function update(Request $request)
+    {
+        if (config('app.lockdown')) {
+            return response("Sorry, season 8 has started. No predictions can be made.", 403);
+        }
+
         foreach ($request->all() as $characterId => $status) {
             $prediction = Prediction::where('user_id', Auth::id())->where('character_id', $characterId)->first();
             $prediction->status_id = $status;

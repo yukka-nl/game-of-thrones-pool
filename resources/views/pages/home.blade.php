@@ -67,7 +67,7 @@
             </div>
         </div>
         <div class="container p-0">
-            <houses-leaderboard
+            <houses-leaderboard :lockdown="{{ json_encode(config('app.lockdown'))}}"
                                 :user-logged-in="{{ json_encode(Auth::check()) }}"
                                 :user-house-id="{{ json_encode(Auth::check() ? Auth::user()->house_id : null ) }}">
             </houses-leaderboard>

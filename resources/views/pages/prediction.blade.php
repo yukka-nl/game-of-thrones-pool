@@ -14,8 +14,14 @@
                 @include('partials.rules')
             </div>
             <div class="col-sm-12">
-                <prediction-form :characters="{{ $characters }}" username="{{ Auth::user()->name }}"
-                                 user-id="{{ Auth::id() }}"></prediction-form>
+                @if(!config('app.lockdown'))
+                    <prediction-form :characters="{{ $characters }}" username="{{ Auth::user()->name }}"
+                                     user-id="{{ Auth::id() }}"></prediction-form>
+                @else
+                    <div class="alert alert-danger" role="alert">
+                        Sorry, season 8 has started. No predictions can be made.
+                    </div>
+                @endif
             </div>
         </div>
     </div>

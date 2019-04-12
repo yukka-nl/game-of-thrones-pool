@@ -19,7 +19,7 @@
 
         @guest
             <div class="text-center">
-                Sign in to make your own predictions.
+                {{config('app.lockdown') ? 'Sign in to check your predictions.' : 'Sign in to make your own predictions.'}}
 
                 @include('partials.social-login-buttons')
             </div>
