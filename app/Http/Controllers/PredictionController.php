@@ -21,7 +21,7 @@ class PredictionController extends Controller
     public function store(Request $request)
     {
         if (config('app.lockdown')) {
-            return response("Sorry, the website is in lockdown. No predictions can be made.", 403);
+            return response("Sorry, season 8 has started. No predictions can be made.", 403);
         }
 
         if (!Auth::user()->hasPredictions()) {
@@ -44,7 +44,7 @@ class PredictionController extends Controller
         }
 
         if (config('app.lockdown')) {
-            session()->flash('warning', 'Sorry, the website is in lockdown. No predictions can be made.');
+            session()->flash('warning', 'Sorry, season 8 has started. No predictions can be made.');
         }
 
         $data['characters'] = Character::all();
@@ -64,9 +64,9 @@ class PredictionController extends Controller
     public function update(Request $request)
     {
         if (config('app.lockdown')) {
-            return response("Sorry, the website is in lockdown. No predictions can be made.", 403);
+            return response("Sorry, season 8 has started. No predictions can be made.", 403);
         }
-        
+
         foreach ($request->all() as $characterId => $status) {
             $prediction = Prediction::where('user_id', Auth::id())->where('character_id', $characterId)->first();
             $prediction->status_id = $status;

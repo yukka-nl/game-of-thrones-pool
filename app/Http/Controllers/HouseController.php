@@ -20,6 +20,9 @@ class HouseController extends Controller
 
     public function join(Request $request)
     {
+        if (config('app.lockdown')) {
+            return response("Sorry, season 8 has started. No predictions can be made.", 403);
+        }
         $user = Auth::user();
 
         if ($user->house_id) {
@@ -37,6 +40,10 @@ class HouseController extends Controller
 
     public function predictions()
     {
+        if (config('app.lockdown')) {
+            session()->flash('warning', 'Sorry, season 8 has started. No predictions can be made.');
+            return redirect('/predictions/house/results');
+        }
         if (Auth::check()) {
             $user = Auth::user();
             if ($user->hasHousePredictions()) {

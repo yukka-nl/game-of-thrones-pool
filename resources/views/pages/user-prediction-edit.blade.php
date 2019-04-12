@@ -22,7 +22,7 @@
                     </prediction-edit-form>
                 @else
                     <div class="alert alert-danger" role="alert">
-                        Sorry, the website is in lockdown. No predictions can be made.
+                        Sorry, season 8 has started. No predictions can be made.
                     </div>
                 @endif
             </div>

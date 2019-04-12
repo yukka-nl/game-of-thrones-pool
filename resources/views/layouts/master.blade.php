@@ -53,65 +53,68 @@
 <div id="app" class="container p-0 mb-4 pr-1 pl-1">
     @include('partials.header')
     <snow></snow>
+    @if(!config('app.lockdown'))
+        @if(!View::hasSection('hide-house-prediction-cta'))
 
-    @if(!View::hasSection('hide-house-prediction-cta'))
+            @if(Auth::check() && Auth::user()->house_id && Auth::user()->hasPredictions() && !Auth::user()->hasHousePredictions())
+                <div class="container card alert-primary mb-3 card p-4 text-center">
+                    <div class="d-flex justify-content-center">
+                        <img src="/img/sigils-by-id/{{ Auth::user()->house_id }}.svg" class="sigil mb-3 mt-2"
+                             style="width: 75px">
+                    </div>
+                    <h1 class="h4 mb-2 text-center">
+                        Make your house predictions now!
+                    </h1>
 
-        @if(Auth::check() && Auth::user()->house_id && Auth::user()->hasPredictions() && !Auth::user()->hasHousePredictions())
+                    <div class="text-center small-avatars mt-3 mb-3">
+                        <img src="/img/characters/drogon.jpeg" class="rounded-circle">
+                        <img src="/img/characters/rhaegal.jpeg" class="rounded-circle">
+                        <img src="/img/characters/meera_reed.jpeg" class="rounded-circle">
+                        <img src="/img/characters/robin_arryn.jpeg" class="rounded-circle">
+                        <img src="/img/characters/lyanna_mormont.jpeg" class="rounded-circle">
+                        <img src="/img/characters/yohn_royce.jpeg" class="rounded-circle">
+                        <img src="/img/characters/edmure_tully.jpeg" class="rounded-circle">
+                    </div>
+
+                    <p class="mb-3 text-center">
+                        You have joined <strong>{{ Auth::user()->house->name }}</strong>. You can now predict the fate
+                        of
+                        the remaining characters, such as the dragons, to score points for your house.
+                    </p>
+
+                    <p class="text-center">
+                        <strong>
+                            These predictions are only for the house leaderboards and do not
+                            count for the global or group leaderboards.
+                        </strong>
+                    </p>
+                    <div class="d-flex justify-content-center">
+                        <a class="btn btn-primary btn-lg pulse-button" href="/predictions/house">
+                            <i class="fab fa-wpforms mr-1"></i> Make your house prediction
+                        </a>
+                    </div>
+                </div>
+            @endif
+        @endif
+
+        @if(Auth::check() && !Auth::user()->house_id && Auth::user()->hasPredictions())
             <div class="container card alert-primary mb-3 card p-4 text-center">
-                <div class="d-flex justify-content-center">
-                    <img src="/img/sigils-by-id/{{ Auth::user()->house_id }}.svg" class="sigil mb-3 mt-2"
-                         style="width: 75px">
+                <div class="d-flex align-items-center justify-content-center">
+                    <div>
+                        <h1 class="h2 d-inline mr-2">You haven't joined a house yet. Click on a sigil to join a
+                            house.</h1>
+                        <span class="badge badge-success h4 d-inline" style="font-size:0.9rem">new</span>
+                    </div>
                 </div>
-                <h1 class="h4 mb-2 text-center">
-                    Make your house predictions now!
-                </h1>
-
-                <div class="text-center small-avatars mt-3 mb-3">
-                    <img src="/img/characters/drogon.jpeg" class="rounded-circle">
-                    <img src="/img/characters/rhaegal.jpeg" class="rounded-circle">
-                    <img src="/img/characters/meera_reed.jpeg" class="rounded-circle">
-                    <img src="/img/characters/robin_arryn.jpeg" class="rounded-circle">
-                    <img src="/img/characters/lyanna_mormont.jpeg" class="rounded-circle">
-                    <img src="/img/characters/yohn_royce.jpeg" class="rounded-circle">
-                    <img src="/img/characters/edmure_tully.jpeg" class="rounded-circle">
-                </div>
-
-                <p class="mb-3 text-center">
-                    You have joined <strong>{{ Auth::user()->house->name }}</strong>. You can now predict the fate of
-                    the remaining characters, such as the dragons, to score points for your house.
-                </p>
-
-                <p class="text-center">
-                    <strong>
-                        These predictions are only for the house leaderboards and do not
-                        count for the global or group leaderboards.
-                    </strong>
-                </p>
-                <div class="d-flex justify-content-center">
-                    <a class="btn btn-primary btn-lg pulse-button" href="/predictions/house">
-                        <i class="fab fa-wpforms mr-1"></i> Make your house prediction
-                    </a>
+                <div class="container p-0">
+                    <houses-leaderboard :user-logged-in="{{ json_encode(Auth::check()) }}"
+                                        :user-house-id="{{ json_encode(Auth::check() ? Auth::user()->house_id : null ) }}"
+                                        :hide-stats="true"
+                                        :refresh-after-join="true">
+                    </houses-leaderboard>
                 </div>
             </div>
         @endif
-    @endif
-
-    @if(Auth::check() && !Auth::user()->house_id && Auth::user()->hasPredictions())
-        <div class="container card alert-primary mb-3 card p-4 text-center">
-            <div class="d-flex align-items-center justify-content-center">
-                <div>
-                    <h1 class="h2 d-inline mr-2">You haven't joined a house yet. Click on a sigil to join a house.</h1>
-                    <span class="badge badge-success h4 d-inline" style="font-size:0.9rem">new</span>
-                </div>
-            </div>
-            <div class="container p-0">
-                <houses-leaderboard :user-logged-in="{{ json_encode(Auth::check()) }}"
-                                    :user-house-id="{{ json_encode(Auth::check() ? Auth::user()->house_id : null ) }}"
-                                    :hide-stats="true"
-                                    :refresh-after-join="true">
-                </houses-leaderboard>
-            </div>
-        </div>
     @endif
 
     @if(session('message'))
