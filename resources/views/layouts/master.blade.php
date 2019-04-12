@@ -97,7 +97,7 @@
             @endif
         @endif
 
-        @if(Auth::check() && !Auth::user()->house_id && Auth::user()->hasPredictions())
+        @if(Auth::check() && !Auth::user()->house_id && Auth::user()->hasPredictions() && !config('app.lockdown'))
             <div class="container card alert-primary mb-3 card p-4 text-center">
                 <div class="d-flex align-items-center justify-content-center">
                     <div>
@@ -107,7 +107,8 @@
                     </div>
                 </div>
                 <div class="container p-0">
-                    <houses-leaderboard :user-logged-in="{{ json_encode(Auth::check()) }}"
+                    <houses-leaderboard :lockdown="{{ json_encode(config('app.lockdown')) }}"
+                                        :user-logged-in="{{ json_encode(Auth::check()) }}"
                                         :user-house-id="{{ json_encode(Auth::check() ? Auth::user()->house_id : null ) }}"
                                         :hide-stats="true"
                                         :refresh-after-join="true">
