@@ -19,11 +19,19 @@
     <div class="container card  mt-3 mb-3 card p-4">
         <div class="row">
             <div class="col-sm-12">
+
                 <div class="text-center d-flex align-items-center justify-content-center">
-                    <h1 class="h2">Pool: {{ $group->name }}</h1>
+
+                    <h1 class="h2">Pool: FOK!</h1>
                 </div>
 
+
                 <div class="text-center text-muted mb-2">
+
+                    @if($group->slug == '0c56572a-6f29-4009-a658-b66b6b6cd848')
+                        <p><img src="/img/fok.gif" alt="FOK!forum"></p>
+                    @endif
+
                     Created {{ $group->created_at->diffForHumans() }} <br>
                 </div>
 
