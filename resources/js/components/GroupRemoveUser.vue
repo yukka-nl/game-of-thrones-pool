@@ -53,8 +53,8 @@
 
                 axios.delete('/groups/remove-user', {data: postData})
                     .then(function (response) {
-
                         self.hideConfirmation();
+                        window.location.reload()
                     })
                     .catch(function (error) {
                         self.showDismissibleAlert = true;

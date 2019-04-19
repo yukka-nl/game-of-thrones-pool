@@ -72,7 +72,7 @@ class GroupController extends Controller
     public function removeUser(RemoveUserRequest $request)
     {
         $group = Group::where('slug', $request->input('group_uuid'))->first();
-        if (Auth::user() !== $group->owner) {
+        if (Auth::id() !== $group->owner->id) {
             return response("Not authorized.", 401);
         }
         DB::table('group_user')->where('group_id', $group->id)->where('user_id', $request->input('user_id'))->delete();
