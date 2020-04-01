@@ -3,6 +3,8 @@
 use App\Character;
 use Illuminate\Support\Facades\DB;
 
+Config::set('app.lockdown', \Carbon\Carbon::createFromTimeString('April 15 2019 01:00:00')->isPast());
+
 Route::get('/', 'HomeController')->name('home');
 
 Route::get('/statistics', 'StatisticsPageController');
