@@ -95,7 +95,13 @@
                 <span class="text-muted">Total users: {{ $userCount }}</span>
 
                 <div class="container p-0">
+                    @if(config('app.lockdown'))
                     <global-leaderboard></global-leaderboard>
+                    @else
+                    <div class="alert alert-warning mt-3" role="alert">
+                        Due to high demand (yay!) we disabled the leaderboard until the episode starts.
+                    </div>
+                    @endif
                 </div>
             </div>
 

@@ -24,6 +24,11 @@
                 </div>
 
                 <div class="text-center text-muted mb-2">
+
+                    @if($group->slug == '0c56572a-6f29-4009-a658-b66b6b6cd848')
+                        <p><img src="/img/fok.gif" alt="FOK!forum"></p>
+                    @endif
+                    
                     Created {{ $group->created_at->diffForHumans() }} <br>
                 </div>
 

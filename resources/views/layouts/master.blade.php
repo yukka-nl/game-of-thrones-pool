@@ -145,6 +145,11 @@
         </div>
     </div>
 
+    <div class="container mb-3 p-2 text-center alert alert-primary">
+            The predictions and rewarded points have been updated for <strong>the final episode (episode 6)</strong>. Thanks for participating in the Pool of Dragons!
+    </div>
+
+
     <div class="container mb-3 p-2 text-center alert alert-warning">
             <i class="far fa-clock"></i>
             The predictions results will be updated within 48 hours after a new episode airs.
