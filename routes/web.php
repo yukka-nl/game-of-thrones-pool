@@ -23,6 +23,7 @@ Route::get('/groups/{slug}', 'GroupController@show');
 Route::get('/groups/invite/{inviteCode}', 'GroupController@join')->name('invite-link');
 Route::post('/groups/leave/{uuid}', 'GroupController@leave');
 Route::get('/groups/{groupId}', 'GroupController@show');
+Route::delete('/groups/remove-user', 'GroupController@removeUser');
 
 Route::get('/privacy', 'PageController@privacy');
 Route::get('/terms-of-service', 'PageController@tos');

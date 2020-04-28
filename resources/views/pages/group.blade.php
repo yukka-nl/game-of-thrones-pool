@@ -47,6 +47,9 @@
                                          style="max-height: 100px; max-width: 100px;">
                                 </div>
                                 {{ $user->name }}
+                                @if($group->owner->id === Auth::id() && $user->id !== Auth::id())
+                                    <group-remove-user target-user="{{$user->id}}" group-slug="{{$group->slug}}"></group-remove-user>
+                                @endif
                             </div>
                         @endforeach
                     @else

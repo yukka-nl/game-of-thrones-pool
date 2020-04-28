@@ -7,6 +7,7 @@ use App\Group;
 use App\GroupUser;
 
 use App\Http\Requests\GroupStoreRequest;
+use App\Http\Requests\RemoveUserRequest;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -66,5 +67,15 @@ class GroupController extends Controller
         Auth::user()->groups()->detach($group->id);
         session()->flash('message', 'You left ' . $group->name . ' group');
         return response('success', 200);
+    }
+
+    public function removeUser(RemoveUserRequest $request)
+    {
+        $group = Group::where('slug', $request->input('group_uuid'))->first();
+        if (Auth::id() !== $group->owner->id) {
+            return response("Not authorized.", 401);
+        }
+        DB::table('group_user')->where('group_id', $group->id)->where('user_id', $request->input('user_id'))->delete();
+        return response('User removed.', 200);
     }
 }
